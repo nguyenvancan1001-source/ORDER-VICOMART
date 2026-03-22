@@ -177,9 +177,10 @@ const USERS_DB = {
 };
 
 const SUPPLIERS = [
-  {id:'NCC01',name:'NCC Rau Củ ABC',contact:'0901234567',lead_time:1},
-  {id:'NCC02',name:'NCC Thực Phẩm XYZ',contact:'0912345678',lead_time:2},
-  {id:'NCC03',name:'NCC Đồ Khô DEF',contact:'0923456789',lead_time:3},
+  {id:'NCC01',    name:'NCC Rau Củ ABC',                  contact:'0901234567', lead_time:1},
+  {id:'NCC02',    name:'NCC Thực Phẩm XYZ',               contact:'0912345678', lead_time:2},
+  {id:'NCC03',    name:'NCC Đồ Khô DEF',                  contact:'0923456789', lead_time:3},
+  {id:'NCC-VAM',  name:'CTY Văn Minh – Thạch Ánh Hồng',  contact:'',           lead_time:1},
 ];
 
 const PRODUCTS = {
@@ -207,6 +208,37 @@ const PRODUCTS = {
 };
 
 const DEMO_ORDERS = [
+  // ── ĐƠN CTY VĂN MINH – THẠCH ÁNH HỒNG (21/03/2026) ──────────────────────
+  {
+    id:'ORD-VAM-001',
+    order_code:'ORD-PHB-20260321-VAM001',
+    store_id:'S01', store_name:'Phú Bài',
+    supplier_id:'NCC-VAM', supplier_name:'CTY Văn Minh – Thạch Ánh Hồng',
+    status:'confirmed',
+    order_date:'2026-03-21', delivery_date:'2026-03-21',
+    submitted_at:'2026-03-21T08:00:00.000Z',
+    supplier_responded_at:'2026-03-21T09:00:00.000Z',
+    total:3606800,
+    note:'',
+    items:[
+      {id:'VAM-P01',name:'Kẹo Trứng Kinder Hồng Socola Kem Sữa Giòn 20g',    unit:'cái',  ordered_qty:12, confirmed_qty:12, price:25500, item_status:'confirmed'},
+      {id:'VAM-P02',name:'Kẹo Trứng Kinder Boy Xanh Socola Kem Sữa Giòn Cái', unit:'cái',  ordered_qty:12, confirmed_qty:12, price:25500, item_status:'confirmed'},
+      {id:'VAM-P03',name:'Bánh Chocolate Nhân Hạt Dẻ Kinder Bueno 43g',        unit:'cái',  ordered_qty:24, confirmed_qty:24, price:27900, item_status:'confirmed'},
+      {id:'VAM-P04',name:'Kẹo Xốp Haribo Chamallows Pink & White 70g Gói',     unit:'gói',  ordered_qty:10, confirmed_qty:10, price:21545, item_status:'confirmed'},
+      {id:'VAM-P05',name:'Kẹo Dẻo Haribo Happy Cola Bịch 80G',                 unit:'bịch', ordered_qty:10, confirmed_qty:10, price:21545, item_status:'confirmed'},
+      {id:'VAM-P06',name:'Kẹo Dẻo Haribo Goldbears Bịch 80G',                  unit:'bịch', ordered_qty:10, confirmed_qty:10, price:21546, item_status:'confirmed'},
+      {id:'VAM-P07',name:'Lốc 6 Ly Thạch Dừa Ánh Hồng 540g Lốc',              unit:'lốc',  ordered_qty:12, confirmed_qty:12, price:23625, item_status:'confirmed'},
+      {id:'VAM-P08',name:'Kẹo Cà Phê Espresso Nhân Cà Phê Gói 150G Gói',       unit:'gói',  ordered_qty:10, confirmed_qty:10, price:13181, item_status:'confirmed'},
+      {id:'VAM-P09',name:'Kẹo Cà Phê Espresso Nhân Vani Gói 150G Gói',         unit:'gói',  ordered_qty:10, confirmed_qty:10, price:13181, item_status:'confirmed'},
+      {id:'VAM-P10',name:'Socola Lotte Hạt Hạnh Nhân Hộp 46g',                 unit:'hộp',  ordered_qty:10, confirmed_qty:10, price:25700, item_status:'confirmed'},
+      {id:'VAM-P11',name:'Kẹo Tic Tac Hương Vị Bạc Hà Lúc 14.5g',             unit:'cái',  ordered_qty:12, confirmed_qty:12, price:12000, item_status:'confirmed'},
+      {id:'VAM-P12',name:'Kẹo Chanh Bạch Hà Lotte Anytime 60g',                unit:'gói',  ordered_qty:6,  confirmed_qty:6,  price:23809, item_status:'confirmed'},
+      {id:'VAM-P13',name:'Kẹo Hương Đào Hàn Quốc Lotte Anytime 60g',           unit:'gói',  ordered_qty:6,  confirmed_qty:6,  price:23809, item_status:'confirmed'},
+      {id:'VAM-P14',name:'Kẹo Bạc Hà Lotte Anytime Bluemarine 60g',             unit:'gói',  ordered_qty:8,  confirmed_qty:8,  price:23809, item_status:'confirmed'},
+      {id:'VAM-P15',name:'Kẹo Sữa Milkita Hương Socola 84g',                    unit:'gói',  ordered_qty:10, confirmed_qty:10, price:12727, item_status:'confirmed'},
+      {id:'VAM-P16',name:'Kẹo Sữa Milkita Hương Sữa 84g Lê',                   unit:'gói',  ordered_qty:10, confirmed_qty:10, price:12727, item_status:'confirmed'},
+    ],
+  },
   {id:'ORD001',order_code:'ORD-PHB-20260321-001',store_id:'S01',store_name:'Phú Bài',supplier_id:'NCC01',supplier_name:'NCC Rau Củ ABC',status:'pending_supplier',order_date:'2026-03-21',delivery_date:'2026-03-22',total:350000,items:[{id:'P001',name:'Rau muống',unit:'kg',ordered_qty:20,confirmed_qty:20,price:8000,item_status:'confirmed'},{id:'P002',name:'Cà chua',unit:'kg',ordered_qty:15,confirmed_qty:15,price:15000,item_status:'pending'}]},
   {id:'ORD002',order_code:'ORD-PHB-20260320-001',store_id:'S01',store_name:'Phú Bài',supplier_id:'NCC02',supplier_name:'NCC Thực Phẩm XYZ',status:'confirmed',order_date:'2026-03-20',delivery_date:'2026-03-21',total:520000,items:[{id:'P006',name:'Thịt heo xay',unit:'kg',ordered_qty:5,confirmed_qty:5,price:95000,item_status:'confirmed'},{id:'P010',name:'Trứng gà',unit:'vỉ',ordered_qty:3,confirmed_qty:3,price:28000,item_status:'confirmed'}]},
   {id:'ORD003',order_code:'ORD-VIT-20260321-001',store_id:'S02',store_name:'Vinh Thanh',supplier_id:'NCC01',supplier_name:'NCC Rau Củ ABC',status:'draft',order_date:'2026-03-21',delivery_date:'2026-03-23',total:0,items:[]},
