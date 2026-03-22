@@ -863,7 +863,7 @@ async function callGeminiVision(base64DataUrl,apiKey){
   const prompt=`Đọc hóa đơn đặt hàng Việt Nam trong ảnh. Chỉ trả về JSON thuần, không markdown:\n{"supplier_name":"tên NCC hoặc null","order_date":"YYYY-MM-DD hoặc null","delivery_date":"YYYY-MM-DD hoặc null","items":[{"name":"tên sản phẩm","barcode":"mã vạch hoặc null","unit":"đvt","qty":1,"unit_price":0,"total":0}],"grand_total":0}`;
   const mimeType=base64DataUrl.match(/^data:([^;]+);base64,/)?.[1]||'image/jpeg';
   const base64Data=base64DataUrl.replace(/^data:[^;]+;base64,/,'');
-  const resp=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`,{
+  const resp=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,{
     method:'POST',headers:{'Content-Type':'application/json'},
     body:JSON.stringify({contents:[{parts:[{text:prompt},{inline_data:{mime_type:mimeType,data:base64Data}}]}],generationConfig:{temperature:0,maxOutputTokens:2048}})
   });
