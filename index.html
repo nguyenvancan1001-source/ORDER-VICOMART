@@ -10,7 +10,6 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Be Vietnam Pro',sans-serif;}
 :root{--primary:#0D47A1;--primary2:#1565C0;--primary3:#1976D2;--accent:#42A5F5;--bg:#f0f4ff;--card:#fff;--text:#1a237e;--gray:#607d8b;}
 body{background:var(--bg);min-height:100vh;}
-/* AUTH */
 .auth-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0D47A1 0%,#1976D2 100%);}
 .auth-card{background:#fff;border-radius:20px;padding:40px;width:100%;max-width:400px;box-shadow:0 20px 60px rgba(0,0,0,.2);}
 .auth-logo{text-align:center;margin-bottom:24px;}
@@ -24,42 +23,38 @@ body{background:var(--bg);min-height:100vh;}
 .btn-primary{background:var(--primary);color:#fff;}
 .btn-primary:hover{background:var(--primary2);}
 .err{color:#e53935;font-size:13px;margin-top:8px;text-align:center;}
-/* LAYOUT */
 .app{display:flex;min-height:100vh;}
 .sidebar{width:240px;background:var(--primary);color:#fff;display:flex;flex-direction:column;flex-shrink:0;}
 .sidebar-logo{padding:24px 20px;border-bottom:1px solid rgba(255,255,255,.1);}
 .sidebar-logo h2{font-size:16px;font-weight:800;letter-spacing:1px;}
 .sidebar-logo p{font-size:11px;opacity:.7;margin-top:2px;}
-.sidebar-nav{flex:1;padding:16px 0;}
+.sidebar-nav{flex:1;padding:16px 0;overflow-y:auto;}
 .nav-item{display:flex;align-items:center;gap:10px;padding:12px 20px;cursor:pointer;font-size:13px;font-weight:500;opacity:.8;transition:.2s;border-left:3px solid transparent;}
 .nav-item:hover,.nav-item.active{opacity:1;background:rgba(255,255,255,.1);border-left-color:#fff;}
 .nav-item span.icon{font-size:16px;width:20px;text-align:center;}
+.nav-sep{padding:6px 20px;font-size:10px;opacity:.45;letter-spacing:.8px;margin-top:6px;}
 .sidebar-footer{padding:16px 20px;border-top:1px solid rgba(255,255,255,.1);}
 .user-info{font-size:12px;opacity:.8;}
 .user-info strong{display:block;font-size:13px;opacity:1;}
 .logout-btn{margin-top:10px;width:100%;padding:8px;border:1px solid rgba(255,255,255,.3);background:transparent;color:#fff;border-radius:8px;font-size:12px;cursor:pointer;}
 .logout-btn:hover{background:rgba(255,255,255,.1);}
-/* MAIN */
 .main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
 .topbar{background:#fff;padding:16px 28px;border-bottom:1px solid #e3eaf5;display:flex;align-items:center;justify-content:space-between;}
 .topbar h3{font-size:18px;font-weight:700;color:var(--text);}
-.topbar-right{display:flex;align-items:center;gap:12px;}
 .content{flex:1;padding:28px;overflow-y:auto;}
-/* CARDS */
-.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:24px;}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:24px;}
 .stat-card{background:#fff;border-radius:14px;padding:20px;box-shadow:0 2px 12px rgba(13,71,161,.08);}
 .stat-card .num{font-size:32px;font-weight:800;color:var(--primary);}
 .stat-card .label{font-size:12px;color:var(--gray);margin-top:4px;}
 .stat-card .icon{font-size:28px;margin-bottom:8px;}
 .card{background:#fff;border-radius:14px;padding:20px;box-shadow:0 2px 12px rgba(13,71,161,.08);margin-bottom:20px;}
-.card-title{font-size:15px;font-weight:700;color:var(--text);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
-/* TABLE */
+.card-title{font-size:15px;font-weight:700;color:var(--text);margin-bottom:16px;}
 table{width:100%;border-collapse:collapse;}
-th{text-align:left;padding:10px 12px;font-size:12px;font-weight:700;color:var(--gray);border-bottom:2px solid #e3eaf5;text-transform:uppercase;letter-spacing:.5px;}
-td{padding:12px;font-size:13px;border-bottom:1px solid #f0f4ff;color:#333;}
+th{text-align:left;padding:10px 12px;font-size:11px;font-weight:700;color:var(--gray);border-bottom:2px solid #e3eaf5;text-transform:uppercase;letter-spacing:.5px;}
+td{padding:10px 12px;font-size:13px;border-bottom:1px solid #f0f4ff;color:#333;}
 tr:hover td{background:#f8faff;}
-/* BADGE */
-.badge{display:inline-flex;align-items:center;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.3px;}
+tfoot tr td{border-top:2px solid #a5d6a7;background:#e8f5e9 !important;font-weight:800;color:#1b5e20;font-size:14px;}
+.badge{display:inline-flex;align-items:center;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;}
 .badge-draft{background:#eceff1;color:#607d8b;}
 .badge-pending{background:#fff3e0;color:#e65100;}
 .badge-confirmed{background:#e8f5e9;color:#2e7d32;}
@@ -69,47 +64,30 @@ tr:hover td{background:#f8faff;}
 .badge-delivering{background:#f3e5f5;color:#6a1b9a;}
 .badge-delivered{background:#e0f2f1;color:#00695c;}
 .badge-closed{background:#263238;color:#fff;}
-/* FORM */
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
-.form-row.full{grid-template-columns:1fr;}
 select,input[type=text],input[type=date],input[type=number],textarea{width:100%;padding:10px 14px;border:2px solid #e3eaf5;border-radius:10px;font-size:13px;outline:none;font-family:inherit;}
 select:focus,input:focus,textarea:focus{border-color:var(--primary);}
-.btn-sm{padding:6px 14px;border-radius:8px;font-size:12px;font-weight:600;border:none;cursor:pointer;}
+.btn-sm{padding:6px 14px;border-radius:8px;font-size:12px;font-weight:600;border:none;cursor:pointer;transition:.15s;}
+.btn-sm:hover{opacity:.85;}
 .btn-primary-sm{background:var(--primary);color:#fff;}
 .btn-success{background:#2e7d32;color:#fff;}
 .btn-danger{background:#c62828;color:#fff;}
 .btn-outline{background:transparent;border:2px solid var(--primary);color:var(--primary);}
-/* CATALOG */
-.catalog-item{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #f0f4ff;}
-.catalog-item:last-child{border:none;}
-.catalog-info{flex:1;}
-.catalog-info .name{font-size:13px;font-weight:600;color:#1a237e;}
-.catalog-info .meta{font-size:11px;color:var(--gray);margin-top:2px;}
-.qty-input{width:70px;text-align:center;}
-/* TIMELINE */
-.timeline{padding:0;}
-.tl-item{display:flex;gap:12px;margin-bottom:16px;}
-.tl-dot{width:12px;height:12px;border-radius:50%;background:var(--primary);flex-shrink:0;margin-top:4px;}
-.tl-content{flex:1;}
-.tl-title{font-size:13px;font-weight:600;color:#1a237e;}
-.tl-time{font-size:11px;color:var(--gray);}
-/* MODAL */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:100;}
-.modal{background:#fff;border-radius:16px;padding:28px;width:90%;max-width:500px;max-height:80vh;overflow-y:auto;}
-.modal-title{font-size:17px;font-weight:700;color:var(--text);margin-bottom:20px;}
-/* EMPTY */
-.empty{text-align:center;padding:40px;color:var(--gray);}
-.empty .icon{font-size:48px;margin-bottom:12px;}
-/* FILTER */
 .filter-bar{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;}
 .filter-bar select,.filter-bar input{width:auto;flex:1;min-width:120px;}
-/* RESPONSIVE */
+.empty{text-align:center;padding:40px;color:var(--gray);}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:100;}
+.modal{background:#fff;border-radius:16px;padding:28px;width:92%;max-width:600px;max-height:85vh;overflow-y:auto;}
+.modal-title{font-size:17px;font-weight:700;color:var(--text);margin-bottom:16px;}
+.tl-item{display:flex;gap:12px;margin-bottom:14px;}
+.tl-dot{width:10px;height:10px;border-radius:50%;background:var(--primary);flex-shrink:0;margin-top:4px;}
+.tl-content .tl-title{font-size:13px;font-weight:600;color:#1a237e;}
+.tl-content .tl-time{font-size:11px;color:var(--gray);}
 @media(max-width:768px){.sidebar{display:none;}.form-row{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
 
-<!-- AUTH PAGE -->
 <div id="authPage" class="auth-wrap">
   <div class="auth-card">
     <div class="auth-logo">
@@ -126,192 +104,168 @@ select:focus,input:focus,textarea:focus{border-color:var(--primary);}
     </div>
     <button class="btn btn-primary" onclick="doLogin()">ĐĂNG NHẬP →</button>
     <div class="err" id="loginErr"></div>
-    <div style="margin-top:16px;font-size:11px;color:#999;text-align:center">
+    <div style="margin-top:16px;font-size:11px;color:#aaa;text-align:center">
       Demo: admin/admin123 · buyer/buyer123 · store1/store123 · supplier1/sup123
     </div>
   </div>
 </div>
 
-<!-- APP -->
 <div id="appPage" class="app" style="display:none">
   <div class="sidebar">
-    <div class="sidebar-logo">
-      <h2>🛒 VICOMART</h2>
-      <p id="sbRole">Order System</p>
-    </div>
+    <div class="sidebar-logo"><h2>🛒 VICOMART</h2><p id="sbRole">Order System</p></div>
     <nav class="sidebar-nav" id="sidebarNav"></nav>
     <div class="sidebar-footer">
-      <div class="user-info">
-        <strong id="sbUser">-</strong>
-        <span id="sbStore">-</span>
-      </div>
+      <div class="user-info"><strong id="sbUser">-</strong><span id="sbStore" style="display:block;font-size:11px;margin-top:2px">-</span></div>
       <button class="logout-btn" onclick="logout()">Đăng xuất</button>
     </div>
   </div>
   <div class="main">
     <div class="topbar">
       <h3 id="pageTitle">Dashboard</h3>
-      <div class="topbar-right">
-        <span id="topDate" style="font-size:13px;color:#999"></span>
-      </div>
+      <span id="topDate" style="font-size:12px;color:#999"></span>
     </div>
     <div class="content" id="mainContent"></div>
   </div>
 </div>
-
 <div id="modalContainer"></div>
 
 <script>
-const SUPA_URL = 'https://oeqvwhawayzsfxmhlfch.supabase.co';
-const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9lcXZ3aGF3YXl6c2Z4bWhsZmNoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwMzE3NzMsImV4cCI6MjA4ODYwNzc3M30.MWbRKHgjISsnw64ZZ1ZPo_tULRpwl16Qms5RVNiLALo';
-const supa = window.supabase.createClient(SUPA_URL, SUPA_KEY);
+const SUPA_URL='https://oeqvwhawayzsfxmhlfch.supabase.co';
+const SUPA_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9lcXZ3aGF3YXl6c2Z4bWhsZmNoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwMzE3NzMsImV4cCI6MjA4ODYwNzc3M30.MWbRKHgjISsnw64ZZ1ZPo_tULRpwl16Qms5RVNiLALo';
+const supa=window.supabase.createClient(SUPA_URL,SUPA_KEY);
 
-// ── DEMO DATA ─────────────────────────────────────────────────────────────────
-const USERS_DB = {
-  admin:     {password:'admin123',role:'admin',name:'Quản trị viên',store_id:null,supplier_id:null},
-  buyer:     {password:'buyer123',role:'buyer_head_office',name:'Nguyễn Thị Mua',store_id:null,supplier_id:null},
-  store1:    {password:'store123',role:'store_user',name:'Lê Văn Cường',store_id:'S01',store_name:'Phú Bài'},
-  store2:    {password:'store456',role:'store_user',name:'Phạm Thị Dung',store_id:'S02',store_name:'Vinh Thanh'},
-  supplier1: {password:'sup123',role:'supplier_user',name:'Công ty ABC',supplier_id:'NCC01',supplier_name:'NCC Rau Củ ABC'},
-  supplier2: {password:'sup456',role:'supplier_user',name:'Công ty XYZ',supplier_id:'NCC02',supplier_name:'NCC Thực Phẩm XYZ'},
+// ── DEMO DATA ──────────────────────────────────────────────────────────────
+const USERS_DB={
+  admin:    {password:'admin123',role:'admin',name:'Quản trị viên'},
+  buyer:    {password:'buyer123',role:'buyer_head_office',name:'Nguyễn Thị Mua'},
+  store1:   {password:'store123',role:'store_user',name:'Lê Văn Cường',store_id:'S01',store_name:'Phú Bài'},
+  store2:   {password:'store456',role:'store_user',name:'Phạm Thị Dung',store_id:'S02',store_name:'Vinh Thanh'},
+  supplier1:{password:'sup123',role:'supplier_user',name:'CTY Rau Củ ABC',supplier_id:'NCC01',supplier_name:'NCC Rau Củ ABC'},
+  supplier2:{password:'sup456',role:'supplier_user',name:'CTY Thực Phẩm XYZ',supplier_id:'NCC02',supplier_name:'NCC Thực Phẩm XYZ'},
 };
 
-const SUPPLIERS = [
-  {id:'NCC01',    name:'NCC Rau Củ ABC',                  contact:'0901234567', lead_time:1},
-  {id:'NCC02',    name:'NCC Thực Phẩm XYZ',               contact:'0912345678', lead_time:2},
-  {id:'NCC03',    name:'NCC Đồ Khô DEF',                  contact:'0923456789', lead_time:3},
-  {id:'NCC-VAM',  name:'CTY Văn Minh – Thạch Ánh Hồng',  contact:'',           lead_time:1},
+const SUPPLIERS=[
+  {id:'NCC01',name:'NCC Rau Củ ABC',contact:'0901234567',lead_time:1},
+  {id:'NCC02',name:'NCC Thực Phẩm XYZ',contact:'0912345678',lead_time:2},
+  {id:'NCC03',name:'NCC Đồ Khô DEF',contact:'0923456789',lead_time:3},
+  {id:'NCC-VAM',name:'CTY Văn Minh – Thạch Ánh Hồng',contact:'',lead_time:1},
 ];
 
-const PRODUCTS = {
+const PRODUCTS={
   NCC01:[
-    {id:'P001',barcode:'893000100001',name:'Rau muống',        unit:'kg',   price:8000},
-    {id:'P002',barcode:'893000100002',name:'Cà chua',          unit:'kg',   price:15000},
-    {id:'P003',barcode:'893000100003',name:'Dưa leo',          unit:'kg',   price:12000},
-    {id:'P004',barcode:'893000100004',name:'Bắp cải',          unit:'kg',   price:10000},
-    {id:'P005',barcode:'893000100005',name:'Hành tây',         unit:'kg',   price:18000},
+    {id:'P001',barcode:'893000100001',name:'Rau muống',unit:'kg',price:8000},
+    {id:'P002',barcode:'893000100002',name:'Cà chua',unit:'kg',price:15000},
+    {id:'P003',barcode:'893000100003',name:'Dưa leo',unit:'kg',price:12000},
+    {id:'P004',barcode:'893000100004',name:'Bắp cải',unit:'kg',price:10000},
+    {id:'P005',barcode:'893000100005',name:'Hành tây',unit:'kg',price:18000},
   ],
   NCC02:[
-    {id:'P006',barcode:'893000200006',name:'Thịt heo xay',     unit:'kg',   price:95000},
-    {id:'P007',barcode:'893000200007',name:'Gà ta nguyên con', unit:'con',  price:120000},
-    {id:'P008',barcode:'893000200008',name:'Cá basa phi lê',   unit:'kg',   price:75000},
-    {id:'P009',barcode:'893000200009',name:'Tôm sú',           unit:'kg',   price:180000},
-    {id:'P010',barcode:'893000200010',name:'Trứng gà',         unit:'vỉ 10',price:28000},
+    {id:'P006',barcode:'893000200006',name:'Thịt heo xay',unit:'kg',price:95000},
+    {id:'P007',barcode:'893000200007',name:'Gà ta nguyên con',unit:'con',price:120000},
+    {id:'P008',barcode:'893000200008',name:'Cá basa phi lê',unit:'kg',price:75000},
+    {id:'P009',barcode:'893000200009',name:'Tôm sú',unit:'kg',price:180000},
+    {id:'P010',barcode:'893000200010',name:'Trứng gà',unit:'vỉ 10',price:28000},
   ],
   NCC03:[
-    {id:'P011',barcode:'893000300011',name:'Gạo Jasmine',        unit:'kg',    price:22000},
-    {id:'P012',barcode:'893000300012',name:'Mì gói Hảo Hảo',    unit:'thùng', price:125000},
-    {id:'P013',barcode:'893000300013',name:'Nước mắm Phú Quốc', unit:'chai',  price:45000},
-    {id:'P014',barcode:'893000300014',name:'Dầu ăn Neptune',     unit:'chai',  price:55000},
-    {id:'P015',barcode:'893000300015',name:'Đường cát trắng',    unit:'kg',    price:18000},
+    {id:'P011',barcode:'893000300011',name:'Gạo Jasmine',unit:'kg',price:22000},
+    {id:'P012',barcode:'893000300012',name:'Mì gói Hảo Hảo',unit:'thùng',price:125000},
+    {id:'P013',barcode:'893000300013',name:'Nước mắm Phú Quốc',unit:'chai',price:45000},
+    {id:'P014',barcode:'893000300014',name:'Dầu ăn Neptune',unit:'chai',price:55000},
+    {id:'P015',barcode:'893000300015',name:'Đường cát trắng',unit:'kg',price:18000},
   ],
   'NCC-VAM':[
-    {id:'VAM-P01',barcode:'80768258',       name:'Kẹo Trứng Kinder Hồng Socola Kem Sữa Giòn 20g',     unit:'cái',  price:25500},
-    {id:'VAM-P02',barcode:'80974482',       name:'Kẹo Trứng Kinder Boy Xanh Socola Kem Sữa Giòn',     unit:'cái',  price:25500},
-    {id:'VAM-P03',barcode:'12145-1',        name:'Bánh Chocolate Nhân Hạt Dẻ Kinder Bueno 43g',        unit:'cái',  price:27900},
-    {id:'VAM-P04',barcode:'13693-1',        name:'Kẹo Xốp Haribo Chamallows Pink & White 70g',          unit:'gói',  price:21545},
-    {id:'VAM-P05',barcode:'13377-1',        name:'Kẹo Dẻo Haribo Happy Cola Bịch 80G',                  unit:'bịch', price:21545},
-    {id:'VAM-P06',barcode:'9741-1',         name:'Kẹo Dẻo Haribo Goldbears Bịch 80G',                   unit:'bịch', price:21546},
-    {id:'VAM-P07',barcode:'8935117702016',  name:'Lốc 6 Ly Thạch Dừa Ánh Hồng 540g',                   unit:'lốc',  price:23625},
-    {id:'VAM-P08',barcode:'8938510862004',  name:'Kẹo Cà Phê Espresso Nhân Cà Phê Gói 150G',            unit:'gói',  price:13181},
-    {id:'VAM-P09',barcode:'8938510862189',  name:'Kẹo Cà Phê Espresso Nhân Vani Gói 150G',              unit:'gói',  price:13181},
-    {id:'VAM-P10',barcode:'8888077105727',  name:'Socola Lotte Hạt Hạnh Nhân Hộp 46g',                  unit:'hộp',  price:25700},
-    {id:'VAM-P11',barcode:'80883296',       name:'Kẹo Tic Tac Hương Vị Bạc Hà Lúc 14.5g',              unit:'cái',  price:12000},
-    {id:'VAM-P12',barcode:'8803508000020',  name:'Kẹo Chanh Bạc Hà Lotte Anytime 60g',                  unit:'gói',  price:23809},
-    {id:'VAM-P13',barcode:'8801062335619',  name:'Kẹo Hương Đào Hàn Quốc Lotte Anytime 60g',            unit:'gói',  price:23809},
-    {id:'VAM-P14',barcode:'697344324158',   name:'Kẹo Bạc Hà Lotte Anytime Bluemarine 60g',             unit:'gói',  price:23809},
-    {id:'VAM-P15',barcode:'882095222662',   name:'Kẹo Sữa Milkita Hương Socola 84g',                    unit:'gói',  price:12727},
-    {id:'VAM-P16',barcode:'882095222693',   name:'Kẹo Sữa Milkita Hương Sữa 84g Lê',                    unit:'gói',  price:12727},
+    {id:'VAM-P01',barcode:'80768258',name:'Kẹo Trứng Kinder Hồng Socola 20g',unit:'cái',price:25500},
+    {id:'VAM-P02',barcode:'80974482',name:'Kẹo Trứng Kinder Boy Xanh',unit:'cái',price:25500},
+    {id:'VAM-P03',barcode:'12145-1',name:'Bánh Chocolate Kinder Bueno 43g',unit:'cái',price:27900},
+    {id:'VAM-P04',barcode:'13693-1',name:'Kẹo Xốp Haribo Chamallows 70g',unit:'gói',price:21545},
+    {id:'VAM-P05',barcode:'13377-1',name:'Kẹo Dẻo Haribo Happy Cola 80G',unit:'bịch',price:21545},
+    {id:'VAM-P06',barcode:'9741-1',name:'Kẹo Dẻo Haribo Goldbears 80G',unit:'bịch',price:21546},
+    {id:'VAM-P07',barcode:'8935117702016',name:'Lốc 6 Ly Thạch Dừa Ánh Hồng 540g',unit:'lốc',price:23625},
+    {id:'VAM-P08',barcode:'8938510862004',name:'Kẹo Cà Phê Espresso Nhân Cà Phê 150G',unit:'gói',price:13181},
+    {id:'VAM-P09',barcode:'8938510862189',name:'Kẹo Cà Phê Espresso Nhân Vani 150G',unit:'gói',price:13181},
+    {id:'VAM-P10',barcode:'8888077105727',name:'Socola Lotte Hạt Hạnh Nhân 46g',unit:'hộp',price:25700},
+    {id:'VAM-P11',barcode:'80883296',name:'Kẹo Tic Tac Bạc Hà 14.5g',unit:'cái',price:12000},
+    {id:'VAM-P12',barcode:'8803508000020',name:'Kẹo Chanh Bạc Hà Lotte Anytime 60g',unit:'gói',price:23809},
+    {id:'VAM-P13',barcode:'8801062335619',name:'Kẹo Đào Lotte Anytime 60g',unit:'gói',price:23809},
+    {id:'VAM-P14',barcode:'697344324158',name:'Kẹo Bạc Hà Lotte Bluemarine 60g',unit:'gói',price:23809},
+    {id:'VAM-P15',barcode:'882095222662',name:'Kẹo Sữa Milkita Socola 84g',unit:'gói',price:12727},
+    {id:'VAM-P16',barcode:'882095222693',name:'Kẹo Sữa Milkita Sữa 84g',unit:'gói',price:12727},
   ],
 };
 
-const DEMO_ORDERS = [
-  // ── ĐƠN CTY VĂN MINH – THẠCH ÁNH HỒNG (21/03/2026) ──────────────────────
-  {
-    id:'ORD-VAM-001',
-    order_code:'ORD-PHB-20260321-VAM001',
-    store_id:'S01', store_name:'Phú Bài',
-    supplier_id:'NCC-VAM', supplier_name:'CTY Văn Minh – Thạch Ánh Hồng',
-    status:'confirmed',
-    order_date:'2026-03-21', delivery_date:'2026-03-21',
-    submitted_at:'2026-03-21T08:00:00.000Z',
-    supplier_responded_at:'2026-03-21T09:00:00.000Z',
-    total:3606800,
-    note:'',
-    items:[
-      {id:'VAM-P01',name:'Kẹo Trứng Kinder Hồng Socola Kem Sữa Giòn 20g',    unit:'cái',  ordered_qty:12, confirmed_qty:12, price:25500, item_status:'confirmed'},
-      {id:'VAM-P02',name:'Kẹo Trứng Kinder Boy Xanh Socola Kem Sữa Giòn Cái', unit:'cái',  ordered_qty:12, confirmed_qty:12, price:25500, item_status:'confirmed'},
-      {id:'VAM-P03',name:'Bánh Chocolate Nhân Hạt Dẻ Kinder Bueno 43g',        unit:'cái',  ordered_qty:24, confirmed_qty:24, price:27900, item_status:'confirmed'},
-      {id:'VAM-P04',name:'Kẹo Xốp Haribo Chamallows Pink & White 70g Gói',     unit:'gói',  ordered_qty:10, confirmed_qty:10, price:21545, item_status:'confirmed'},
-      {id:'VAM-P05',name:'Kẹo Dẻo Haribo Happy Cola Bịch 80G',                 unit:'bịch', ordered_qty:10, confirmed_qty:10, price:21545, item_status:'confirmed'},
-      {id:'VAM-P06',name:'Kẹo Dẻo Haribo Goldbears Bịch 80G',                  unit:'bịch', ordered_qty:10, confirmed_qty:10, price:21546, item_status:'confirmed'},
-      {id:'VAM-P07',name:'Lốc 6 Ly Thạch Dừa Ánh Hồng 540g Lốc',              unit:'lốc',  ordered_qty:12, confirmed_qty:12, price:23625, item_status:'confirmed'},
-      {id:'VAM-P08',name:'Kẹo Cà Phê Espresso Nhân Cà Phê Gói 150G Gói',       unit:'gói',  ordered_qty:10, confirmed_qty:10, price:13181, item_status:'confirmed'},
-      {id:'VAM-P09',name:'Kẹo Cà Phê Espresso Nhân Vani Gói 150G Gói',         unit:'gói',  ordered_qty:10, confirmed_qty:10, price:13181, item_status:'confirmed'},
-      {id:'VAM-P10',name:'Socola Lotte Hạt Hạnh Nhân Hộp 46g',                 unit:'hộp',  ordered_qty:10, confirmed_qty:10, price:25700, item_status:'confirmed'},
-      {id:'VAM-P11',name:'Kẹo Tic Tac Hương Vị Bạc Hà Lúc 14.5g',             unit:'cái',  ordered_qty:12, confirmed_qty:12, price:12000, item_status:'confirmed'},
-      {id:'VAM-P12',name:'Kẹo Chanh Bạch Hà Lotte Anytime 60g',                unit:'gói',  ordered_qty:6,  confirmed_qty:6,  price:23809, item_status:'confirmed'},
-      {id:'VAM-P13',name:'Kẹo Hương Đào Hàn Quốc Lotte Anytime 60g',           unit:'gói',  ordered_qty:6,  confirmed_qty:6,  price:23809, item_status:'confirmed'},
-      {id:'VAM-P14',name:'Kẹo Bạc Hà Lotte Anytime Bluemarine 60g',             unit:'gói',  ordered_qty:8,  confirmed_qty:8,  price:23809, item_status:'confirmed'},
-      {id:'VAM-P15',name:'Kẹo Sữa Milkita Hương Socola 84g',                    unit:'gói',  ordered_qty:10, confirmed_qty:10, price:12727, item_status:'confirmed'},
-      {id:'VAM-P16',name:'Kẹo Sữa Milkita Hương Sữa 84g Lê',                   unit:'gói',  ordered_qty:10, confirmed_qty:10, price:12727, item_status:'confirmed'},
-    ],
-  },
-  {id:'ORD001',order_code:'ORD-PHB-20260321-001',store_id:'S01',store_name:'Phú Bài',supplier_id:'NCC01',supplier_name:'NCC Rau Củ ABC',status:'pending_supplier',order_date:'2026-03-21',delivery_date:'2026-03-22',total:350000,items:[{id:'P001',name:'Rau muống',unit:'kg',ordered_qty:20,confirmed_qty:20,price:8000,item_status:'confirmed'},{id:'P002',name:'Cà chua',unit:'kg',ordered_qty:15,confirmed_qty:15,price:15000,item_status:'pending'}]},
-  {id:'ORD002',order_code:'ORD-PHB-20260320-001',store_id:'S01',store_name:'Phú Bài',supplier_id:'NCC02',supplier_name:'NCC Thực Phẩm XYZ',status:'confirmed',order_date:'2026-03-20',delivery_date:'2026-03-21',total:520000,items:[{id:'P006',name:'Thịt heo xay',unit:'kg',ordered_qty:5,confirmed_qty:5,price:95000,item_status:'confirmed'},{id:'P010',name:'Trứng gà',unit:'vỉ',ordered_qty:3,confirmed_qty:3,price:28000,item_status:'confirmed'}]},
+const DEMO_ORDERS=[
+  {id:'ORD001',order_code:'ORD-PHB-20260321-001',store_id:'S01',store_name:'Phú Bài',supplier_id:'NCC01',supplier_name:'NCC Rau Củ ABC',status:'pending_supplier',order_date:'2026-03-21',delivery_date:'2026-03-22',total:350000,submitted_at:'2026-03-21T08:00:00Z',items:[
+    {id:'P001',barcode:'893000100001',name:'Rau muống',unit:'kg',ordered_qty:20,confirmed_qty:0,price:8000,item_status:'pending'},
+    {id:'P002',barcode:'893000100002',name:'Cà chua',unit:'kg',ordered_qty:15,confirmed_qty:0,price:15000,item_status:'pending'},
+  ]},
+  {id:'ORD002',order_code:'ORD-PHB-20260320-001',store_id:'S01',store_name:'Phú Bài',supplier_id:'NCC02',supplier_name:'NCC Thực Phẩm XYZ',status:'confirmed',order_date:'2026-03-20',delivery_date:'2026-03-21',total:520000,submitted_at:'2026-03-20T08:00:00Z',supplier_responded_at:'2026-03-20T10:00:00Z',items:[
+    {id:'P006',barcode:'893000200006',name:'Thịt heo xay',unit:'kg',ordered_qty:5,confirmed_qty:5,price:95000,item_status:'confirmed'},
+    {id:'P010',barcode:'893000200010',name:'Trứng gà',unit:'vỉ 10',ordered_qty:3,confirmed_qty:3,price:28000,item_status:'confirmed'},
+  ]},
   {id:'ORD003',order_code:'ORD-VIT-20260321-001',store_id:'S02',store_name:'Vinh Thanh',supplier_id:'NCC01',supplier_name:'NCC Rau Củ ABC',status:'draft',order_date:'2026-03-21',delivery_date:'2026-03-23',total:0,items:[]},
-  {id:'ORD004',order_code:'ORD-PHB-20260319-001',store_id:'S01',store_name:'Phú Bài',supplier_id:'NCC03',supplier_name:'NCC Đồ Khô DEF',status:'delivered',order_date:'2026-03-19',delivery_date:'2026-03-20',total:890000,items:[{id:'P011',name:'Gạo Jasmine',unit:'kg',ordered_qty:30,confirmed_qty:30,price:22000,item_status:'confirmed'},{id:'P013',name:'Nước mắm',unit:'chai',ordered_qty:5,confirmed_qty:4,price:45000,item_status:'partial'}]},
-  {id:'ORD005',order_code:'ORD-VIT-20260320-001',store_id:'S02',store_name:'Vinh Thanh',supplier_id:'NCC02',supplier_name:'NCC Thực Phẩm XYZ',status:'rejected',order_date:'2026-03-20',delivery_date:'2026-03-22',total:0,items:[],reject_reason:'Hết hàng trong kho'},
+  {id:'ORD004',order_code:'ORD-PHB-20260319-001',store_id:'S01',store_name:'Phú Bài',supplier_id:'NCC03',supplier_name:'NCC Đồ Khô DEF',status:'delivered',order_date:'2026-03-19',delivery_date:'2026-03-20',total:890000,submitted_at:'2026-03-19T08:00:00Z',supplier_responded_at:'2026-03-19T11:00:00Z',items:[
+    {id:'P011',barcode:'893000300011',name:'Gạo Jasmine',unit:'kg',ordered_qty:30,confirmed_qty:30,price:22000,item_status:'confirmed'},
+    {id:'P013',barcode:'893000300013',name:'Nước mắm Phú Quốc',unit:'chai',ordered_qty:5,confirmed_qty:4,price:45000,item_status:'partial'},
+  ]},
+  {id:'ORD005',order_code:'ORD-VIT-20260320-001',store_id:'S02',store_name:'Vinh Thanh',supplier_id:'NCC02',supplier_name:'NCC Thực Phẩm XYZ',status:'rejected',order_date:'2026-03-20',delivery_date:'2026-03-22',total:0,reject_reason:'Hết hàng trong kho',submitted_at:'2026-03-20T08:00:00Z',supplier_responded_at:'2026-03-20T09:00:00Z',items:[]},
+  {id:'ORD-VAM-001',order_code:'ORD-PHB-20260321-VAM001',store_id:'S01',store_name:'Phú Bài',supplier_id:'NCC-VAM',supplier_name:'CTY Văn Minh – Thạch Ánh Hồng',status:'confirmed',order_date:'2026-03-21',delivery_date:'2026-03-21',total:3606800,submitted_at:'2026-03-21T08:00:00Z',supplier_responded_at:'2026-03-21T09:00:00Z',items:[
+    {id:'VAM-P01',barcode:'80768258',name:'Kẹo Trứng Kinder Hồng Socola 20g',unit:'cái',ordered_qty:12,confirmed_qty:12,price:25500,item_status:'confirmed'},
+    {id:'VAM-P02',barcode:'80974482',name:'Kẹo Trứng Kinder Boy Xanh',unit:'cái',ordered_qty:12,confirmed_qty:12,price:25500,item_status:'confirmed'},
+    {id:'VAM-P03',barcode:'12145-1',name:'Bánh Chocolate Kinder Bueno 43g',unit:'cái',ordered_qty:24,confirmed_qty:24,price:27900,item_status:'confirmed'},
+    {id:'VAM-P04',barcode:'13693-1',name:'Kẹo Xốp Haribo Chamallows 70g',unit:'gói',ordered_qty:10,confirmed_qty:10,price:21545,item_status:'confirmed'},
+    {id:'VAM-P05',barcode:'13377-1',name:'Kẹo Dẻo Haribo Happy Cola 80G',unit:'bịch',ordered_qty:10,confirmed_qty:10,price:21545,item_status:'confirmed'},
+    {id:'VAM-P06',barcode:'9741-1',name:'Kẹo Dẻo Haribo Goldbears 80G',unit:'bịch',ordered_qty:10,confirmed_qty:10,price:21546,item_status:'confirmed'},
+    {id:'VAM-P07',barcode:'8935117702016',name:'Lốc 6 Ly Thạch Dừa Ánh Hồng 540g',unit:'lốc',ordered_qty:12,confirmed_qty:12,price:23625,item_status:'confirmed'},
+    {id:'VAM-P08',barcode:'8938510862004',name:'Kẹo Cà Phê Espresso Nhân Cà Phê 150G',unit:'gói',ordered_qty:10,confirmed_qty:10,price:13181,item_status:'confirmed'},
+    {id:'VAM-P09',barcode:'8938510862189',name:'Kẹo Cà Phê Espresso Nhân Vani 150G',unit:'gói',ordered_qty:10,confirmed_qty:10,price:13181,item_status:'confirmed'},
+    {id:'VAM-P10',barcode:'8888077105727',name:'Socola Lotte Hạt Hạnh Nhân 46g',unit:'hộp',ordered_qty:10,confirmed_qty:10,price:25700,item_status:'confirmed'},
+    {id:'VAM-P11',barcode:'80883296',name:'Kẹo Tic Tac Bạc Hà 14.5g',unit:'cái',ordered_qty:12,confirmed_qty:12,price:12000,item_status:'confirmed'},
+    {id:'VAM-P12',barcode:'8803508000020',name:'Kẹo Chanh Bạc Hà Lotte Anytime 60g',unit:'gói',ordered_qty:6,confirmed_qty:6,price:23809,item_status:'confirmed'},
+    {id:'VAM-P13',barcode:'8801062335619',name:'Kẹo Đào Lotte Anytime 60g',unit:'gói',ordered_qty:6,confirmed_qty:6,price:23809,item_status:'confirmed'},
+    {id:'VAM-P14',barcode:'697344324158',name:'Kẹo Bạc Hà Lotte Bluemarine 60g',unit:'gói',ordered_qty:8,confirmed_qty:8,price:23809,item_status:'confirmed'},
+    {id:'VAM-P15',barcode:'882095222662',name:'Kẹo Sữa Milkita Socola 84g',unit:'gói',ordered_qty:10,confirmed_qty:10,price:12727,item_status:'confirmed'},
+    {id:'VAM-P16',barcode:'882095222693',name:'Kẹo Sữa Milkita Sữa 84g',unit:'gói',ordered_qty:10,confirmed_qty:10,price:12727,item_status:'confirmed'},
+  ]},
 ];
 
-// ── STATE ─────────────────────────────────────────────────────────────────────
-let currentUser = null;
-let currentPage = '';
-let cart = [];
-let orders = [...DEMO_ORDERS];
+// ── STATE ──────────────────────────────────────────────────────────────────
+let currentUser=null, currentPage='', cart=[];
+let orders=[...DEMO_ORDERS];
 
-// ── AUTH ──────────────────────────────────────────────────────────────────────
-function doLogin() {
-  const u = document.getElementById('loginUser').value.trim().toLowerCase();
-  const p = document.getElementById('loginPass').value;
-  const err = document.getElementById('loginErr');
-  err.textContent = '';
-  const found = USERS_DB[u];
-  if (!found || found.password !== p) { err.textContent = '⚠ Tên đăng nhập hoặc mật khẩu không đúng'; return; }
-  currentUser = { username: u, ...found };
-  localStorage.setItem('vos_user', JSON.stringify(currentUser));
+// ── AUTH ───────────────────────────────────────────────────────────────────
+function doLogin(){
+  const u=document.getElementById('loginUser').value.trim().toLowerCase();
+  const p=document.getElementById('loginPass').value;
+  const err=document.getElementById('loginErr');
+  err.textContent='';
+  const found=USERS_DB[u];
+  if(!found||found.password!==p){err.textContent='⚠ Tên đăng nhập hoặc mật khẩu không đúng';return;}
+  currentUser={username:u,...found};
+  localStorage.setItem('vos_user',JSON.stringify(currentUser));
   showApp();
 }
-
-function logout() {
-  currentUser = null;
+function logout(){
+  currentUser=null;cart=[];
   localStorage.removeItem('vos_user');
-  document.getElementById('authPage').style.display = 'flex';
-  document.getElementById('appPage').style.display = 'none';
+  document.getElementById('authPage').style.display='flex';
+  document.getElementById('appPage').style.display='none';
 }
-
-function showApp() {
-  document.getElementById('authPage').style.display = 'none';
-  document.getElementById('appPage').style.display = 'flex';
-  document.getElementById('sbUser').textContent = currentUser.name;
-  document.getElementById('sbStore').textContent = currentUser.store_name || currentUser.supplier_name || '';
-  document.getElementById('sbRole').textContent = roleLabel(currentUser.role);
-  document.getElementById('topDate').textContent = new Date().toLocaleDateString('vi-VN',{weekday:'long',day:'numeric',month:'numeric',year:'numeric'});
+function showApp(){
+  document.getElementById('authPage').style.display='none';
+  document.getElementById('appPage').style.display='flex';
+  document.getElementById('sbUser').textContent=currentUser.name;
+  document.getElementById('sbStore').textContent=currentUser.store_name||currentUser.supplier_name||'';
+  document.getElementById('sbRole').textContent=roleLabel(currentUser.role);
+  document.getElementById('topDate').textContent=new Date().toLocaleDateString('vi-VN',{weekday:'long',day:'numeric',month:'numeric',year:'numeric'});
+  cart=[];
   buildNav();
-  cart = [];
   navigateTo(defaultPage());
 }
+function roleLabel(r){return{admin:'Quản trị viên',buyer_head_office:'Trưởng phòng mua',store_user:'Nhân viên cửa hàng',supplier_user:'Nhà cung cấp'}[r]||r;}
+function defaultPage(){return{admin:'admin_dashboard',buyer_head_office:'admin_dashboard',store_user:'store_dashboard',supplier_user:'supplier_dashboard'}[currentUser.role]||'store_dashboard';}
 
-function roleLabel(r) {
-  return {admin:'Quản trị viên',buyer_head_office:'Trưởng phòng mua',store_user:'Nhân viên cửa hàng',supplier_user:'Nhà cung cấp'}[r]||r;
-}
-
-function defaultPage() {
-  return {admin:'admin_dashboard',buyer_head_office:'admin_dashboard',store_user:'store_dashboard',supplier_user:'supplier_dashboard'}[currentUser.role]||'store_dashboard';
-}
-
-// ── NAV ───────────────────────────────────────────────────────────────────────
-const NAV_ITEMS = {
+// ── NAV ────────────────────────────────────────────────────────────────────
+const NAV_ITEMS={
   store_user:[
     {id:'store_dashboard',icon:'📊',label:'Dashboard'},
     {id:'store_create',icon:'➕',label:'Tạo đơn hàng'},
@@ -322,6 +276,7 @@ const NAV_ITEMS = {
   supplier_user:[
     {id:'supplier_dashboard',icon:'📊',label:'Dashboard NCC'},
     {id:'supplier_orders',icon:'📦',label:'Đơn cần xác nhận'},
+    {id:'settings',icon:'⚙️',label:'Cài đặt'},
     {id:'guide',icon:'❓',label:'Hướng dẫn'},
   ],
   admin:[
@@ -330,11 +285,11 @@ const NAV_ITEMS = {
     {id:'admin_suppliers',icon:'🏭',label:'Quản lý NCC'},
     {id:'admin_products',icon:'📦',label:'Sản phẩm'},
     {id:'admin_logs',icon:'📜',label:'Event Logs'},
-    {id:'',icon:'─',label:'── Cửa hàng ──',disabled:true},
+    {sep:'── Cửa hàng ──'},
     {id:'store_dashboard',icon:'🏪',label:'Dashboard CH'},
     {id:'store_create',icon:'➕',label:'Tạo đơn hàng'},
     {id:'store_orders',icon:'📋',label:'Lịch sử đơn CH'},
-    {id:'',icon:'─',label:'── Nhà cung cấp ──',disabled:true},
+    {sep:'── Nhà cung cấp ──'},
     {id:'supplier_dashboard',icon:'🏭',label:'Dashboard NCC'},
     {id:'supplier_orders',icon:'📦',label:'Xác nhận đơn NCC'},
     {id:'settings',icon:'⚙️',label:'Cài đặt'},
@@ -345,215 +300,162 @@ const NAV_ITEMS = {
     {id:'admin_orders',icon:'📋',label:'Tất cả đơn hàng'},
     {id:'admin_suppliers',icon:'🏭',label:'Nhà cung cấp'},
     {id:'admin_logs',icon:'📜',label:'Event Logs'},
-    {id:'',icon:'─',label:'── Cửa hàng ──',disabled:true},
+    {sep:'── Cửa hàng ──'},
     {id:'store_dashboard',icon:'🏪',label:'Dashboard CH'},
     {id:'store_create',icon:'➕',label:'Tạo đơn hàng'},
     {id:'store_orders',icon:'📋',label:'Lịch sử đơn CH'},
-    {id:'',icon:'─',label:'── Nhà cung cấp ──',disabled:true},
+    {sep:'── Nhà cung cấp ──'},
     {id:'supplier_orders',icon:'📦',label:'Xác nhận đơn NCC'},
     {id:'settings',icon:'⚙️',label:'Cài đặt'},
     {id:'guide',icon:'❓',label:'Hướng dẫn'},
   ],
 };
 
-function buildNav() {
-  const items = NAV_ITEMS[currentUser.role] || [];
-  document.getElementById('sidebarNav').innerHTML = items.map(i => {
-    if (i.disabled) return `<div style="padding:8px 20px;font-size:11px;opacity:.5;letter-spacing:.5px;margin-top:8px">${i.label}</div>`;
+function buildNav(){
+  const items=NAV_ITEMS[currentUser.role]||[];
+  document.getElementById('sidebarNav').innerHTML=items.map(i=>{
+    if(i.sep) return `<div class="nav-sep">${i.sep}</div>`;
     return `<div class="nav-item" id="nav_${i.id}" onclick="navigateTo('${i.id}')"><span class="icon">${i.icon}</span>${i.label}</div>`;
   }).join('');
 }
 
-function navigateTo(page) {
-  if (!page) return;
-  currentPage = page;
-  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-  const navEl = document.getElementById('nav_'+page);
-  if (navEl) navEl.classList.add('active');
-  const titles = {
+function navigateTo(page){
+  if(!page) return;
+  currentPage=page;
+  document.querySelectorAll('.nav-item').forEach(el=>el.classList.remove('active'));
+  const navEl=document.getElementById('nav_'+page);
+  if(navEl) navEl.classList.add('active');
+  const titles={
     store_dashboard:'Dashboard',store_create:'Tạo đơn hàng',store_orders:'Lịch sử đơn',
     supplier_dashboard:'Dashboard NCC',supplier_orders:'Đơn hàng cần xác nhận',
     admin_dashboard:'Dashboard tổng',admin_orders:'Tất cả đơn hàng',
     admin_suppliers:'Quản lý nhà cung cấp',admin_products:'Quản lý sản phẩm',admin_logs:'Event Logs',
-    guide:'Hướng dẫn sử dụng',
-    settings:'Cài đặt',
+    settings:'Cài đặt',guide:'Hướng dẫn sử dụng',
   };
-  document.getElementById('pageTitle').textContent = titles[page]||page;
-  const renders = {
-    store_dashboard: renderStoreDashboard,
-    store_create: renderStoreCreate,
-    store_orders: renderStoreOrders,
-    supplier_dashboard: renderSupplierDashboard,
-    supplier_orders: renderSupplierOrders,
-    admin_dashboard: renderAdminDashboard,
-    admin_orders: renderAdminOrders,
-    admin_suppliers: renderAdminSuppliers,
-    admin_products: renderAdminProducts,
-    admin_logs: renderAdminLogs,
-    guide: renderGuide,
-    settings: renderSettings,
+  document.getElementById('pageTitle').textContent=titles[page]||page;
+  const renders={
+    store_dashboard:renderStoreDashboard,store_create:renderStoreCreate,store_orders:renderStoreOrders,
+    supplier_dashboard:renderSupplierDashboard,supplier_orders:renderSupplierOrders,
+    admin_dashboard:renderAdminDashboard,admin_orders:renderAdminOrders,
+    admin_suppliers:renderAdminSuppliers,admin_products:renderAdminProducts,admin_logs:renderAdminLogs,
+    settings:renderSettings,guide:renderGuide,
   };
-  const fn = renders[page];
-  if (fn) {
-    document.getElementById('mainContent').innerHTML = fn();
-    if (page === 'store_create') loadCatalog();
-  } else {
-    document.getElementById('mainContent').innerHTML = '<div class="empty"><div class="icon">🚧</div><p>Trang đang phát triển</p></div>';
-  }
+  const fn=renders[page];
+  if(fn){document.getElementById('mainContent').innerHTML=fn();if(page==='store_create')loadCatalog();}
+  else document.getElementById('mainContent').innerHTML='<div class="empty">🚧 Trang đang phát triển</div>';
 }
 
-// ── HELPERS ───────────────────────────────────────────────────────────────────
-function fmtMoney(n) { return Number(n||0).toLocaleString('vi-VN')+'đ'; }
-function fmtDate(d) { if(!d)return'-'; const dt=new Date(d); return dt.toLocaleDateString('vi-VN'); }
-function statusBadge(s) {
-  const map = {
-    draft:['badge-draft','Nháp'],pending_supplier:['badge-pending','Chờ NCC'],
-    confirmed:['badge-confirmed','Xác nhận'],partial_confirmed:['badge-partial','Xác nhận một phần'],
-    rejected:['badge-rejected','Từ chối'],cancelled:['badge-cancelled','Đã hủy'],
-    delivering:['badge-delivering','Đang giao'],delivered:['badge-delivered','Đã giao'],closed:['badge-closed','Đóng'],
-  };
-  const [cls,lbl] = map[s]||['badge-draft',s];
+// ── HELPERS ────────────────────────────────────────────────────────────────
+function fmtMoney(n){return Number(n||0).toLocaleString('vi-VN')+'đ';}
+function fmtDate(d){if(!d)return'—';return new Date(d).toLocaleDateString('vi-VN');}
+function fmtDateTime(d){if(!d)return'—';return new Date(d).toLocaleString('vi-VN');}
+function statusBadge(s){
+  const map={draft:['badge-draft','Nháp'],pending_supplier:['badge-pending','Chờ NCC'],confirmed:['badge-confirmed','Xác nhận'],partial_confirmed:['badge-partial','Xác nhận 1 phần'],rejected:['badge-rejected','Từ chối'],cancelled:['badge-cancelled','Đã hủy'],delivering:['badge-delivering','Đang giao'],delivered:['badge-delivered','Đã giao'],closed:['badge-closed','Đóng']};
+  const[cls,lbl]=map[s]||['badge-draft',s];
   return `<span class="badge ${cls}">${lbl}</span>`;
 }
-function myOrders() {
-  if (currentUser.role==='store_user') return orders.filter(o=>o.store_id===currentUser.store_id);
-  if (currentUser.role==='supplier_user') return orders.filter(o=>o.supplier_id===currentUser.supplier_id);
-  // admin/buyer: filter by context page
-  if (currentPage.startsWith('store_') && currentUser._viewStoreId)
-    return orders.filter(o=>o.store_id===currentUser._viewStoreId);
-  if (currentPage.startsWith('supplier_') && currentUser._viewSupplierId)
-    return orders.filter(o=>o.supplier_id===currentUser._viewSupplierId);
+function myOrders(){
+  if(currentUser.role==='store_user') return orders.filter(o=>o.store_id===currentUser.store_id);
+  if(currentUser.role==='supplier_user') return orders.filter(o=>o.supplier_id===currentUser.supplier_id);
+  if(currentPage.startsWith('store_')&&currentUser._viewStoreId) return orders.filter(o=>o.store_id===currentUser._viewStoreId);
+  if(currentPage.startsWith('supplier_')&&currentUser._viewSupplierId) return orders.filter(o=>o.supplier_id===currentUser._viewSupplierId);
   return orders;
 }
-function generateOrderCode() {
-  const sid = getActiveStoreId() || currentUser.store_id || 'ADM';
-  const codeMap = {S01:'PHB',S02:'VIT',S03:'AVD'};
-  const storeCode = codeMap[sid] || sid.replace(/[^A-Z0-9]/gi,'').slice(0,3).toUpperCase();
-  const date = new Date().toISOString().slice(0,10).replace(/-/g,'');
-  const seq = String(orders.filter(o=>o.store_id===sid).length+1).padStart(3,'0');
-  return `ORD-${storeCode}-${date}-${seq}`;
+function getActiveStoreId(){return currentUser.role==='store_user'?currentUser.store_id:(currentUser._viewStoreId||null);}
+function setViewStore(sid){currentUser._viewStoreId=sid;navigateTo(currentPage);}
+function setViewSupplier(sid){currentUser._viewSupplierId=sid;navigateTo(currentPage);}
+function generateOrderCode(){
+  const sid=getActiveStoreId()||'ADM';
+  const map={S01:'PHB',S02:'VIT',S03:'AVD'};
+  const sc=map[sid]||sid.slice(0,3).toUpperCase();
+  const dt=new Date().toISOString().slice(0,10).replace(/-/g,'');
+  const seq=String(orders.filter(o=>o.store_id===sid).length+1).padStart(3,'0');
+  return `ORD-${sc}-${dt}-${seq}`;
 }
 
-// ── ADMIN STORE/SUPPLIER CONTEXT PICKER ───────────────────────────────────────
-function renderAdminStorePicker() {
-  if (currentUser.role === 'store_user' || currentUser.role === 'supplier_user') return '';
-  const stores = [...new Set(orders.map(o=>o.store_id))];
-  const storeNames = {};
-  orders.forEach(o=>{ storeNames[o.store_id]=o.store_name; });
+// ── PICKERS (admin) ────────────────────────────────────────────────────────
+function adminStorePicker(){
+  if(['store_user','supplier_user'].includes(currentUser.role)) return '';
+  const names={};orders.forEach(o=>{names[o.store_id]=o.store_name;});
+  const STORES=[{id:'S01',name:'Phú Bài'},{id:'S02',name:'Vinh Thanh'},{id:'S03',name:'An Vân Dương'}];
   return `<div class="card" style="padding:12px 20px;background:#e3f2fd;border:2px solid #90caf9;margin-bottom:16px">
     <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-      <span style="font-size:13px;font-weight:600;color:#0D47A1">🏪 Xem theo cửa hàng:</span>
+      <span style="font-size:13px;font-weight:600;color:#0D47A1">🏪 Cửa hàng:</span>
       <select style="width:auto;flex:1;min-width:160px" onchange="setViewStore(this.value)">
-        <option value="">— Tất cả cửa hàng —</option>
-        ${[...new Set(orders.map(o=>o.store_id))].map(sid=>`<option value="${sid}" ${currentUser._viewStoreId===sid?'selected':''}>${storeNames[sid]||sid}</option>`).join('')}
+        <option value="">— Tất cả —</option>
+        ${STORES.map(s=>`<option value="${s.id}"${currentUser._viewStoreId===s.id?' selected':''}>${s.name}</option>`).join('')}
       </select>
-    </div>
-  </div>`;
+    </div></div>`;
 }
-function renderAdminSupplierPicker() {
-  if (currentUser.role === 'store_user' || currentUser.role === 'supplier_user') return '';
-  const suppNames = {};
-  orders.forEach(o=>{ suppNames[o.supplier_id]=o.supplier_name; });
+function adminSupplierPicker(){
+  if(['store_user','supplier_user'].includes(currentUser.role)) return '';
   return `<div class="card" style="padding:12px 20px;background:#fce4ec;border:2px solid #f48fb1;margin-bottom:16px">
     <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-      <span style="font-size:13px;font-weight:600;color:#880e4f">🏭 Xem theo NCC:</span>
+      <span style="font-size:13px;font-weight:600;color:#880e4f">🏭 NCC:</span>
       <select style="width:auto;flex:1;min-width:160px" onchange="setViewSupplier(this.value)">
-        <option value="">— Tất cả NCC —</option>
-        ${[...new Set(orders.map(o=>o.supplier_id))].map(sid=>`<option value="${sid}" ${currentUser._viewSupplierId===sid?'selected':''}>${suppNames[sid]||sid}</option>`).join('')}
+        <option value="">— Tất cả —</option>
+        ${SUPPLIERS.map(s=>`<option value="${s.id}"${currentUser._viewSupplierId===s.id?' selected':''}>${s.name}</option>`).join('')}
       </select>
-    </div>
-  </div>`;
+    </div></div>`;
 }
-function setViewStore(sid) { currentUser._viewStoreId = sid; navigateTo(currentPage); }
-function setViewSupplier(sid) { currentUser._viewSupplierId = sid; navigateTo(currentPage); }
 
-// ── STORE DASHBOARD ────────────────────────────────────────────────────────────
-function renderStoreDashboard() {
-  const my = myOrders();
-  const picker = renderAdminStorePicker();
-  const stats = [
+// ── STORE DASHBOARD ────────────────────────────────────────────────────────
+function renderStoreDashboard(){
+  const my=myOrders();
+  const stats=[
     {icon:'📋',num:my.length,label:'Tổng đơn hàng'},
     {icon:'⏳',num:my.filter(o=>o.status==='pending_supplier').length,label:'Chờ NCC xác nhận'},
     {icon:'✅',num:my.filter(o=>o.status==='confirmed').length,label:'Đã xác nhận'},
     {icon:'🚚',num:my.filter(o=>o.status==='delivered').length,label:'Đã giao'},
   ];
-  return `${picker}
+  return adminStorePicker()+`
     <div class="stat-grid">${stats.map(s=>`<div class="stat-card"><div class="icon">${s.icon}</div><div class="num">${s.num}</div><div class="label">${s.label}</div></div>`).join('')}</div>
-    <div class="card">
-      <div class="card-title">📋 Đơn hàng gần đây</div>
-      <table>
-        <tr><th>Mã đơn</th><th>NCC</th><th>Ngày đặt</th><th>Ngày giao</th><th>Trạng thái</th><th></th></tr>
-        ${my.slice(0,8).map(o=>`<tr>
-          <td><strong>${o.order_code}</strong></td>
-          <td>${o.supplier_name}</td>
-          <td>${fmtDate(o.order_date)}</td>
-          <td>${fmtDate(o.delivery_date)}</td>
-          <td>${statusBadge(o.status)}</td>
-          <td><button class="btn-sm btn-primary-sm" onclick="viewOrder('${o.id}')">Xem</button></td>
-        </tr>`).join('')}
+    <div class="card"><div class="card-title">📋 Đơn hàng gần đây</div>
+      <table><tr><th>#</th><th>Mã đơn</th><th>NCC</th><th>Ngày đặt</th><th>Ngày giao</th><th>Trạng thái</th><th></th></tr>
+        ${my.slice(0,8).map((o,i)=>`<tr><td style="color:#999">${i+1}</td><td><strong>${o.order_code}</strong></td><td>${o.supplier_name}</td><td>${fmtDate(o.order_date)}</td><td>${fmtDate(o.delivery_date)}</td><td>${statusBadge(o.status)}</td><td><button class="btn-sm btn-primary-sm" onclick="viewOrder('${o.id}')">Xem</button></td></tr>`).join('')}
       </table>
-      ${my.length===0?'<div class="empty"><div class="icon">📭</div><p>Chưa có đơn hàng nào</p></div>':''}
+      ${my.length===0?'<div class="empty">📭 Chưa có đơn hàng nào</div>':''}
     </div>`;
 }
 
-// ── STORE CREATE ORDER ─────────────────────────────────────────────────────────
-function getActiveStoreId() {
-  if (currentUser.role === 'store_user') return currentUser.store_id;
-  return currentUser._viewStoreId || null;
-}
-function renderStoreCreate() {
-  const nccOptions = SUPPLIERS.map(s=>`<option value="${s.id}">${s.name}</option>`).join('');
-  const isAdmin = ['admin','buyer_head_office'].includes(currentUser.role);
-  const storeNames = {};
-  orders.forEach(o=>{ storeNames[o.store_id]=o.store_name; });
-  const STORES_LIST = [{id:'S01',name:'Phú Bài'},{id:'S02',name:'Vinh Thanh'},{id:'S03',name:'An Vân Dương'}];
-  const storeSelector = isAdmin ? `
-    <div class="form-group">
-      <label>Cửa hàng <span style="color:red">*</span></label>
-      <select id="selStore" onchange="currentUser._viewStoreId=this.value">
-        <option value="">— Chọn cửa hàng —</option>
-        ${STORES_LIST.map(s=>`<option value="${s.id}" ${currentUser._viewStoreId===s.id?'selected':''}>${s.name}</option>`).join('')}
-      </select>
-    </div>` : `<div class="form-group"><label>Cửa hàng</label><input type="text" value="${currentUser.store_name||currentUser.store_id}" disabled style="background:#f5f5f5"></div>`;
+// ── STORE CREATE ───────────────────────────────────────────────────────────
+function renderStoreCreate(){
+  const isAdmin=['admin','buyer_head_office'].includes(currentUser.role);
+  const STORES=[{id:'S01',name:'Phú Bài'},{id:'S02',name:'Vinh Thanh'},{id:'S03',name:'An Vân Dương'}];
+  const storeField=isAdmin
+    ?`<div class="form-group"><label>Cửa hàng <span style="color:red">*</span></label>
+       <select id="selStore" onchange="currentUser._viewStoreId=this.value">
+         <option value="">— Chọn cửa hàng —</option>
+         ${STORES.map(s=>`<option value="${s.id}"${currentUser._viewStoreId===s.id?' selected':''}>${s.name}</option>`).join('')}
+       </select></div>`
+    :`<div class="form-group"><label>Cửa hàng</label><input type="text" value="${currentUser.store_name||''}" disabled style="background:#f5f5f5"></div>`;
+  const nccOpts=SUPPLIERS.map(s=>`<option value="${s.id}">${s.name}</option>`).join('');
   return `
-    <div class="card">
-      <div class="card-title">➕ Thông tin đơn hàng</div>
-      <div class="form-row">
-        ${storeSelector}
-        <div class="form-group">
-          <label>Nhà cung cấp</label>
-          <select id="selNCC" onchange="loadCatalog()">${nccOptions}</select>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Ngày giao dự kiến</label>
-          <input type="date" id="deliveryDate" value="${new Date(Date.now()+86400000).toISOString().slice(0,10)}">
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Ghi chú đơn hàng</label>
-        <textarea id="orderNote" rows="2" placeholder="Ghi chú thêm..."></textarea>
-      </div>
-    </div>
     <div class="card" style="border:2px dashed #42A5F5;background:#f0f8ff">
       <div class="card-title" style="color:#1565c0">📸 Nhập đơn từ hóa đơn / ảnh chụp</div>
       <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-        <label for="invoiceUpload" style="cursor:pointer;display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:#1565c0;color:#fff;border-radius:10px;font-size:13px;font-weight:700">
+        <label style="cursor:pointer;display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:#1565c0;color:#fff;border-radius:10px;font-size:13px;font-weight:700">
           📎 Chọn ảnh hóa đơn
-          <input type="file" id="invoiceUpload" accept="image/*" style="display:none" onchange="handleInvoiceUpload(this)">
+          <input type="file" accept="image/*" style="display:none" onchange="handleInvoiceUpload(this)">
         </label>
-        <span style="font-size:12px;color:#607d8b">Hỗ trợ JPG, PNG, WEBP — AI sẽ đọc và tự điền danh mục</span>
+        <span style="font-size:12px;color:#607d8b">Hỗ trợ JPG, PNG — AI đọc và tự điền giỏ hàng</span>
       </div>
       <div id="invoicePreview" style="margin-top:12px"></div>
     </div>
-    <div class="card">
-      <div class="card-title">📦 Danh mục sản phẩm</div>
-      <div id="catalogList"></div>
+    <div class="card"><div class="card-title">➕ Thông tin đơn hàng</div>
+      <div class="form-row">
+        ${storeField}
+        <div class="form-group"><label>Nhà cung cấp</label><select id="selNCC" onchange="loadCatalog()">${nccOpts}</select></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Ngày giao dự kiến</label><input type="date" id="deliveryDate" value="${new Date(Date.now()+86400000).toISOString().slice(0,10)}"></div>
+        <div class="form-group"><label>Ghi chú</label><input type="text" id="orderNote" placeholder="Ghi chú đơn hàng..."></div>
+      </div>
     </div>
+    <div class="card"><div class="card-title">📦 Danh mục sản phẩm</div><div id="catalogList"></div></div>
     <div class="card">
       <div class="card-title">🛒 Giỏ hàng (<span id="cartCount">0</span> sản phẩm)</div>
-      <div id="cartList"><div class="empty"><div>Chưa có sản phẩm nào trong giỏ</div></div></div>
+      <div id="cartList"><div class="empty">🛒 Chưa có sản phẩm trong giỏ</div></div>
       <div style="display:flex;gap:12px;margin-top:16px;justify-content:flex-end">
         <button class="btn-sm btn-outline" onclick="saveDraft()">💾 Lưu nháp</button>
         <button class="btn-sm btn-primary-sm" onclick="submitOrder()">📤 Gửi NCC</button>
@@ -561,878 +463,484 @@ function renderStoreCreate() {
     </div>`;
 }
 
-function loadCatalog() {
-  const ncc = document.getElementById('selNCC')?.value;
-  if (!ncc) return;
-  const prods = PRODUCTS[ncc]||[];
-  if (!prods.length) {
-    const el = document.getElementById('catalogList');
-    if (el) el.innerHTML = '<div class="empty">Không có sản phẩm</div>';
-    return;
-  }
-  const rows = prods.map((p,i)=>`
+function loadCatalog(){
+  const ncc=document.getElementById('selNCC')?.value;
+  if(!ncc) return;
+  const prods=PRODUCTS[ncc]||[];
+  if(!prods.length){const el=document.getElementById('catalogList');if(el)el.innerHTML='<div class="empty">Không có sản phẩm</div>';return;}
+  const rows=prods.map((p,i)=>`
     <tr id="crow_${p.id}">
-      <td style="text-align:center;color:#999;font-size:12px;white-space:nowrap">${i+1}</td>
+      <td style="text-align:center;color:#999;font-size:12px">${i+1}</td>
       <td style="font-weight:600;color:#1a237e;font-size:13px">${p.name}</td>
-      <td style="text-align:center;font-size:12px;color:#546e7a;font-family:monospace;white-space:nowrap">${p.barcode||p.id}</td>
-      <td style="text-align:center;color:#607d8b;font-size:12px;white-space:nowrap">${p.unit}</td>
-      <td style="text-align:center">
-        <input type="number" id="qty_${p.id}" min="0" value="0"
-          style="width:72px;text-align:center;padding:6px 8px;border:2px solid #e3eaf5;border-radius:8px;font-size:13px;font-weight:600"
-          oninput="updateCart();highlightRow('${p.id}',this.value)">
-      </td>
+      <td style="text-align:center;font-size:11px;color:#546e7a;font-family:monospace">${p.barcode||'—'}</td>
+      <td style="text-align:center;font-size:12px;color:#607d8b">${p.unit}</td>
+      <td style="text-align:center"><input type="number" id="qty_${p.id}" min="0" value="0" style="width:70px;text-align:center;padding:6px;border:2px solid #e3eaf5;border-radius:8px;font-size:13px;font-weight:600" oninput="updateCart();highlightRow('${p.id}',this.value)"></td>
       <td style="text-align:right;font-size:13px;white-space:nowrap">${fmtMoney(p.price)}</td>
       <td style="text-align:right;font-weight:700;color:var(--primary);font-size:13px;white-space:nowrap" id="sub_${p.id}">—</td>
     </tr>`).join('');
-  const html = `
-    <table>
-      <thead>
-        <tr style="background:#f0f4ff">
-          <th style="width:36px;text-align:center">#</th>
-          <th>Tên sản phẩm</th>
-          <th style="width:130px;text-align:center">Mã vạch</th>
-          <th style="width:55px;text-align:center">ĐVT</th>
-          <th style="width:90px;text-align:center">Số lượng</th>
-          <th style="width:110px;text-align:right">Đơn giá</th>
-          <th style="width:120px;text-align:right">Thành tiền</th>
-        </tr>
-      </thead>
-      <tbody>${rows}</tbody>
-    </table>
-    <div style="text-align:right;padding:12px 0 0;font-size:13px;color:#607d8b">
-      Tổng danh mục: <strong>${prods.length}</strong> sản phẩm
-    </div>`;
-  const el = document.getElementById('catalogList');
-  if (el) el.innerHTML = html;
+  const el=document.getElementById('catalogList');
+  if(el) el.innerHTML=`<table><thead><tr style="background:#f0f4ff"><th style="width:36px;text-align:center">#</th><th>Tên sản phẩm</th><th style="width:130px;text-align:center">Mã vạch</th><th style="width:55px;text-align:center">ĐVT</th><th style="width:90px;text-align:center">Số lượng</th><th style="width:110px;text-align:right">Đơn giá</th><th style="width:120px;text-align:right">Thành tiền</th></tr></thead><tbody>${rows}</tbody></table><div style="text-align:right;padding:10px 0 0;font-size:12px;color:#999">Tổng: <strong>${prods.length}</strong> sản phẩm</div>`;
   updateCart();
 }
 
-function highlightRow(pid, val) {
-  const row = document.getElementById('crow_'+pid);
-  const sub = document.getElementById('sub_'+pid);
-  if (!row) return;
-  const qty = parseInt(val)||0;
-  if (qty > 0) {
-    row.style.background = '#e8f5e9';
-    const ncc = document.getElementById('selNCC')?.value;
-    const p = (PRODUCTS[ncc]||[]).find(x=>x.id===pid);
-    if (sub && p) sub.textContent = fmtMoney(qty * p.price);
-  } else {
-    row.style.background = '';
-    if (sub) sub.textContent = '—';
-  }
+function highlightRow(pid,val){
+  const row=document.getElementById('crow_'+pid);
+  const sub=document.getElementById('sub_'+pid);
+  if(!row) return;
+  const qty=parseInt(val)||0;
+  const ncc=document.getElementById('selNCC')?.value;
+  const p=(PRODUCTS[ncc]||[]).find(x=>x.id===pid);
+  if(qty>0){row.style.background='#e8f5e9';if(sub&&p)sub.textContent=fmtMoney(qty*p.price);}
+  else{row.style.background='';if(sub)sub.textContent='—';}
 }
 
-function updateCart() {
-  const ncc = document.getElementById('selNCC')?.value;
-  const prods = PRODUCTS[ncc]||[];
-  cart = [];
-  prods.forEach(p => {
-    const qty = parseInt(document.getElementById('qty_'+p.id)?.value)||0;
-    if (qty>0) cart.push({...p, ordered_qty:qty, item_status:'pending', confirmed_qty:0});
+function updateCart(){
+  const ncc=document.getElementById('selNCC')?.value;
+  const prods=PRODUCTS[ncc]||[];
+  cart=cart.filter(c=>c._fromAI);
+  prods.forEach(p=>{
+    const qty=parseInt(document.getElementById('qty_'+p.id)?.value)||0;
+    if(qty>0) cart.push({...p,ordered_qty:qty,confirmed_qty:0,item_status:'pending'});
   });
   renderCart();
 }
 
-function renderCart() {
-  const el = document.getElementById('cartList');
-  const countEl = document.getElementById('cartCount');
-  if (!el) return;
-  if (countEl) countEl.textContent = cart.length;
-  if (cart.length===0) { el.innerHTML='<div class="empty" style="padding:20px"><div style="font-size:32px">🛒</div><div style="margin-top:8px;font-size:13px;color:#999">Chưa có sản phẩm nào trong giỏ</div></div>'; return; }
-  let total = 0;
-  const rows = cart.map((i,idx)=>{
-    const sub=i.ordered_qty*i.price; total+=sub;
-    return `<tr>
-      <td style="text-align:center;color:#999;font-size:12px">${idx+1}</td>
-      <td style="font-size:13px;font-weight:500">${i.name}</td>
-      <td style="text-align:center;font-size:13px;color:#607d8b">${i.unit}</td>
-      <td style="text-align:center;font-size:13px;font-weight:700;color:var(--primary)">${i.ordered_qty}</td>
-      <td style="text-align:right;font-size:13px">${fmtMoney(i.price)}</td>
-      <td style="text-align:right;font-size:13px;font-weight:700;color:#2e7d32">${fmtMoney(sub)}</td>
-    </tr>`;
-  }).join('');
-  el.innerHTML = `
-    <table>
-      <thead>
-        <tr style="background:#f0f4ff">
-          <th style="width:36px;text-align:center">#</th>
-          <th>Tên sản phẩm</th>
-          <th style="width:60px;text-align:center">ĐVT</th>
-          <th style="width:60px;text-align:center">SL</th>
-          <th style="width:110px;text-align:right">Đơn giá</th>
-          <th style="width:120px;text-align:right">Thành tiền</th>
-        </tr>
-      </thead>
-      <tbody>${rows}</tbody>
-      <tfoot>
-        <tr style="background:#e8f5e9;border-top:2px solid #a5d6a7">
-          <td colspan="5" style="text-align:right;font-weight:700;font-size:14px;padding:12px">Tổng cộng:</td>
-          <td style="text-align:right;font-weight:800;font-size:15px;color:#1b5e20;padding:12px">${fmtMoney(total)}</td>
-        </tr>
-      </tfoot>
-    </table>`;
+function renderCart(){
+  const el=document.getElementById('cartList');
+  const countEl=document.getElementById('cartCount');
+  if(!el) return;
+  if(countEl) countEl.textContent=cart.length;
+  if(cart.length===0){el.innerHTML='<div class="empty">🛒 Chưa có sản phẩm nào trong giỏ</div>';return;}
+  let total=0;
+  const rows=cart.map((i,idx)=>{const sub=i.ordered_qty*i.price;total+=sub;return`<tr><td style="text-align:center;color:#999;font-size:12px">${idx+1}</td><td style="font-size:13px;font-weight:500">${i.name}</td><td style="text-align:center;font-size:12px;color:#607d8b">${i.unit}</td><td style="text-align:center;font-weight:700;color:var(--primary)">${i.ordered_qty}</td><td style="text-align:right;font-size:13px;white-space:nowrap">${fmtMoney(i.price)}</td><td style="text-align:right;font-weight:700;color:#2e7d32;white-space:nowrap">${fmtMoney(sub)}</td></tr>`;}).join('');
+  el.innerHTML=`<table><thead><tr style="background:#f0f4ff"><th style="width:36px;text-align:center">#</th><th>Tên sản phẩm</th><th style="width:60px;text-align:center">ĐVT</th><th style="width:60px;text-align:center">SL</th><th style="width:110px;text-align:right">Đơn giá</th><th style="width:120px;text-align:right">Thành tiền</th></tr></thead><tbody>${rows}</tbody><tfoot><tr><td colspan="5" style="text-align:right;padding:12px">Tổng cộng:</td><td style="text-align:right;padding:12px">${fmtMoney(total)}</td></tr></tfoot></table>`;
 }
 
-function saveDraft() {
-  if (cart.length===0) { alert('Vui lòng chọn ít nhất 1 sản phẩm'); return; }
-  const sid = getActiveStoreId();
-  if (!sid) { alert('Vui lòng chọn cửa hàng trước'); return; }
-  const STORES_LIST = [{id:'S01',name:'Phú Bài'},{id:'S02',name:'Vinh Thanh'},{id:'S03',name:'An Vân Dương'}];
-  const storeName = currentUser.store_name || STORES_LIST.find(s=>s.id===sid)?.name || sid;
-  const ncc = document.getElementById('selNCC')?.value;
-  const sup = SUPPLIERS.find(s=>s.id===ncc);
-  const order = {
-    id:'ORD'+Date.now(),
-    order_code: generateOrderCode(),
-    store_id: sid,
-    store_name: storeName,
-    supplier_id: ncc,
-    supplier_name: sup?.name||ncc,
-    status:'draft',
-    order_date: new Date().toISOString().slice(0,10),
-    delivery_date: document.getElementById('deliveryDate')?.value,
-    total: cart.reduce((s,i)=>s+i.ordered_qty*i.price,0),
-    items:[...cart],
-    note: document.getElementById('orderNote')?.value||'',
-  };
-  orders.push(order);
-  alert('✅ Đã lưu nháp: '+order.order_code);
-  cart=[];
-  navigateTo('store_orders');
+function saveDraft(){
+  if(cart.length===0){alert('Vui lòng chọn ít nhất 1 sản phẩm');return;}
+  const sid=getActiveStoreId();if(!sid){alert('Vui lòng chọn cửa hàng');return;}
+  const STORES=[{id:'S01',name:'Phú Bài'},{id:'S02',name:'Vinh Thanh'},{id:'S03',name:'An Vân Dương'}];
+  const sname=currentUser.store_name||STORES.find(s=>s.id===sid)?.name||sid;
+  const ncc=document.getElementById('selNCC')?.value;
+  const sup=SUPPLIERS.find(s=>s.id===ncc);
+  orders.push({id:'ORD'+Date.now(),order_code:generateOrderCode(),store_id:sid,store_name:sname,supplier_id:ncc,supplier_name:sup?.name||ncc,status:'draft',order_date:new Date().toISOString().slice(0,10),delivery_date:document.getElementById('deliveryDate')?.value,total:cart.reduce((s,i)=>s+i.ordered_qty*i.price,0),items:[...cart],note:document.getElementById('orderNote')?.value||''});
+  alert('✅ Đã lưu nháp: '+orders[orders.length-1].order_code);
+  cart=[];navigateTo('store_orders');
+}
+function submitOrder(){
+  if(cart.length===0){alert('Vui lòng chọn ít nhất 1 sản phẩm');return;}
+  const sid=getActiveStoreId();if(!sid){alert('Vui lòng chọn cửa hàng');return;}
+  const STORES=[{id:'S01',name:'Phú Bài'},{id:'S02',name:'Vinh Thanh'},{id:'S03',name:'An Vân Dương'}];
+  const sname=currentUser.store_name||STORES.find(s=>s.id===sid)?.name||sid;
+  const ncc=document.getElementById('selNCC')?.value;
+  const sup=SUPPLIERS.find(s=>s.id===ncc);
+  orders.push({id:'ORD'+Date.now(),order_code:generateOrderCode(),store_id:sid,store_name:sname,supplier_id:ncc,supplier_name:sup?.name||ncc,status:'pending_supplier',order_date:new Date().toISOString().slice(0,10),delivery_date:document.getElementById('deliveryDate')?.value,total:cart.reduce((s,i)=>s+i.ordered_qty*i.price,0),items:[...cart],note:document.getElementById('orderNote')?.value||'',submitted_at:new Date().toISOString()});
+  alert('✅ Đã gửi đơn tới NCC: '+orders[orders.length-1].order_code);
+  cart=[];navigateTo('store_orders');
 }
 
-function submitOrder() {
-  if (cart.length===0) { alert('Vui lòng chọn ít nhất 1 sản phẩm'); return; }
-  const sid = getActiveStoreId();
-  if (!sid) { alert('Vui lòng chọn cửa hàng trước'); return; }
-  const STORES_LIST = [{id:'S01',name:'Phú Bài'},{id:'S02',name:'Vinh Thanh'},{id:'S03',name:'An Vân Dương'}];
-  const storeName = currentUser.store_name || STORES_LIST.find(s=>s.id===sid)?.name || sid;
-  const ncc = document.getElementById('selNCC')?.value;
-  const sup = SUPPLIERS.find(s=>s.id===ncc);
-  const order = {
-    id:'ORD'+Date.now(),
-    order_code: generateOrderCode(),
-    store_id: sid,
-    store_name: storeName,
-    supplier_id: ncc,
-    supplier_name: sup?.name||ncc,
-    status:'pending_supplier',
-    order_date: new Date().toISOString().slice(0,10),
-    delivery_date: document.getElementById('deliveryDate')?.value,
-    total: cart.reduce((s,i)=>s+i.ordered_qty*i.price,0),
-    items:[...cart],
-    note: document.getElementById('orderNote')?.value||'',
-    submitted_at: new Date().toISOString(),
-  };
-  orders.push(order);
-  alert('✅ Đã gửi đơn tới NCC: '+order.order_code);
-  cart=[];
-  navigateTo('store_orders');
-}
-
-// ── STORE ORDERS ──────────────────────────────────────────────────────────────
-function renderStoreOrders() {
-  const my = myOrders();
-  const picker = renderAdminStorePicker();
-  return `${picker}
+// ── STORE ORDERS ───────────────────────────────────────────────────────────
+function renderStoreOrders(){
+  const my=myOrders();
+  return adminStorePicker()+`
     <div class="card">
       <div class="filter-bar">
-        <input type="text" placeholder="🔍 Tìm mã đơn..." oninput="filterOrders(this.value,'orderTbl')" style="max-width:200px">
-        <select onchange="filterByStatus(this.value,'orderTbl')">
+        <input type="text" placeholder="🔍 Tìm mã đơn..." oninput="filterOrders(this.value,'otbl')" style="max-width:200px">
+        <select onchange="filterByStatus(this.value,'otbl')">
           <option value="">Tất cả trạng thái</option>
-          <option value="draft">Nháp</option>
-          <option value="pending_supplier">Chờ NCC</option>
-          <option value="confirmed">Xác nhận</option>
-          <option value="rejected">Từ chối</option>
+          <option value="draft">Nháp</option><option value="pending_supplier">Chờ NCC</option>
+          <option value="confirmed">Xác nhận</option><option value="rejected">Từ chối</option>
           <option value="delivered">Đã giao</option>
         </select>
       </div>
-      <table id="orderTbl">
-        <tr><th>Mã đơn</th><th>NCC</th><th>Ngày đặt</th><th>Ngày giao</th><th>Tổng tiền</th><th>Trạng thái</th><th></th></tr>
-        ${my.map(o=>`<tr data-code="${o.order_code}" data-status="${o.status}">
-          <td><strong>${o.order_code}</strong></td>
-          <td>${o.supplier_name}</td>
-          <td>${fmtDate(o.order_date)}</td>
-          <td>${fmtDate(o.delivery_date)}</td>
-          <td>${fmtMoney(o.total)}</td>
+      <table id="otbl">
+        <tr><th>#</th><th>Mã đơn</th><th>NCC</th><th>Ngày đặt</th><th>Ngày giao</th><th>Tổng tiền</th><th>Trạng thái</th><th></th></tr>
+        ${my.map((o,i)=>`<tr data-code="${o.order_code}" data-status="${o.status}">
+          <td style="color:#999">${i+1}</td><td><strong>${o.order_code}</strong></td><td>${o.supplier_name}</td>
+          <td>${fmtDate(o.order_date)}</td><td>${fmtDate(o.delivery_date)}</td><td style="white-space:nowrap">${fmtMoney(o.total)}</td>
           <td>${statusBadge(o.status)}</td>
-          <td><button class="btn-sm btn-primary-sm" onclick="viewOrder('${o.id}')">Xem</button>
-          ${['draft','pending_supplier'].includes(o.status)?`<button class="btn-sm btn-danger" style="margin-left:4px" onclick="cancelOrder('${o.id}')">Hủy</button>`:''}</td>
-        </tr>`).join('')}
+          <td style="white-space:nowrap">
+            <button class="btn-sm btn-primary-sm" onclick="viewOrder('${o.id}')">Xem</button>
+            ${['draft','pending_supplier'].includes(o.status)?`<button class="btn-sm btn-danger" style="margin-left:4px" onclick="cancelOrder('${o.id}')">Hủy</button>`:''}
+          </td></tr>`).join('')}
       </table>
-      ${my.length===0?'<div class="empty"><div class="icon">📭</div><p>Chưa có đơn hàng</p></div>':''}
+      ${my.length===0?'<div class="empty">📭 Chưa có đơn hàng</div>':''}
     </div>`;
 }
+function filterOrders(val,tblId){document.querySelectorAll(`#${tblId} tr:not(:first-child)`).forEach(r=>{r.style.display=(r.dataset.code||'').toLowerCase().includes(val.toLowerCase())?'':'none';});}
+function filterByStatus(val,tblId){document.querySelectorAll(`#${tblId} tr:not(:first-child)`).forEach(r=>{r.style.display=(!val||r.dataset.status===val)?'':'none';});}
 
-function filterOrders(val,tblId) {
-  const rows = document.querySelectorAll(`#${tblId} tr:not(:first-child)`);
-  rows.forEach(r=>{ r.style.display=(r.dataset.code||'').toLowerCase().includes(val.toLowerCase())?'':'none'; });
-}
-function filterByStatus(val,tblId) {
-  const rows = document.querySelectorAll(`#${tblId} tr:not(:first-child)`);
-  rows.forEach(r=>{ r.style.display=(!val||r.dataset.status===val)?'':'none'; });
-}
-
-function viewOrder(id) {
-  const o = orders.find(x=>x.id===id);
-  if (!o) return;
-  const canDeliver = (currentUser.role==='admin'||currentUser.role==='buyer_head_office') && o.status==='confirmed';
-  const canClose = (currentUser.role==='admin'||currentUser.role==='buyer_head_office') && o.status==='delivered';
+function viewOrder(id){
+  const o=orders.find(x=>x.id===id);if(!o) return;
+  const isAdminBuyer=['admin','buyer_head_office'].includes(currentUser.role);
+  const canDeliver=isAdminBuyer&&['confirmed','partial_confirmed'].includes(o.status);
+  const canClose=isAdminBuyer&&o.status==='delivered';
+  const total=o.total||(o.items||[]).reduce((s,i)=>s+(i.confirmed_qty||i.ordered_qty)*i.price,0);
   showModal(`
     <div class="modal-title">📋 ${o.order_code}</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;font-size:13px">
-      <div><strong>Cửa hàng:</strong> ${o.store_name}</div>
-      <div><strong>NCC:</strong> ${o.supplier_name}</div>
-      <div><strong>Ngày đặt:</strong> ${fmtDate(o.order_date)}</div>
-      <div><strong>Ngày giao:</strong> ${fmtDate(o.delivery_date)}</div>
-      <div><strong>Trạng thái:</strong> ${statusBadge(o.status)}</div>
-      <div><strong>Tổng:</strong> <span style="color:var(--primary);font-weight:700">${fmtMoney(o.total)}</span></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;font-size:13px">
+      <div><strong>Cửa hàng:</strong> ${o.store_name}</div><div><strong>NCC:</strong> ${o.supplier_name}</div>
+      <div><strong>Ngày đặt:</strong> ${fmtDate(o.order_date)}</div><div><strong>Ngày giao:</strong> ${fmtDate(o.delivery_date)}</div>
+      <div><strong>Trạng thái:</strong> ${statusBadge(o.status)}</div><div><strong>Tổng:</strong> <span style="color:var(--primary);font-weight:700">${fmtMoney(total)}</span></div>
     </div>
     ${o.reject_reason?`<div style="background:#ffebee;padding:10px;border-radius:8px;margin-bottom:12px;font-size:13px;color:#c62828">❌ Lý do từ chối: ${o.reject_reason}</div>`:''}
+    ${o.supplier_note?`<div style="background:#e3f2fd;padding:10px;border-radius:8px;margin-bottom:12px;font-size:13px;color:#1565c0">💬 Ghi chú NCC: ${o.supplier_note}</div>`:''}
     <table style="margin-bottom:16px">
       <tr><th>#</th><th>Tên sản phẩm</th><th>Mã vạch</th><th>ĐVT</th><th>SL đặt</th><th>SL xác nhận</th><th>Đơn giá</th><th>Thành tiền</th></tr>
       ${(o.items||[]).map((i,idx)=>`<tr>
-        <td style="text-align:center;color:#999;font-size:12px">${idx+1}</td>
-        <td style="font-weight:500">${i.name}</td>
-        <td style="font-size:11px;color:#546e7a;font-family:monospace">${i.barcode||i.id||'—'}</td>
+        <td style="text-align:center;color:#999;font-size:11px">${idx+1}</td>
+        <td style="font-weight:500;font-size:13px">${i.name}</td>
+        <td style="font-size:11px;color:#546e7a;font-family:monospace">${i.barcode||'—'}</td>
         <td style="text-align:center;font-size:12px">${i.unit}</td>
         <td style="text-align:center">${i.ordered_qty}</td>
-        <td style="text-align:center;font-weight:700;color:${i.confirmed_qty>0?'#2e7d32':'#999'}">${i.confirmed_qty||'—'}</td>
-        <td style="text-align:right">${fmtMoney(i.price)}</td>
-        <td style="text-align:right;font-weight:700;color:var(--primary)">${i.confirmed_qty>0?fmtMoney(i.confirmed_qty*i.price):fmtMoney(i.ordered_qty*i.price)}</td>
+        <td style="text-align:center;font-weight:700;color:${(i.confirmed_qty||0)>0?'#2e7d32':'#999'}">${i.confirmed_qty||'—'}</td>
+        <td style="text-align:right;white-space:nowrap">${fmtMoney(i.price)}</td>
+        <td style="text-align:right;font-weight:700;color:var(--primary);white-space:nowrap">${fmtMoney((i.confirmed_qty||i.ordered_qty)*i.price)}</td>
       </tr>`).join('')}
-      <tr style="background:#e8f5e9;border-top:2px solid #a5d6a7">
-        <td colspan="7" style="text-align:right;font-weight:700;padding:10px">Tổng cộng:</td>
-        <td style="text-align:right;font-weight:800;color:#1b5e20;padding:10px">${fmtMoney(o.total)}</td>
-      </tr>
+      <tfoot><tr><td colspan="7" style="text-align:right">Tổng cộng:</td><td style="text-align:right">${fmtMoney(total)}</td></tr></tfoot>
     </table>
     <div style="display:flex;gap:8px;flex-wrap:wrap">
       ${canDeliver?`<button class="btn-sm btn-success" onclick="markDelivered('${o.id}')">🚚 Đánh dấu đã giao</button>`:''}
       ${canClose?`<button class="btn-sm btn-primary-sm" onclick="closeOrder('${o.id}')">✅ Đóng đơn</button>`:''}
       <button class="btn-sm btn-outline" onclick="closeModal()">Đóng</button>
-    </div>
-  `);
+    </div>`);
 }
+function cancelOrder(id){if(!confirm('Xác nhận hủy đơn?'))return;const o=orders.find(x=>x.id===id);if(o)o.status='cancelled';navigateTo(currentPage);}
+function markDelivered(id){const o=orders.find(x=>x.id===id);if(o)o.status='delivered';closeModal();navigateTo(currentPage);}
+function closeOrder(id){const o=orders.find(x=>x.id===id);if(o)o.status='closed';closeModal();navigateTo(currentPage);}
 
-function cancelOrder(id) {
-  if (!confirm('Xác nhận hủy đơn hàng này?')) return;
-  const o = orders.find(x=>x.id===id);
-  if (o) o.status='cancelled';
-  navigateTo(currentPage);
-}
-function markDelivered(id) {
-  const o=orders.find(x=>x.id===id);
-  if(o)o.status='delivered';
-  closeModal();
-  navigateTo(currentPage);
-}
-function closeOrder(id) {
-  const o=orders.find(x=>x.id===id);
-  if(o)o.status='closed';
-  closeModal();
-  navigateTo(currentPage);
-}
-
-// ── SUPPLIER ──────────────────────────────────────────────────────────────────
-function renderSupplierDashboard() {
-  const my = myOrders();
-  const picker = renderAdminSupplierPicker();
-  const stats = [
+// ── SUPPLIER ───────────────────────────────────────────────────────────────
+function renderSupplierDashboard(){
+  const my=myOrders();
+  const stats=[
     {icon:'⏳',num:my.filter(o=>o.status==='pending_supplier').length,label:'Chờ xác nhận'},
     {icon:'✅',num:my.filter(o=>o.status==='confirmed').length,label:'Đã xác nhận'},
     {icon:'🔄',num:my.filter(o=>o.status==='partial_confirmed').length,label:'Xác nhận 1 phần'},
     {icon:'❌',num:my.filter(o=>o.status==='rejected').length,label:'Đã từ chối'},
   ];
-  return `${picker}
+  const pending=my.filter(o=>o.status==='pending_supplier');
+  return adminSupplierPicker()+`
     <div class="stat-grid">${stats.map(s=>`<div class="stat-card"><div class="icon">${s.icon}</div><div class="num">${s.num}</div><div class="label">${s.label}</div></div>`).join('')}</div>
-    <div class="card">
-      <div class="card-title">⏳ Đơn chờ xác nhận</div>
-      <table>
-        <tr><th>Mã đơn</th><th>Cửa hàng</th><th>Ngày đặt</th><th>Ngày giao</th><th>Trạng thái</th><th></th></tr>
-        ${my.filter(o=>o.status==='pending_supplier').map(o=>`<tr>
-          <td><strong>${o.order_code}</strong></td>
-          <td>${o.store_name}</td>
-          <td>${fmtDate(o.order_date)}</td>
-          <td>${fmtDate(o.delivery_date)}</td>
-          <td>${statusBadge(o.status)}</td>
-          <td><button class="btn-sm btn-primary-sm" onclick="confirmOrderModal('${o.id}')">Xác nhận</button></td>
-        </tr>`).join('')}
+    <div class="card"><div class="card-title">⏳ Đơn chờ xác nhận</div>
+      <table><tr><th>Mã đơn</th><th>Cửa hàng</th><th>Ngày đặt</th><th>Ngày giao</th><th>Trạng thái</th><th></th></tr>
+        ${pending.map(o=>`<tr><td><strong>${o.order_code}</strong></td><td>${o.store_name}</td><td>${fmtDate(o.order_date)}</td><td>${fmtDate(o.delivery_date)}</td><td>${statusBadge(o.status)}</td><td><button class="btn-sm btn-primary-sm" onclick="confirmOrderModal('${o.id}')">Xác nhận</button></td></tr>`).join('')}
       </table>
-      ${my.filter(o=>o.status==='pending_supplier').length===0?'<div class="empty"><div class="icon">✅</div><p>Không có đơn chờ xác nhận</p></div>':''}
+      ${pending.length===0?'<div class="empty">✅ Không có đơn chờ xác nhận</div>':''}
     </div>`;
 }
-
-function renderSupplierOrders() {
-  const my = myOrders();
-  const picker = renderAdminSupplierPicker();
-  return `${picker}
+function renderSupplierOrders(){
+  const my=myOrders();
+  return adminSupplierPicker()+`
     <div class="card">
-      <table>
-        <tr><th>Mã đơn</th><th>Cửa hàng</th><th>Ngày đặt</th><th>Ngày giao</th><th>Trạng thái</th><th></th></tr>
-        ${my.map(o=>`<tr>
-          <td><strong>${o.order_code}</strong></td>
-          <td>${o.store_name}</td>
-          <td>${fmtDate(o.order_date)}</td>
-          <td>${fmtDate(o.delivery_date)}</td>
-          <td>${statusBadge(o.status)}</td>
-          <td>
+      <table><tr><th>Mã đơn</th><th>Cửa hàng</th><th>Ngày đặt</th><th>Ngày giao</th><th>Trạng thái</th><th></th></tr>
+        ${my.map(o=>`<tr><td><strong>${o.order_code}</strong></td><td>${o.store_name}</td><td>${fmtDate(o.order_date)}</td><td>${fmtDate(o.delivery_date)}</td><td>${statusBadge(o.status)}</td>
+          <td style="white-space:nowrap">
             ${o.status==='pending_supplier'?`<button class="btn-sm btn-primary-sm" onclick="confirmOrderModal('${o.id}')">Xác nhận</button>`:''}
             <button class="btn-sm btn-outline" style="margin-left:4px" onclick="viewOrder('${o.id}')">Xem</button>
-          </td>
-        </tr>`).join('')}
+          </td></tr>`).join('')}
       </table>
-      ${my.length===0?'<div class="empty"><div class="icon">📭</div><p>Chưa có đơn hàng nào</p></div>':''}
+      ${my.length===0?'<div class="empty">📭 Chưa có đơn hàng nào</div>':''}
     </div>`;
 }
-
-function confirmOrderModal(id) {
-  const o = orders.find(x=>x.id===id);
-  if (!o) return;
-  const itemRows = (o.items||[]).map((item,i)=>`
-    <tr>
-      <td>${item.name}</td>
-      <td>${item.unit}</td>
-      <td style="text-align:center">${item.ordered_qty}</td>
-      <td><input type="number" class="qty-input" id="cqty_${i}" value="${item.ordered_qty}" min="0" max="${item.ordered_qty}"></td>
-      <td>${fmtMoney(item.price)}</td>
-    </tr>`).join('');
+function confirmOrderModal(id){
+  const o=orders.find(x=>x.id===id);if(!o) return;
+  const rows=(o.items||[]).map((item,i)=>`<tr>
+    <td style="font-size:13px">${item.name}</td><td style="text-align:center">${item.unit}</td>
+    <td style="text-align:center">${item.ordered_qty}</td>
+    <td style="text-align:center"><input type="number" id="cqty_${i}" value="${item.ordered_qty}" min="0" max="${item.ordered_qty}" style="width:70px;text-align:center;padding:5px;border:2px solid #e3eaf5;border-radius:6px"></td>
+    <td style="text-align:right;white-space:nowrap">${fmtMoney(item.price)}</td>
+  </tr>`).join('');
   showModal(`
     <div class="modal-title">✅ Xác nhận đơn: ${o.order_code}</div>
-    <div style="font-size:13px;margin-bottom:16px;color:var(--gray)">Cửa hàng: ${o.store_name} | Ngày giao: ${fmtDate(o.delivery_date)}</div>
-    <table style="margin-bottom:16px">
-      <tr><th>Sản phẩm</th><th>ĐVT</th><th>SL đặt</th><th>SL xác nhận</th><th>Đơn giá</th></tr>
-      ${itemRows}
+    <div style="font-size:13px;color:#607d8b;margin-bottom:14px">Cửa hàng: <strong>${o.store_name}</strong> | Ngày giao: <strong>${fmtDate(o.delivery_date)}</strong></div>
+    <table style="margin-bottom:14px">
+      <tr><th>Sản phẩm</th><th style="text-align:center">ĐVT</th><th style="text-align:center">SL đặt</th><th style="text-align:center">SL xác nhận</th><th style="text-align:right">Đơn giá</th></tr>
+      ${rows}
     </table>
-    <div class="form-group">
-      <label>Ghi chú phản hồi</label>
-      <textarea id="supplierNote" rows="2" placeholder="Ghi chú thêm..."></textarea>
-    </div>
+    <div class="form-group"><label>Ghi chú phản hồi</label><textarea id="supplierNote" rows="2" placeholder="Ghi chú..."></textarea></div>
     <div style="display:flex;gap:8px;flex-wrap:wrap">
       <button class="btn-sm btn-success" onclick="doConfirmFull('${id}')">✅ Xác nhận đủ</button>
-      <button class="btn-sm btn-primary-sm" onclick="doConfirmPartial('${id}',${o.items?.length||0})">🔄 Xác nhận một phần</button>
+      <button class="btn-sm btn-primary-sm" onclick="doConfirmPartial('${id}',${(o.items||[]).length})">🔄 Xác nhận một phần</button>
       <button class="btn-sm btn-danger" onclick="doRejectModal('${id}')">❌ Từ chối</button>
       <button class="btn-sm btn-outline" onclick="closeModal()">Hủy</button>
-    </div>
-  `);
+    </div>`);
 }
-
-function doConfirmFull(id) {
-  const o=orders.find(x=>x.id===id);
-  if(!o)return;
-  o.status='confirmed';
-  o.supplier_responded_at=new Date().toISOString();
+function doConfirmFull(id){
+  const o=orders.find(x=>x.id===id);if(!o) return;
+  o.status='confirmed';o.supplier_responded_at=new Date().toISOString();
   (o.items||[]).forEach(i=>{i.confirmed_qty=i.ordered_qty;i.item_status='confirmed';});
-  closeModal();
-  alert('✅ Đã xác nhận toàn bộ đơn hàng');
-  navigateTo(currentPage);
+  o.supplier_note=document.getElementById('supplierNote')?.value||'';
+  closeModal();alert('✅ Đã xác nhận toàn bộ đơn hàng');navigateTo(currentPage);
 }
-
-function doConfirmPartial(id,itemCount) {
-  const o=orders.find(x=>x.id===id);
-  if(!o)return;
-  if(!o.items||o.items.length===0){alert('Đơn hàng không có sản phẩm');return;}
+function doConfirmPartial(id,itemCount){
+  const o=orders.find(x=>x.id===id);if(!o) return;
+  if(!o.items||o.items.length===0){alert('Đơn không có sản phẩm');return;}
   let hasPartial=false;
   for(let i=0;i<itemCount;i++){
     const cqty=parseInt(document.getElementById('cqty_'+i)?.value)||0;
-    if(o.items[i]){
-      o.items[i].confirmed_qty=cqty;
-      if(cqty<o.items[i].ordered_qty)hasPartial=true;
-      o.items[i].item_status=cqty===0?'rejected':cqty<o.items[i].ordered_qty?'partial':'confirmed';
-    }
+    if(o.items[i]){o.items[i].confirmed_qty=cqty;if(cqty<o.items[i].ordered_qty)hasPartial=true;o.items[i].item_status=cqty===0?'rejected':cqty<o.items[i].ordered_qty?'partial':'confirmed';}
   }
   o.status=hasPartial?'partial_confirmed':'confirmed';
   o.supplier_responded_at=new Date().toISOString();
   o.supplier_note=document.getElementById('supplierNote')?.value||'';
-  closeModal();
-  alert('✅ Đã xác nhận '+(hasPartial?'một phần':'toàn bộ')+' đơn hàng');
-  navigateTo(currentPage);
+  closeModal();alert('✅ Đã xác nhận '+(hasPartial?'một phần':'toàn bộ'));navigateTo(currentPage);
 }
-
-function doRejectModal(id) {
+function doRejectModal(id){
   closeModal();
-  showModal(`
-    <div class="modal-title">❌ Từ chối đơn hàng</div>
-    <div class="form-group">
-      <label>Lý do từ chối *</label>
-      <textarea id="rejectReason" rows="3" placeholder="Nhập lý do từ chối..."></textarea>
-    </div>
+  showModal(`<div class="modal-title">❌ Từ chối đơn hàng</div>
+    <div class="form-group"><label>Lý do từ chối *</label><textarea id="rejectReason" rows="3" placeholder="Nhập lý do..."></textarea></div>
     <div style="display:flex;gap:8px">
       <button class="btn-sm btn-danger" onclick="doReject('${id}')">Xác nhận từ chối</button>
       <button class="btn-sm btn-outline" onclick="closeModal()">Hủy</button>
-    </div>
-  `);
+    </div>`);
 }
-
-function doReject(id) {
+function doReject(id){
   const reason=document.getElementById('rejectReason')?.value?.trim();
   if(!reason){alert('Vui lòng nhập lý do từ chối');return;}
   const o=orders.find(x=>x.id===id);
   if(o){o.status='rejected';o.reject_reason=reason;o.supplier_responded_at=new Date().toISOString();}
-  closeModal();
-  alert('Đã từ chối đơn hàng');
-  navigateTo(currentPage);
+  closeModal();alert('Đã từ chối đơn hàng');navigateTo(currentPage);
 }
 
-// ── ADMIN ─────────────────────────────────────────────────────────────────────
-function renderAdminDashboard() {
+// ── ADMIN ──────────────────────────────────────────────────────────────────
+function renderAdminDashboard(){
   const stats=[
-    {icon:'📋',num:orders.length,label:'Tổng đơn hàng'},
+    {icon:'📋',num:orders.length,label:'Tổng đơn'},
     {icon:'⏳',num:orders.filter(o=>o.status==='pending_supplier').length,label:'Chờ NCC'},
     {icon:'✅',num:orders.filter(o=>o.status==='confirmed').length,label:'Đã xác nhận'},
+    {icon:'🔄',num:orders.filter(o=>o.status==='partial_confirmed').length,label:'Xác nhận 1 phần'},
     {icon:'❌',num:orders.filter(o=>o.status==='rejected').length,label:'Từ chối'},
-    {icon:'🚚',num:orders.filter(o=>o.status==='delivering'||o.status==='delivered').length,label:'Đã giao/Đang giao'},
-    {icon:'🏭',num:SUPPLIERS.length,label:'Nhà cung cấp'},
+    {icon:'🚚',num:orders.filter(o=>['delivering','delivered'].includes(o.status)).length,label:'Đã giao'},
   ];
-  return `
-    <div class="stat-grid">${stats.map(s=>`<div class="stat-card"><div class="icon">${s.icon}</div><div class="num">${s.num}</div><div class="label">${s.label}</div></div>`).join('')}</div>
-    <div class="card">
-      <div class="card-title">📋 Đơn hàng cần xử lý</div>
-      <table>
-        <tr><th>Mã đơn</th><th>Cửa hàng</th><th>NCC</th><th>Ngày giao</th><th>Trạng thái</th><th></th></tr>
-        ${orders.filter(o=>['pending_supplier','partial_confirmed'].includes(o.status)).map(o=>`<tr>
-          <td><strong>${o.order_code}</strong></td><td>${o.store_name}</td><td>${o.supplier_name}</td>
-          <td>${fmtDate(o.delivery_date)}</td><td>${statusBadge(o.status)}</td>
-          <td><button class="btn-sm btn-primary-sm" onclick="viewOrder('${o.id}')">Xem</button></td>
-        </tr>`).join('')}
+  const needAction=orders.filter(o=>['pending_supplier','partial_confirmed'].includes(o.status));
+  return `<div class="stat-grid">${stats.map(s=>`<div class="stat-card"><div class="icon">${s.icon}</div><div class="num">${s.num}</div><div class="label">${s.label}</div></div>`).join('')}</div>
+    <div class="card"><div class="card-title">⚡ Đơn cần xử lý (${needAction.length})</div>
+      <table><tr><th>Mã đơn</th><th>Cửa hàng</th><th>NCC</th><th>Ngày giao</th><th>Trạng thái</th><th></th></tr>
+        ${needAction.map(o=>`<tr><td><strong>${o.order_code}</strong></td><td>${o.store_name}</td><td>${o.supplier_name}</td><td>${fmtDate(o.delivery_date)}</td><td>${statusBadge(o.status)}</td><td><button class="btn-sm btn-primary-sm" onclick="viewOrder('${o.id}')">Xem</button></td></tr>`).join('')}
       </table>
+      ${needAction.length===0?'<div class="empty">✅ Không có đơn cần xử lý</div>':''}
     </div>`;
 }
-
-function renderAdminOrders() {
-  return `
-    <div class="card">
-      <div class="filter-bar">
-        <input type="text" placeholder="🔍 Tìm mã đơn..." oninput="filterOrders(this.value,'allOrderTbl')" style="max-width:200px">
-        <select onchange="filterByStatus(this.value,'allOrderTbl')">
-          <option value="">Tất cả trạng thái</option>
-          <option value="draft">Nháp</option><option value="pending_supplier">Chờ NCC</option>
-          <option value="confirmed">Xác nhận</option><option value="rejected">Từ chối</option>
-          <option value="delivered">Đã giao</option><option value="closed">Đóng</option>
-        </select>
-      </div>
-      <table id="allOrderTbl">
-        <tr><th>Mã đơn</th><th>Cửa hàng</th><th>NCC</th><th>Ngày đặt</th><th>Tổng</th><th>Trạng thái</th><th></th></tr>
-        ${orders.map(o=>`<tr data-code="${o.order_code}" data-status="${o.status}">
-          <td><strong>${o.order_code}</strong></td><td>${o.store_name}</td><td>${o.supplier_name}</td>
-          <td>${fmtDate(o.order_date)}</td><td>${fmtMoney(o.total)}</td>
-          <td>${statusBadge(o.status)}</td>
-          <td><button class="btn-sm btn-primary-sm" onclick="viewOrder('${o.id}')">Xem</button></td>
-        </tr>`).join('')}
-      </table>
-    </div>`;
+function renderAdminOrders(){
+  return `<div class="card">
+    <div class="filter-bar">
+      <input type="text" placeholder="🔍 Tìm mã đơn..." oninput="filterOrders(this.value,'atbl')" style="max-width:200px">
+      <select onchange="filterByStatus(this.value,'atbl')">
+        <option value="">Tất cả trạng thái</option>
+        <option value="draft">Nháp</option><option value="pending_supplier">Chờ NCC</option>
+        <option value="confirmed">Xác nhận</option><option value="rejected">Từ chối</option>
+        <option value="delivered">Đã giao</option><option value="closed">Đóng</option>
+      </select>
+    </div>
+    <table id="atbl">
+      <tr><th>#</th><th>Mã đơn</th><th>Cửa hàng</th><th>NCC</th><th>Ngày đặt</th><th>Tổng</th><th>Trạng thái</th><th></th></tr>
+      ${orders.map((o,i)=>`<tr data-code="${o.order_code}" data-status="${o.status}">
+        <td style="color:#999">${i+1}</td><td><strong>${o.order_code}</strong></td><td>${o.store_name}</td><td>${o.supplier_name}</td>
+        <td>${fmtDate(o.order_date)}</td><td style="white-space:nowrap">${fmtMoney(o.total)}</td><td>${statusBadge(o.status)}</td>
+        <td><button class="btn-sm btn-primary-sm" onclick="viewOrder('${o.id}')">Xem</button></td>
+      </tr>`).join('')}
+    </table></div>`;
 }
-
-function renderAdminSuppliers() {
-  return `
-    <div class="card">
-      <div class="card-title">🏭 Danh sách nhà cung cấp</div>
-      <table>
-        <tr><th>Mã NCC</th><th>Tên NCC</th><th>Liên hệ</th><th>Lead time</th><th>Số đơn</th></tr>
-        ${SUPPLIERS.map(s=>`<tr>
-          <td><strong>${s.id}</strong></td><td>${s.name}</td><td>${s.contact}</td>
-          <td>${s.lead_time} ngày</td>
-          <td>${orders.filter(o=>o.supplier_id===s.id).length}</td>
-        </tr>`).join('')}
-      </table>
-    </div>`;
+function renderAdminSuppliers(){
+  return `<div class="card"><div class="card-title">🏭 Danh sách nhà cung cấp</div>
+    <table><tr><th>Mã NCC</th><th>Tên NCC</th><th>Liên hệ</th><th>Lead time</th><th>Số đơn</th></tr>
+      ${SUPPLIERS.map(s=>`<tr><td><strong>${s.id}</strong></td><td>${s.name}</td><td>${s.contact||'—'}</td><td>${s.lead_time} ngày</td><td>${orders.filter(o=>o.supplier_id===s.id).length}</td></tr>`).join('')}
+    </table></div>`;
 }
-
-function renderAdminProducts() {
-  const allProds = Object.entries(PRODUCTS).flatMap(([nccId,prods])=>prods.map(p=>({...p,nccId})));
-  return `
-    <div class="card">
-      <div class="card-title">📦 Danh sách sản phẩm (${allProds.length})</div>
-      <table>
-        <tr><th>Mã SP</th><th>Tên sản phẩm</th><th>NCC</th><th>ĐVT</th><th>Đơn giá</th></tr>
-        ${allProds.map(p=>`<tr>
-          <td>${p.id}</td><td>${p.name}</td>
-          <td>${SUPPLIERS.find(s=>s.id===p.nccId)?.name||p.nccId}</td>
-          <td>${p.unit}</td><td>${fmtMoney(p.price)}</td>
-        </tr>`).join('')}
-      </table>
-    </div>`;
+function renderAdminProducts(){
+  const all=Object.entries(PRODUCTS).flatMap(([nid,ps])=>ps.map(p=>({...p,nid})));
+  return `<div class="card"><div class="card-title">📦 Danh sách sản phẩm (${all.length})</div>
+    <table><tr><th>Mã SP</th><th>Mã vạch</th><th>Tên sản phẩm</th><th>NCC</th><th>ĐVT</th><th>Đơn giá</th></tr>
+      ${all.map(p=>`<tr><td>${p.id}</td><td style="font-family:monospace;font-size:11px">${p.barcode||'—'}</td><td>${p.name}</td><td>${SUPPLIERS.find(s=>s.id===p.nid)?.name||p.nid}</td><td>${p.unit}</td><td style="white-space:nowrap">${fmtMoney(p.price)}</td></tr>`).join('')}
+    </table></div>`;
 }
-
-function renderAdminLogs() {
-  const events = orders.flatMap(o=>[
-    {time:o.order_date,type:'order_created',desc:`Tạo đơn ${o.order_code}`,store:o.store_name},
-    o.submitted_at?{time:o.submitted_at,type:'submitted',desc:`Gửi NCC: ${o.order_code}`,store:o.store_name}:null,
-    o.supplier_responded_at?{time:o.supplier_responded_at,type:o.status,desc:`NCC phản hồi: ${o.order_code} → ${o.status}`,store:o.supplier_name}:null,
+function renderAdminLogs(){
+  const events=orders.flatMap(o=>[
+    {time:o.order_date+'T00:00:00Z',type:'order_created',desc:`Tạo đơn ${o.order_code}`,actor:o.store_name},
+    o.submitted_at?{time:o.submitted_at,type:'submitted',desc:`Gửi NCC: ${o.order_code}`,actor:o.store_name}:null,
+    o.supplier_responded_at?{time:o.supplier_responded_at,type:o.status,desc:`NCC phản hồi: ${o.order_code} → ${o.status}`,actor:o.supplier_name}:null,
   ].filter(Boolean)).sort((a,b)=>new Date(b.time)-new Date(a.time));
-  return `
+  const dotColor={order_created:'#1565c0',submitted:'#e65100',confirmed:'#2e7d32',partial_confirmed:'#1565c0',rejected:'#c62828'};
+  return `<div class="card"><div class="card-title">📜 Event Logs (${events.length})</div>
+    <div>${events.map(e=>`<div class="tl-item"><div class="tl-dot" style="background:${dotColor[e.type]||'#607d8b'}"></div><div class="tl-content"><div class="tl-title">${e.desc}</div><div class="tl-time">${fmtDateTime(e.time)} · ${e.actor}</div></div></div>`).join('')}</div>
+    ${events.length===0?'<div class="empty">📜 Chưa có sự kiện nào</div>':''}
+  </div>`;
+}
+
+// ── SETTINGS ───────────────────────────────────────────────────────────────
+function renderSettings(){
+  const key=localStorage.getItem('gemini_key')||'';
+  const masked=key?key.slice(0,6)+'••••••••••••'+key.slice(-4):'';
+  return `<div style="max-width:600px">
     <div class="card">
-      <div class="card-title">📜 Event Logs (${events.length})</div>
-      <div class="timeline">
-        ${events.map(e=>`<div class="tl-item">
-          <div class="tl-dot"></div>
-          <div class="tl-content">
-            <div class="tl-title">${e.desc}</div>
-            <div class="tl-time">${new Date(e.time).toLocaleString('vi-VN')} · ${e.store}</div>
-          </div>
-        </div>`).join('')}
+      <div class="card-title">🤖 Cài đặt AI Vision (OCR hóa đơn)</div>
+      <p style="font-size:13px;color:#607d8b;margin-bottom:16px;line-height:1.7">Dùng <strong>Google Gemini 1.5 Flash</strong> — Miễn phí, không cần thẻ ngân hàng.<br>API key lưu <strong>chỉ trên máy này</strong> (localStorage).</p>
+      <div class="form-group">
+        <label>Google Gemini API Key</label>
+        <div style="display:flex;gap:8px">
+          <input type="password" id="apiKeyInput" placeholder="AIza..." value="${key}" style="flex:1;font-family:monospace">
+          <button class="btn-sm btn-primary-sm" onclick="saveApiKey()" style="padding:10px 20px;white-space:nowrap">💾 Lưu</button>
+        </div>
+        ${key?`<div style="margin-top:8px;font-size:12px;color:#2e7d32">✅ Đã lưu: <code>${masked}</code></div>`:`<div style="margin-top:8px;font-size:12px;color:#e65100">⚠ Chưa có API key</div>`}
       </div>
-      ${events.length===0?'<div class="empty"><div class="icon">📜</div><p>Chưa có sự kiện nào</p></div>':''}
-    </div>`;
+      <div style="background:#e8f5e9;border-radius:10px;padding:14px;font-size:12px;color:#1b5e20;line-height:2;margin-top:8px">
+        <strong>Cách lấy key miễn phí:</strong><br>
+        1. Vào <a href="https://aistudio.google.com/apikey" target="_blank" style="color:#1b5e20;font-weight:700">aistudio.google.com/apikey</a><br>
+        2. Đăng nhập Google → nhấn <strong>Create API key</strong><br>
+        3. Copy key bắt đầu <code>AIza...</code> → dán vào ô trên → Lưu
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">⚙️ Thông tin hệ thống</div>
+      <table>
+        <tr><td style="color:#607d8b;font-size:13px;padding:8px 0;width:160px">Phiên bản</td><td style="font-size:13px;font-weight:600">VICOMART v2.0</td></tr>
+        <tr><td style="color:#607d8b;font-size:13px;padding:8px 0">Người dùng</td><td style="font-size:13px;font-weight:600">${currentUser.name} (${roleLabel(currentUser.role)})</td></tr>
+        <tr><td style="color:#607d8b;font-size:13px;padding:8px 0">AI Model</td><td style="font-size:13px;font-weight:600">Gemini 1.5 Flash (Google)</td></tr>
+        <tr><td style="color:#607d8b;font-size:13px;padding:8px 0">Chi phí AI</td><td style="font-size:13px;font-weight:600;color:#2e7d32">Miễn phí</td></tr>
+        <tr><td style="color:#607d8b;font-size:13px;padding:8px 0">API Key</td><td style="font-size:13px;font-weight:600">${key?'<span style="color:#2e7d32">✅ Đã cấu hình</span>':'<span style="color:#e65100">⚠ Chưa cấu hình</span>'}</td></tr>
+      </table>
+    </div>
+  </div>`;
+}
+function saveApiKey(){
+  const key=document.getElementById('apiKeyInput')?.value?.trim();
+  if(!key||!key.startsWith('AIza')){alert('API key không hợp lệ — phải bắt đầu bằng AIza');return;}
+  localStorage.setItem('gemini_key',key);
+  alert('✅ Đã lưu Gemini API key!');navigateTo('settings');
 }
 
-// ── SETTINGS ─────────────────────────────────────────────────────────────────
-function renderSettings() {
-  const key = localStorage.getItem('gemini_key')||'';
-  const masked = key ? key.slice(0,6)+'••••••••••••••••••••'+key.slice(-4) : '';
-  return `
-    <div style="max-width:600px">
-      <div class="card">
-        <div class="card-title">🤖 Cài đặt AI Vision (OCR hóa đơn)</div>
-        <p style="font-size:13px;color:#607d8b;margin-bottom:16px;line-height:1.7">
-          Tính năng <strong>nhập đơn từ ảnh</strong> dùng <strong>Google Gemini 1.5 Flash</strong>.<br>
-          ✅ Miễn phí — không cần thẻ ngân hàng. API key lưu <strong>chỉ trên máy này</strong>.
-        </p>
-        <div class="form-group">
-          <label>Google Gemini API Key</label>
-          <div style="display:flex;gap:8px">
-            <input type="password" id="apiKeyInput" placeholder="AIza..." value="${key}"
-              style="flex:1;font-family:monospace">
-            <button class="btn-sm btn-primary-sm" onclick="saveApiKey()" style="white-space:nowrap;padding:10px 20px">💾 Lưu</button>
-          </div>
-          ${key
-            ? `<div style="margin-top:8px;font-size:12px;color:#2e7d32">✅ Đã lưu key: <code>${masked}</code></div>`
-            : `<div style="margin-top:8px;font-size:12px;color:#e65100">⚠ Chưa có API key — tính năng đọc ảnh sẽ không hoạt động</div>`}
-        </div>
-        <div style="background:#e8f5e9;border-radius:10px;padding:14px;font-size:12px;color:#1b5e20;line-height:2;margin-top:8px">
-          <strong>Cách lấy Gemini API key miễn phí:</strong><br>
-          1. Truy cập <a href="https://aistudio.google.com/apikey" target="_blank" style="color:#1b5e20;font-weight:700">aistudio.google.com/apikey</a><br>
-          2. Đăng nhập Google → nhấn <strong>"Create API key"</strong><br>
-          3. Copy key bắt đầu bằng <code>AIza...</code><br>
-          4. Dán vào ô trên và nhấn <strong>💾 Lưu</strong>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-title">⚙️ Thông tin hệ thống</div>
-        <table>
-          <tr><td style="color:#607d8b;font-size:13px;padding:8px 0;width:180px">Phiên bản app</td><td style="font-size:13px;font-weight:600">VICOMART v1.3</td></tr>
-          <tr><td style="color:#607d8b;font-size:13px;padding:8px 0">Người dùng</td><td style="font-size:13px;font-weight:600">${currentUser.name} (${roleLabel(currentUser.role)})</td></tr>
-          <tr><td style="color:#607d8b;font-size:13px;padding:8px 0">AI Model</td><td style="font-size:13px;font-weight:600">Gemini 1.5 Flash (Google)</td></tr>
-          <tr><td style="color:#607d8b;font-size:13px;padding:8px 0">Chi phí AI</td><td style="font-size:13px;font-weight:600;color:#2e7d32">Miễn phí</td></tr>
-          <tr><td style="color:#607d8b;font-size:13px;padding:8px 0">Dữ liệu</td><td style="font-size:13px;font-weight:600">${orders.length} đơn hàng trong phiên</td></tr>
-          <tr><td style="color:#607d8b;font-size:13px;padding:8px 0">API Key</td><td style="font-size:13px;font-weight:600">${localStorage.getItem('gemini_key')?'<span style="color:#2e7d32">✅ Đã cấu hình</span>':'<span style="color:#e65100">⚠ Chưa cấu hình</span>'}</td></tr>
-        </table>
-      </div>
-    </div>`;
-}
-
-function saveApiKey() {
-  const key = document.getElementById('apiKeyInput')?.value?.trim();
-  if (!key || !key.startsWith('AIza')) { alert('API key không hợp lệ — Gemini key phải bắt đầu bằng AIza'); return; }
-  localStorage.setItem('gemini_key', key);
-  alert('✅ Đã lưu Gemini API key thành công!');
-  navigateTo('settings');
-}
-
-// ── AI VISION: ĐỌC ẢNH HÓA ĐƠN ──────────────────────────────────────────────
-async function handleInvoiceUpload(input) {
-  const file = input.files[0];
-  if (!file) return;
-
-  const preview = document.getElementById('invoicePreview');
-  const apiKey = localStorage.getItem('gemini_key');
-
-  const reader = new FileReader();
-  reader.onload = async (e) => {
-    const base64 = e.target.result;
-    preview.innerHTML = `
-      <div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap">
-        <img src="${base64}" style="max-height:200px;max-width:300px;border-radius:10px;border:2px solid #90caf9;object-fit:contain">
-        <div id="aiStatus" style="flex:1;min-width:200px;padding:16px;background:#fff;border-radius:10px;border:1px solid #e3eaf5">
-          <div style="font-size:13px;color:#607d8b">⏳ Đang phân tích hóa đơn...</div>
-        </div>
-      </div>`;
-
-    if (!apiKey) {
-      document.getElementById('aiStatus').innerHTML = `
-        <div style="color:#e65100;font-size:13px">
-          ⚠ Chưa có Gemini API key.<br>
-          Vào <strong>⚙️ Cài đặt</strong> để nhập key miễn phí từ Google.
-        </div>`;
+// ── AI VISION ──────────────────────────────────────────────────────────────
+async function handleInvoiceUpload(input){
+  const file=input.files[0];if(!file) return;
+  const preview=document.getElementById('invoicePreview');
+  const apiKey=localStorage.getItem('gemini_key');
+  const reader=new FileReader();
+  reader.onload=async(e)=>{
+    const base64=e.target.result;
+    preview.innerHTML=`<div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap">
+      <img src="${base64}" style="max-height:200px;max-width:280px;border-radius:10px;border:2px solid #90caf9;object-fit:contain">
+      <div id="aiStatus" style="flex:1;min-width:200px;padding:16px;background:#fff;border-radius:10px;border:1px solid #e3eaf5">
+        <div style="font-size:13px;color:#607d8b">⏳ Đang phân tích...</div>
+      </div></div>`;
+    if(!apiKey){
+      document.getElementById('aiStatus').innerHTML=`<div style="color:#e65100;font-size:13px">⚠ Chưa có Gemini API key.<br>Vào <strong>⚙️ Cài đặt</strong> để nhập key miễn phí.</div>`;
       return;
     }
-
-    try {
-      await callGeminiWithRetry(base64, apiKey);
-    } catch (err) {
-      document.getElementById('aiStatus').innerHTML = `<div style="color:#c62828;font-size:13px">❌ Lỗi: ${err.message}</div>`;
-    }
-      document.getElementById('aiStatus').innerHTML = `<div style="color:#c62828;font-size:13px">❌ Lỗi: ${err.message}</div>`;
-    }
+    try{await callGeminiWithRetry(base64,apiKey);}
+    catch(err){document.getElementById('aiStatus').innerHTML=`<div style="color:#c62828;font-size:13px">❌ Lỗi: ${err.message}</div>`;}
   };
   reader.readAsDataURL(file);
-  input.value = '';
+  input.value='';
 }
 
-async function callGeminiWithRetry(base64, apiKey, maxRetries=3) {
-  const statusEl = document.getElementById('aiStatus');
-  for (let attempt = 1; attempt <= maxRetries; attempt++) {
-    try {
-      statusEl.innerHTML = `<div style="font-size:13px;color:#1565c0">🤖 Gemini đang đọc hóa đơn... (lần ${attempt}/${maxRetries})</div>`;
-      const result = await callGeminiVision(base64, apiKey);
-      applyInvoiceToForm(result);
-      return;
-    } catch (err) {
-      const retryMatch = err.message.match(/retry in ([0-9.]+)s/i);
-      const isQuota = err.message.includes('quota') || err.message.includes('429') || err.message.includes('RESOURCE_EXHAUSTED');
-      if (isQuota && attempt < maxRetries) {
-        const waitSec = retryMatch ? Math.ceil(parseFloat(retryMatch[1])) : 30;
-        await countdown(statusEl, waitSec, attempt, maxRetries);
-      } else {
-        throw err;
-      }
+async function callGeminiWithRetry(base64,apiKey,maxRetries=3){
+  const statusEl=document.getElementById('aiStatus');
+  for(let attempt=1;attempt<=maxRetries;attempt++){
+    try{
+      statusEl.innerHTML=`<div style="font-size:13px;color:#1565c0">🤖 Gemini đang đọc hóa đơn... (${attempt}/${maxRetries})</div>`;
+      const result=await callGeminiVision(base64,apiKey);
+      applyInvoiceToForm(result);return;
+    }catch(err){
+      const isQuota=err.message.includes('quota')||err.message.includes('429')||err.message.includes('RESOURCE_EXHAUSTED');
+      const retryMatch=err.message.match(/retry in ([0-9.]+)s/i);
+      if(isQuota&&attempt<maxRetries){
+        const waitSec=retryMatch?Math.ceil(parseFloat(retryMatch[1])):30;
+        await countdown(statusEl,waitSec,attempt,maxRetries);
+      }else{throw err;}
     }
   }
 }
 
-function countdown(el, secs, attempt, max) {
-  return new Promise(resolve => {
-    let remaining = secs;
-    el.innerHTML = `<div style="font-size:13px;color:#e65100">⏳ Rate limit — thử lại sau <strong>${remaining}s</strong> (lần ${attempt+1}/${max})</div>`;
-    const iv = setInterval(() => {
-      remaining--;
-      if (remaining <= 0) { clearInterval(iv); resolve(); }
-      else el.innerHTML = `<div style="font-size:13px;color:#e65100">⏳ Rate limit — thử lại sau <strong>${remaining}s</strong> (lần ${attempt+1}/${max})</div>`;
-    }, 1000);
+function countdown(el,secs,attempt,max){
+  return new Promise(resolve=>{
+    let r=secs;
+    el.innerHTML=`<div style="font-size:13px;color:#e65100">⏳ Rate limit — thử lại sau <strong>${r}s</strong> (lần ${attempt+1}/${max})</div>`;
+    const iv=setInterval(()=>{r--;if(r<=0){clearInterval(iv);resolve();}else el.innerHTML=`<div style="font-size:13px;color:#e65100">⏳ Rate limit — thử lại sau <strong>${r}s</strong> (lần ${attempt+1}/${max})</div>`;},1000);
   });
 }
 
-async function callGeminiVision(base64DataUrl, apiKey) {
-  const prompt = `Bạn là AI đọc hóa đơn đặt hàng Việt Nam. Phân tích ảnh và trả về JSON thuần (không markdown, không giải thích):\n{"supplier_name":"tên NCC hoặc null","order_date":"YYYY-MM-DD hoặc null","delivery_date":"YYYY-MM-DD hoặc null","items":[{"name":"tên SP","barcode":"mã vạch hoặc null","unit":"đvt","qty":1,"unit_price":0,"total":0}],"grand_total":0}`;
-
-  const mimeType = base64DataUrl.match(/^data:([^;]+);base64,/)?.[1] || "image/jpeg";
-  const base64Data = base64DataUrl.replace(/^data:[^;]+;base64,/, "");
-
-  const response = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`,
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        contents: [{ parts: [
-          { text: prompt },
-          { inline_data: { mime_type: mimeType, data: base64Data } }
-        ]}],
-        generationConfig: { temperature: 0, maxOutputTokens: 2048 }
-      })
-    }
-  );
-
-  if (!response.ok) {
-    const err = await response.json();
-    throw new Error(err.error?.message || `HTTP ${response.status}`);
-  }
-
-  const data = await response.json();
-  const raw = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
-  const jsonStr = raw.replace(/```json\n?/g,"").replace(/```\n?/g,"").trim();
+async function callGeminiVision(base64DataUrl,apiKey){
+  const prompt=`Đọc hóa đơn đặt hàng Việt Nam trong ảnh. Chỉ trả về JSON thuần, không markdown:\n{"supplier_name":"tên NCC hoặc null","order_date":"YYYY-MM-DD hoặc null","delivery_date":"YYYY-MM-DD hoặc null","items":[{"name":"tên sản phẩm","barcode":"mã vạch hoặc null","unit":"đvt","qty":1,"unit_price":0,"total":0}],"grand_total":0}`;
+  const mimeType=base64DataUrl.match(/^data:([^;]+);base64,/)?.[1]||'image/jpeg';
+  const base64Data=base64DataUrl.replace(/^data:[^;]+;base64,/,'');
+  const resp=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`,{
+    method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({contents:[{parts:[{text:prompt},{inline_data:{mime_type:mimeType,data:base64Data}}]}],generationConfig:{temperature:0,maxOutputTokens:2048}})
+  });
+  if(!resp.ok){const e=await resp.json();throw new Error(e.error?.message||`HTTP ${resp.status}`);}
+  const data=await resp.json();
+  const raw=data.candidates?.[0]?.content?.parts?.[0]?.text||'';
+  const jsonStr=raw.replace(/```json\n?/g,'').replace(/```\n?/g,'').trim();
   return JSON.parse(jsonStr);
 }
 
-function applyInvoiceToForm(parsed) {
-  const status = document.getElementById('aiStatus');
-  if (!parsed || !parsed.items || parsed.items.length === 0) {
-    status.innerHTML = '<div style="color:#e65100;font-size:13px">⚠ Không nhận dạng được sản phẩm trong ảnh. Thử ảnh khác rõ hơn.</div>';
-    return;
-  }
-
-  // Điền delivery date nếu có
-  if (parsed.delivery_date) {
-    const dtEl = document.getElementById('deliveryDate');
-    if (dtEl) dtEl.value = parsed.delivery_date;
-  }
-
-  // Thêm sản phẩm từ ảnh vào AI_CART (tách khỏi catalog chuẩn)
-  const aiItems = parsed.items.map((item, i) => ({
-    id: 'AI_' + Date.now() + '_' + i,
-    barcode: item.barcode || '',
-    name: item.name,
-    unit: item.unit || 'cái',
-    price: item.unit_price || 0,
-    ordered_qty: item.qty || 1,
-    confirmed_qty: 0,
-    item_status: 'pending',
-  }));
-
-  // Merge vào cart
-  aiItems.forEach(ai => {
-    const existing = cart.findIndex(c => c.name === ai.name);
-    if (existing >= 0) cart[existing].ordered_qty += ai.ordered_qty;
-    else cart.push(ai);
-  });
-
+function applyInvoiceToForm(parsed){
+  const statusEl=document.getElementById('aiStatus');
+  if(!parsed||!parsed.items||parsed.items.length===0){statusEl.innerHTML='<div style="color:#e65100;font-size:13px">⚠ Không nhận dạng được sản phẩm. Thử ảnh rõ hơn.</div>';return;}
+  if(parsed.delivery_date){const dtEl=document.getElementById('deliveryDate');if(dtEl)dtEl.value=parsed.delivery_date;}
+  const aiItems=parsed.items.map((item,i)=>({id:'AI_'+Date.now()+'_'+i,barcode:item.barcode||'',name:item.name,unit:item.unit||'cái',price:item.unit_price||0,ordered_qty:item.qty||1,confirmed_qty:0,item_status:'pending',_fromAI:true}));
+  aiItems.forEach(ai=>{const ex=cart.findIndex(c=>c.name===ai.name);if(ex>=0)cart[ex].ordered_qty+=ai.ordered_qty;else cart.push(ai);});
   renderCart();
-  const countEl = document.getElementById('cartCount');
-  if (countEl) countEl.textContent = cart.length;
-
-  // Show summary
-  status.innerHTML = `
-    <div style="color:#2e7d32;font-weight:700;font-size:14px;margin-bottom:10px">✅ Đọc thành công!</div>
+  const countEl=document.getElementById('cartCount');if(countEl)countEl.textContent=cart.length;
+  statusEl.innerHTML=`<div style="color:#2e7d32;font-weight:700;font-size:14px;margin-bottom:8px">✅ Đọc thành công!</div>
     <div style="font-size:13px;line-height:1.8;color:#333">
-      ${parsed.supplier_name ? `🏭 NCC: <strong>${parsed.supplier_name}</strong><br>` : ''}
+      ${parsed.supplier_name?`🏭 NCC: <strong>${parsed.supplier_name}</strong><br>`:''}
       📦 Sản phẩm: <strong>${aiItems.length} dòng</strong><br>
-      💰 Tổng hóa đơn: <strong>${fmtMoney(parsed.grand_total||0)}</strong><br>
+      💰 Tổng hóa đơn: <strong>${fmtMoney(parsed.grand_total||0)}</strong>
     </div>
-    <div style="margin-top:10px;font-size:12px;color:#607d8b">
-      ⚠ Kiểm tra lại số lượng và giá trong giỏ hàng trước khi gửi.
-    </div>`;
+    <div style="margin-top:8px;font-size:12px;color:#607d8b">⚠ Kiểm tra lại trước khi gửi NCC.</div>`;
 }
 
-// ── HƯỚNG DẪN SỬ DỤNG ────────────────────────────────────────────────────────
-function renderGuide() {
-  const role = currentUser.role;
-  const guides = {
-    store_user: [
-      {
-        icon:'➕', title:'Tạo đơn hàng',
-        steps:[
-          'Vào menu <strong>Tạo đơn hàng</strong>',
-          'Chọn <strong>Nhà cung cấp</strong> từ danh sách',
-          'Chọn <strong>Ngày giao dự kiến</strong>',
-          'Nhập số lượng cho từng sản phẩm trong danh mục',
-          'Nhấn <strong>💾 Lưu nháp</strong> để lưu tạm, hoặc <strong>📤 Gửi NCC</strong> để gửi ngay',
-        ]
-      },
-      {
-        icon:'📋', title:'Theo dõi đơn hàng',
-        steps:[
-          'Vào menu <strong>Lịch sử đơn</strong>',
-          'Xem trạng thái từng đơn qua badge màu sắc',
-          'Nhấn <strong>Xem</strong> để xem chi tiết và sản phẩm đã xác nhận',
-          'Đơn <strong>Nháp</strong> hoặc <strong>Chờ NCC</strong> có thể hủy bằng nút <strong>Hủy</strong>',
-        ]
-      },
-      {
-        icon:'🔖', title:'Các trạng thái đơn hàng',
-        steps:[
-          '<span class="badge badge-draft">Nháp</span> — Đã lưu, chưa gửi NCC',
-          '<span class="badge badge-pending">Chờ NCC</span> — Đã gửi, đang chờ NCC phản hồi',
-          '<span class="badge badge-confirmed">Xác nhận</span> — NCC đã xác nhận đủ hàng',
-          '<span class="badge badge-partial">Xác nhận một phần</span> — NCC xác nhận thiếu hàng',
-          '<span class="badge badge-rejected">Từ chối</span> — NCC từ chối toàn bộ, xem lý do trong chi tiết đơn',
-          '<span class="badge badge-delivered">Đã giao</span> — Hàng đã được giao tới cửa hàng',
-        ]
-      },
+// ── GUIDE ──────────────────────────────────────────────────────────────────
+function renderGuide(){
+  const role=currentUser.role;
+  const allGuides={
+    store_user:[
+      {icon:'➕',title:'Tạo đơn hàng',steps:['Vào <strong>Tạo đơn hàng</strong>','Chọn NCC và ngày giao','Nhập số lượng trong bảng danh mục','Nhấn <strong>💾 Lưu nháp</strong> hoặc <strong>📤 Gửi NCC</strong>']},
+      {icon:'📸',title:'Nhập đơn từ ảnh hóa đơn',steps:['Vào <strong>Cài đặt</strong> → nhập Gemini API key miễn phí','Vào <strong>Tạo đơn hàng</strong> → khung xanh phía trên','Chọn ảnh hóa đơn → AI tự đọc và điền giỏ hàng','Kiểm tra lại → Gửi NCC']},
+      {icon:'📋',title:'Theo dõi đơn hàng',steps:['Vào <strong>Lịch sử đơn</strong>','Nhấn <strong>Xem</strong> để xem chi tiết','Đơn Nháp/Chờ NCC có thể hủy bằng nút <strong>Hủy</strong>']},
+      {icon:'🔖',title:'Trạng thái đơn hàng',steps:[`${statusBadge('draft')} Đã lưu chưa gửi`,`${statusBadge('pending_supplier')} Đã gửi NCC đang chờ`,`${statusBadge('confirmed')} NCC xác nhận đủ`,`${statusBadge('partial_confirmed')} NCC xác nhận thiếu`,`${statusBadge('rejected')} NCC từ chối`,`${statusBadge('delivered')} Đã giao tới cửa hàng`]},
     ],
-    supplier_user: [
-      {
-        icon:'📦', title:'Xem và xác nhận đơn hàng',
-        steps:[
-          'Vào menu <strong>Đơn cần xác nhận</strong>',
-          'Các đơn có trạng thái <span class="badge badge-pending">Chờ NCC</span> cần được xử lý',
-          'Nhấn nút <strong>Xác nhận</strong> để mở màn hình phản hồi',
-          'Kiểm tra từng sản phẩm và số lượng',
-        ]
-      },
-      {
-        icon:'✅', title:'Xác nhận đủ hàng',
-        steps:[
-          'Nhấn <strong>✅ Xác nhận đủ</strong> nếu có đủ tất cả sản phẩm theo số lượng đặt',
-          'Đơn sẽ chuyển sang trạng thái <span class="badge badge-confirmed">Xác nhận</span>',
-        ]
-      },
-      {
-        icon:'🔄', title:'Xác nhận một phần',
-        steps:[
-          'Điều chỉnh <strong>SL xác nhận</strong> thấp hơn SL đặt cho sản phẩm thiếu hàng',
-          'Nhập <strong>ghi chú</strong> giải thích nếu cần',
-          'Nhấn <strong>🔄 Xác nhận một phần</strong>',
-          'Đơn sẽ chuyển sang trạng thái <span class="badge badge-partial">Xác nhận một phần</span>',
-        ]
-      },
-      {
-        icon:'❌', title:'Từ chối đơn hàng',
-        steps:[
-          'Nhấn <strong>❌ Từ chối</strong> nếu không thể cung cấp',
-          'Bắt buộc nhập <strong>lý do từ chối</strong>',
-          'Cửa hàng sẽ thấy lý do trong chi tiết đơn',
-        ]
-      },
+    supplier_user:[
+      {icon:'📦',title:'Xem và xác nhận đơn',steps:['Vào <strong>Đơn cần xác nhận</strong>','Nhấn <strong>Xác nhận</strong> để mở màn hình phản hồi','Kiểm tra từng sản phẩm']},
+      {icon:'✅',title:'Xác nhận đủ hàng',steps:['Nhấn <strong>✅ Xác nhận đủ</strong> nếu đủ hàng','Đơn chuyển sang <span class="badge badge-confirmed">Xác nhận</span>']},
+      {icon:'🔄',title:'Xác nhận một phần',steps:['Điều chỉnh SL xác nhận thấp hơn SL đặt','Nhấn <strong>🔄 Xác nhận một phần</strong>','Đơn chuyển sang <span class="badge badge-partial">Xác nhận 1 phần</span>']},
+      {icon:'❌',title:'Từ chối đơn',steps:['Nhấn <strong>❌ Từ chối</strong>','Bắt buộc nhập lý do','Cửa hàng thấy lý do trong chi tiết đơn']},
     ],
-    admin: [
-      {
-        icon:'📊', title:'Dashboard tổng quan',
-        steps:[
-          'Xem KPI toàn hệ thống: tổng đơn, chờ NCC, xác nhận, từ chối',
-          'Danh sách đơn cần xử lý (đang chờ NCC hoặc xác nhận một phần)',
-          'Nhấn <strong>Xem</strong> để vào chi tiết và thực hiện hành động',
-        ]
-      },
-      {
-        icon:'🚚', title:'Xử lý giao hàng',
-        steps:[
-          'Khi đơn đã <span class="badge badge-confirmed">Xác nhận</span>, mở chi tiết đơn',
-          'Nhấn <strong>🚚 Đánh dấu đã giao</strong> khi hàng đã giao tới cửa hàng',
-          'Sau khi giao, nhấn <strong>✅ Đóng đơn</strong> để kết thúc vòng đời đơn hàng',
-        ]
-      },
-      {
-        icon:'🏭', title:'Quản lý nhà cung cấp & sản phẩm',
-        steps:[
-          'Vào <strong>Quản lý NCC</strong> để xem danh sách và số đơn từng NCC',
-          'Vào <strong>Sản phẩm</strong> để xem toàn bộ catalog theo NCC',
-          'Vào <strong>Event Logs</strong> để audit toàn bộ lịch sử hành động trong hệ thống',
-        ]
-      },
-      {
-        icon:'🔑', title:'Tài khoản demo',
-        steps:[
-          '<strong>admin / admin123</strong> — Quản trị viên, toàn quyền',
-          '<strong>buyer / buyer123</strong> — Trưởng phòng mua, xem toàn hệ thống',
-          '<strong>store1 / store123</strong> — Cửa hàng Phú Bài',
-          '<strong>store2 / store456</strong> — Cửa hàng Vinh Thanh',
-          '<strong>supplier1 / sup123</strong> — NCC Rau Củ ABC (NCC01)',
-          '<strong>supplier2 / sup456</strong> — NCC Thực Phẩm XYZ (NCC02)',
-        ]
-      },
+    admin:[
+      {icon:'📊',title:'Dashboard tổng quan',steps:['Xem KPI toàn hệ thống','Danh sách đơn cần xử lý (chờ NCC / xác nhận 1 phần)','Nhấn Xem để vào chi tiết']},
+      {icon:'🚚',title:'Xử lý giao hàng',steps:['Mở chi tiết đơn đã confirmed','Nhấn <strong>🚚 Đánh dấu đã giao</strong>','Nhấn <strong>✅ Đóng đơn</strong> để kết thúc']},
+      {icon:'🔑',title:'Tài khoản demo',steps:['<strong>admin / admin123</strong> — Toàn quyền','<strong>buyer / buyer123</strong> — Trưởng phòng mua','<strong>store1 / store123</strong> — Cửa hàng Phú Bài','<strong>store2 / store456</strong> — Cửa hàng Vinh Thanh','<strong>supplier1 / sup123</strong> — NCC Rau Củ ABC','<strong>supplier2 / sup456</strong> — NCC Thực Phẩm XYZ']},
     ],
   };
-  guides.buyer_head_office = guides.admin;
-
-  const sections = guides[role] || guides.admin;
-  return `
-    <div style="max-width:800px">
-      <div class="card" style="background:linear-gradient(135deg,#0D47A1,#1976D2);color:#fff;margin-bottom:20px">
-        <div style="font-size:22px;font-weight:800;margin-bottom:8px">📖 Hướng dẫn sử dụng</div>
-        <div style="opacity:.85;font-size:14px">VICOMART ORDER SYSTEM — ${roleLabel(role)}</div>
-      </div>
-      ${sections.map(s=>`
-        <div class="card">
-          <div class="card-title">${s.icon} ${s.title}</div>
-          <ol style="padding-left:20px;line-height:2">
-            ${s.steps.map(step=>`<li style="font-size:13px;color:#333">${step}</li>`).join('')}
-          </ol>
-        </div>
-      `).join('')}
-      <div class="card" style="background:#f8faff;border:2px dashed #c5cae9">
-        <div class="card-title">💡 Mẹo nhanh</div>
-        <ul style="padding-left:20px;line-height:2;font-size:13px;color:#555">
-          <li>Luồng cơ bản: <strong>Tạo đơn → Gửi NCC → NCC xác nhận → Giao hàng → Đóng đơn</strong></li>
-          <li>Dữ liệu demo được lưu trong bộ nhớ tạm — <strong>refresh trang sẽ reset</strong> về dữ liệu gốc</li>
-          <li>Mỗi role chỉ thấy dữ liệu thuộc phạm vi của mình (cửa hàng hoặc NCC)</li>
-          <li>Khi kết nối Supabase, dữ liệu sẽ được lưu thật và bảo mật theo RLS</li>
-        </ul>
-      </div>
-    </div>`;
+  allGuides.buyer_head_office=allGuides.admin;
+  const sections=allGuides[role]||allGuides.admin;
+  return `<div style="max-width:760px">
+    <div class="card" style="background:linear-gradient(135deg,#0D47A1,#1976D2);color:#fff;margin-bottom:20px">
+      <div style="font-size:22px;font-weight:800;margin-bottom:6px">📖 Hướng dẫn sử dụng</div>
+      <div style="opacity:.85;font-size:14px">VICOMART ORDER SYSTEM v2.0 — ${roleLabel(role)}</div>
+    </div>
+    ${sections.map(s=>`<div class="card"><div class="card-title">${s.icon} ${s.title}</div>
+      <ol style="padding-left:20px;line-height:2.2">${s.steps.map(step=>`<li style="font-size:13px;color:#333">${step}</li>`).join('')}</ol>
+    </div>`).join('')}
+    <div class="card" style="background:#f8faff;border:2px dashed #c5cae9">
+      <div class="card-title">💡 Mẹo nhanh</div>
+      <ul style="padding-left:20px;line-height:2;font-size:13px;color:#555">
+        <li>Luồng: <strong>Tạo đơn → Gửi NCC → NCC xác nhận → Giao hàng → Đóng đơn</strong></li>
+        <li>Dữ liệu demo lưu trong bộ nhớ — <strong>refresh trang sẽ reset</strong> về dữ liệu gốc</li>
+        <li>Mỗi role chỉ thấy dữ liệu thuộc phạm vi của mình</li>
+      </ul>
+    </div>
+  </div>`;
 }
 
-// ── MODAL ─────────────────────────────────────────────────────────────────────
-function showModal(html) {
-  document.getElementById('modalContainer').innerHTML = `
-    <div class="modal-overlay" onclick="closeModal()">
-      <div class="modal" onclick="event.stopPropagation()">${html}</div>
-    </div>`;
-}
-function closeModal() { document.getElementById('modalContainer').innerHTML=''; }
+// ── MODAL ──────────────────────────────────────────────────────────────────
+function showModal(html){document.getElementById('modalContainer').innerHTML=`<div class="modal-overlay" onclick="closeModal()"><div class="modal" onclick="event.stopPropagation()">${html}</div></div>`;}
+function closeModal(){document.getElementById('modalContainer').innerHTML='';}
 
-// ── INIT ──────────────────────────────────────────────────────────────────────
-const saved = localStorage.getItem('vos_user');
-if (saved) { try { currentUser=JSON.parse(saved); showApp(); } catch(e){ localStorage.removeItem('vos_user'); } }
+// ── INIT ───────────────────────────────────────────────────────────────────
+const saved=localStorage.getItem('vos_user');
+if(saved){try{currentUser=JSON.parse(saved);showApp();}catch(e){localStorage.removeItem('vos_user');}}
 </script>
 </body>
 </html>
