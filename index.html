@@ -185,25 +185,43 @@ const SUPPLIERS = [
 
 const PRODUCTS = {
   NCC01:[
-    {id:'P001',name:'Rau muống',unit:'kg',price:8000},
-    {id:'P002',name:'Cà chua',unit:'kg',price:15000},
-    {id:'P003',name:'Dưa leo',unit:'kg',price:12000},
-    {id:'P004',name:'Bắp cải',unit:'kg',price:10000},
-    {id:'P005',name:'Hành tây',unit:'kg',price:18000},
+    {id:'P001',barcode:'893000100001',name:'Rau muống',        unit:'kg',   price:8000},
+    {id:'P002',barcode:'893000100002',name:'Cà chua',          unit:'kg',   price:15000},
+    {id:'P003',barcode:'893000100003',name:'Dưa leo',          unit:'kg',   price:12000},
+    {id:'P004',barcode:'893000100004',name:'Bắp cải',          unit:'kg',   price:10000},
+    {id:'P005',barcode:'893000100005',name:'Hành tây',         unit:'kg',   price:18000},
   ],
   NCC02:[
-    {id:'P006',name:'Thịt heo xay',unit:'kg',price:95000},
-    {id:'P007',name:'Gà ta nguyên con',unit:'con',price:120000},
-    {id:'P008',name:'Cá basa phi lê',unit:'kg',price:75000},
-    {id:'P009',name:'Tôm sú',unit:'kg',price:180000},
-    {id:'P010',name:'Trứng gà',unit:'vỉ 10',price:28000},
+    {id:'P006',barcode:'893000200006',name:'Thịt heo xay',     unit:'kg',   price:95000},
+    {id:'P007',barcode:'893000200007',name:'Gà ta nguyên con', unit:'con',  price:120000},
+    {id:'P008',barcode:'893000200008',name:'Cá basa phi lê',   unit:'kg',   price:75000},
+    {id:'P009',barcode:'893000200009',name:'Tôm sú',           unit:'kg',   price:180000},
+    {id:'P010',barcode:'893000200010',name:'Trứng gà',         unit:'vỉ 10',price:28000},
   ],
   NCC03:[
-    {id:'P011',name:'Gạo Jasmine',unit:'kg',price:22000},
-    {id:'P012',name:'Mì gói Hảo Hảo',unit:'thùng',price:125000},
-    {id:'P013',name:'Nước mắm Phú Quốc',unit:'chai',price:45000},
-    {id:'P014',name:'Dầu ăn Neptune',unit:'chai',price:55000},
-    {id:'P015',name:'Đường cát trắng',unit:'kg',price:18000},
+    {id:'P011',barcode:'893000300011',name:'Gạo Jasmine',        unit:'kg',    price:22000},
+    {id:'P012',barcode:'893000300012',name:'Mì gói Hảo Hảo',    unit:'thùng', price:125000},
+    {id:'P013',barcode:'893000300013',name:'Nước mắm Phú Quốc', unit:'chai',  price:45000},
+    {id:'P014',barcode:'893000300014',name:'Dầu ăn Neptune',     unit:'chai',  price:55000},
+    {id:'P015',barcode:'893000300015',name:'Đường cát trắng',    unit:'kg',    price:18000},
+  ],
+  'NCC-VAM':[
+    {id:'VAM-P01',barcode:'80768258',       name:'Kẹo Trứng Kinder Hồng Socola Kem Sữa Giòn 20g',     unit:'cái',  price:25500},
+    {id:'VAM-P02',barcode:'80974482',       name:'Kẹo Trứng Kinder Boy Xanh Socola Kem Sữa Giòn',     unit:'cái',  price:25500},
+    {id:'VAM-P03',barcode:'12145-1',        name:'Bánh Chocolate Nhân Hạt Dẻ Kinder Bueno 43g',        unit:'cái',  price:27900},
+    {id:'VAM-P04',barcode:'13693-1',        name:'Kẹo Xốp Haribo Chamallows Pink & White 70g',          unit:'gói',  price:21545},
+    {id:'VAM-P05',barcode:'13377-1',        name:'Kẹo Dẻo Haribo Happy Cola Bịch 80G',                  unit:'bịch', price:21545},
+    {id:'VAM-P06',barcode:'9741-1',         name:'Kẹo Dẻo Haribo Goldbears Bịch 80G',                   unit:'bịch', price:21546},
+    {id:'VAM-P07',barcode:'8935117702016',  name:'Lốc 6 Ly Thạch Dừa Ánh Hồng 540g',                   unit:'lốc',  price:23625},
+    {id:'VAM-P08',barcode:'8938510862004',  name:'Kẹo Cà Phê Espresso Nhân Cà Phê Gói 150G',            unit:'gói',  price:13181},
+    {id:'VAM-P09',barcode:'8938510862189',  name:'Kẹo Cà Phê Espresso Nhân Vani Gói 150G',              unit:'gói',  price:13181},
+    {id:'VAM-P10',barcode:'8888077105727',  name:'Socola Lotte Hạt Hạnh Nhân Hộp 46g',                  unit:'hộp',  price:25700},
+    {id:'VAM-P11',barcode:'80883296',       name:'Kẹo Tic Tac Hương Vị Bạc Hà Lúc 14.5g',              unit:'cái',  price:12000},
+    {id:'VAM-P12',barcode:'8803508000020',  name:'Kẹo Chanh Bạc Hà Lotte Anytime 60g',                  unit:'gói',  price:23809},
+    {id:'VAM-P13',barcode:'8801062335619',  name:'Kẹo Hương Đào Hàn Quốc Lotte Anytime 60g',            unit:'gói',  price:23809},
+    {id:'VAM-P14',barcode:'697344324158',   name:'Kẹo Bạc Hà Lotte Anytime Bluemarine 60g',             unit:'gói',  price:23809},
+    {id:'VAM-P15',barcode:'882095222662',   name:'Kẹo Sữa Milkita Hương Socola 84g',                    unit:'gói',  price:12727},
+    {id:'VAM-P16',barcode:'882095222693',   name:'Kẹo Sữa Milkita Hương Sữa 84g Lê',                    unit:'gói',  price:12727},
   ],
 };
 
@@ -531,17 +549,63 @@ function loadCatalog() {
   const ncc = document.getElementById('selNCC')?.value;
   if (!ncc) return;
   const prods = PRODUCTS[ncc]||[];
-  const html = prods.map(p=>`
-    <div class="catalog-item">
-      <div class="catalog-info">
-        <div class="name">${p.name}</div>
-        <div class="meta">${fmtMoney(p.price)} / ${p.unit}</div>
-      </div>
-      <input type="number" class="qty-input" id="qty_${p.id}" min="0" value="0" placeholder="0" onchange="updateCart()">
-    </div>`).join('');
+  if (!prods.length) {
+    const el = document.getElementById('catalogList');
+    if (el) el.innerHTML = '<div class="empty">Không có sản phẩm</div>';
+    return;
+  }
+  const rows = prods.map((p,i)=>`
+    <tr id="crow_${p.id}">
+      <td style="text-align:center;color:#999;font-size:12px">${i+1}</td>
+      <td>
+        <div style="font-weight:600;color:#1a237e;font-size:13px">${p.name}</div>
+        <div style="font-size:11px;color:#90a4ae">${p.barcode||p.id}</div>
+      </td>
+      <td style="text-align:center;color:#607d8b;font-size:12px">${p.unit}</td>
+      <td style="text-align:center">
+        <input type="number" id="qty_${p.id}" min="0" value="0"
+          style="width:72px;text-align:center;padding:6px 8px;border:2px solid #e3eaf5;border-radius:8px;font-size:13px;font-weight:600"
+          oninput="updateCart();highlightRow('${p.id}',this.value)">
+      </td>
+      <td style="text-align:right;font-size:13px">${fmtMoney(p.price)}</td>
+      <td style="text-align:right;font-weight:700;color:var(--primary);font-size:13px" id="sub_${p.id}">—</td>
+    </tr>`).join('');
+  const html = `
+    <table>
+      <thead>
+        <tr style="background:#f0f4ff">
+          <th style="width:36px;text-align:center">#</th>
+          <th>Tên sản phẩm</th>
+          <th style="width:60px;text-align:center">ĐVT</th>
+          <th style="width:90px;text-align:center">Số lượng</th>
+          <th style="width:110px;text-align:right">Đơn giá</th>
+          <th style="width:120px;text-align:right">Thành tiền</th>
+        </tr>
+      </thead>
+      <tbody>${rows}</tbody>
+    </table>
+    <div style="text-align:right;padding:12px 0 0;font-size:13px;color:#607d8b">
+      Tổng danh mục: <strong>${prods.length}</strong> sản phẩm
+    </div>`;
   const el = document.getElementById('catalogList');
-  if (el) el.innerHTML = html || '<div class="empty">Không có sản phẩm</div>';
+  if (el) el.innerHTML = html;
   updateCart();
+}
+
+function highlightRow(pid, val) {
+  const row = document.getElementById('crow_'+pid);
+  const sub = document.getElementById('sub_'+pid);
+  if (!row) return;
+  const qty = parseInt(val)||0;
+  if (qty > 0) {
+    row.style.background = '#e8f5e9';
+    const ncc = document.getElementById('selNCC')?.value;
+    const p = (PRODUCTS[ncc]||[]).find(x=>x.id===pid);
+    if (sub && p) sub.textContent = fmtMoney(qty * p.price);
+  } else {
+    row.style.background = '';
+    if (sub) sub.textContent = '—';
+  }
 }
 
 function updateCart() {
@@ -560,11 +624,39 @@ function renderCart() {
   const countEl = document.getElementById('cartCount');
   if (!el) return;
   if (countEl) countEl.textContent = cart.length;
-  if (cart.length===0) { el.innerHTML='<div class="empty"><div>Chưa có sản phẩm nào</div></div>'; return; }
+  if (cart.length===0) { el.innerHTML='<div class="empty" style="padding:20px"><div style="font-size:32px">🛒</div><div style="margin-top:8px;font-size:13px;color:#999">Chưa có sản phẩm nào trong giỏ</div></div>'; return; }
   let total = 0;
-  const rows = cart.map(i=>{ const sub=i.ordered_qty*i.price; total+=sub; return `<tr><td>${i.name}</td><td>${i.ordered_qty} ${i.unit}</td><td>${fmtMoney(i.price)}</td><td><strong>${fmtMoney(sub)}</strong></td></tr>`; }).join('');
-  el.innerHTML = `<table><tr><th>Sản phẩm</th><th>SL</th><th>Đơn giá</th><th>Thành tiền</th></tr>${rows}</table>
-    <div style="text-align:right;margin-top:12px;font-size:15px;font-weight:700;color:var(--primary)">Tổng: ${fmtMoney(total)}</div>`;
+  const rows = cart.map((i,idx)=>{
+    const sub=i.ordered_qty*i.price; total+=sub;
+    return `<tr>
+      <td style="text-align:center;color:#999;font-size:12px">${idx+1}</td>
+      <td style="font-size:13px;font-weight:500">${i.name}</td>
+      <td style="text-align:center;font-size:13px;color:#607d8b">${i.unit}</td>
+      <td style="text-align:center;font-size:13px;font-weight:700;color:var(--primary)">${i.ordered_qty}</td>
+      <td style="text-align:right;font-size:13px">${fmtMoney(i.price)}</td>
+      <td style="text-align:right;font-size:13px;font-weight:700;color:#2e7d32">${fmtMoney(sub)}</td>
+    </tr>`;
+  }).join('');
+  el.innerHTML = `
+    <table>
+      <thead>
+        <tr style="background:#f0f4ff">
+          <th style="width:36px;text-align:center">#</th>
+          <th>Tên sản phẩm</th>
+          <th style="width:60px;text-align:center">ĐVT</th>
+          <th style="width:60px;text-align:center">SL</th>
+          <th style="width:110px;text-align:right">Đơn giá</th>
+          <th style="width:120px;text-align:right">Thành tiền</th>
+        </tr>
+      </thead>
+      <tbody>${rows}</tbody>
+      <tfoot>
+        <tr style="background:#e8f5e9;border-top:2px solid #a5d6a7">
+          <td colspan="5" style="text-align:right;font-weight:700;font-size:14px;padding:12px">Tổng cộng:</td>
+          <td style="text-align:right;font-weight:800;font-size:15px;color:#1b5e20;padding:12px">${fmtMoney(total)}</td>
+        </tr>
+      </tfoot>
+    </table>`;
 }
 
 function saveDraft() {
