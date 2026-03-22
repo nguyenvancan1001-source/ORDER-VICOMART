@@ -316,6 +316,7 @@ const NAV_ITEMS = {
     {id:'store_dashboard',icon:'📊',label:'Dashboard'},
     {id:'store_create',icon:'➕',label:'Tạo đơn hàng'},
     {id:'store_orders',icon:'📋',label:'Lịch sử đơn'},
+    {id:'settings',icon:'⚙️',label:'Cài đặt'},
     {id:'guide',icon:'❓',label:'Hướng dẫn'},
   ],
   supplier_user:[
@@ -336,6 +337,7 @@ const NAV_ITEMS = {
     {id:'',icon:'─',label:'── Nhà cung cấp ──',disabled:true},
     {id:'supplier_dashboard',icon:'🏭',label:'Dashboard NCC'},
     {id:'supplier_orders',icon:'📦',label:'Xác nhận đơn NCC'},
+    {id:'settings',icon:'⚙️',label:'Cài đặt'},
     {id:'guide',icon:'❓',label:'Hướng dẫn'},
   ],
   buyer_head_office:[
@@ -349,6 +351,7 @@ const NAV_ITEMS = {
     {id:'store_orders',icon:'📋',label:'Lịch sử đơn CH'},
     {id:'',icon:'─',label:'── Nhà cung cấp ──',disabled:true},
     {id:'supplier_orders',icon:'📦',label:'Xác nhận đơn NCC'},
+    {id:'settings',icon:'⚙️',label:'Cài đặt'},
     {id:'guide',icon:'❓',label:'Hướng dẫn'},
   ],
 };
@@ -373,6 +376,7 @@ function navigateTo(page) {
     admin_dashboard:'Dashboard tổng',admin_orders:'Tất cả đơn hàng',
     admin_suppliers:'Quản lý nhà cung cấp',admin_products:'Quản lý sản phẩm',admin_logs:'Event Logs',
     guide:'Hướng dẫn sử dụng',
+    settings:'Cài đặt',
   };
   document.getElementById('pageTitle').textContent = titles[page]||page;
   const renders = {
@@ -387,6 +391,7 @@ function navigateTo(page) {
     admin_products: renderAdminProducts,
     admin_logs: renderAdminLogs,
     guide: renderGuide,
+    settings: renderSettings,
   };
   const fn = renders[page];
   if (fn) {
@@ -530,6 +535,17 @@ function renderStoreCreate() {
         <label>Ghi chú đơn hàng</label>
         <textarea id="orderNote" rows="2" placeholder="Ghi chú thêm..."></textarea>
       </div>
+    </div>
+    <div class="card" style="border:2px dashed #42A5F5;background:#f0f8ff">
+      <div class="card-title" style="color:#1565c0">📸 Nhập đơn từ hóa đơn / ảnh chụp</div>
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <label for="invoiceUpload" style="cursor:pointer;display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:#1565c0;color:#fff;border-radius:10px;font-size:13px;font-weight:700">
+          📎 Chọn ảnh hóa đơn
+          <input type="file" id="invoiceUpload" accept="image/*" style="display:none" onchange="handleInvoiceUpload(this)">
+        </label>
+        <span style="font-size:12px;color:#607d8b">Hỗ trợ JPG, PNG, WEBP — AI sẽ đọc và tự điền danh mục</span>
+      </div>
+      <div id="invoicePreview" style="margin-top:12px"></div>
     </div>
     <div class="card">
       <div class="card-title">📦 Danh mục sản phẩm</div>
@@ -1057,6 +1073,196 @@ function renderAdminLogs() {
         </div>`).join('')}
       </div>
       ${events.length===0?'<div class="empty"><div class="icon">📜</div><p>Chưa có sự kiện nào</p></div>':''}
+    </div>`;
+}
+
+// ── SETTINGS ─────────────────────────────────────────────────────────────────
+function renderSettings() {
+  const key = localStorage.getItem('openai_key')||'';
+  const masked = key ? key.slice(0,8)+'••••••••••••••••••••'+key.slice(-4) : '';
+  return `
+    <div style="max-width:600px">
+      <div class="card">
+        <div class="card-title">🤖 Cài đặt AI Vision (OCR hóa đơn)</div>
+        <p style="font-size:13px;color:#607d8b;margin-bottom:16px;line-height:1.7">
+          Tính năng <strong>nhập đơn từ ảnh</strong> dùng <strong>GPT-4o Vision</strong> của OpenAI.<br>
+          API key được lưu <strong>chỉ trên máy này</strong> (localStorage), không gửi đi đâu ngoài OpenAI.
+        </p>
+        <div class="form-group">
+          <label>OpenAI API Key</label>
+          <div style="display:flex;gap:8px">
+            <input type="password" id="apiKeyInput" placeholder="sk-..." value="${key}"
+              style="flex:1;font-family:monospace">
+            <button class="btn-sm btn-primary-sm" onclick="saveApiKey()" style="white-space:nowrap;padding:10px 20px">💾 Lưu</button>
+          </div>
+          ${key?`<div style="margin-top:8px;font-size:12px;color:#2e7d32">✅ Đã lưu key: <code>${masked}</code></div>`:'<div style="margin-top:8px;font-size:12px;color:#e65100">⚠ Chưa có API key — tính năng đọc ảnh sẽ không hoạt động</div>'}
+        </div>
+        <div style="background:#e3f2fd;border-radius:10px;padding:14px;font-size:12px;color:#1565c0;line-height:1.8;margin-top:8px">
+          <strong>Cách lấy API key:</strong><br>
+          1. Truy cập <a href="https://platform.openai.com/api-keys" target="_blank" style="color:#1565c0">platform.openai.com/api-keys</a><br>
+          2. Tạo key mới → copy toàn bộ chuỗi bắt đầu bằng <code>sk-</code><br>
+          3. Dán vào ô trên và nhấn Lưu
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">⚙️ Thông tin hệ thống</div>
+        <table>
+          <tr><td style="color:#607d8b;font-size:13px;padding:8px 0;width:180px">Phiên bản app</td><td style="font-size:13px;font-weight:600">VICOMART v1.2</td></tr>
+          <tr><td style="color:#607d8b;font-size:13px;padding:8px 0">Người dùng</td><td style="font-size:13px;font-weight:600">${currentUser.name} (${roleLabel(currentUser.role)})</td></tr>
+          <tr><td style="color:#607d8b;font-size:13px;padding:8px 0">AI Model</td><td style="font-size:13px;font-weight:600">GPT-4o Vision</td></tr>
+          <tr><td style="color:#607d8b;font-size:13px;padding:8px 0">Dữ liệu</td><td style="font-size:13px;font-weight:600">${orders.length} đơn hàng trong phiên</td></tr>
+          <tr><td style="color:#607d8b;font-size:13px;padding:8px 0">API Key</td><td style="font-size:13px;font-weight:600">${localStorage.getItem('openai_key')?'<span style="color:#2e7d32">✅ Đã cấu hình</span>':'<span style="color:#e65100">⚠ Chưa cấu hình</span>'}</td></tr>
+        </table>
+      </div>
+    </div>`;
+}
+
+function saveApiKey() {
+  const key = document.getElementById('apiKeyInput')?.value?.trim();
+  if (!key || !key.startsWith('sk-')) { alert('API key không hợp lệ — phải bắt đầu bằng sk-'); return; }
+  localStorage.setItem('openai_key', key);
+  alert('✅ Đã lưu API key thành công!');
+  navigateTo('settings');
+}
+
+// ── AI VISION: ĐỌC ẢNH HÓA ĐƠN ──────────────────────────────────────────────
+async function handleInvoiceUpload(input) {
+  const file = input.files[0];
+  if (!file) return;
+
+  const preview = document.getElementById('invoicePreview');
+  const apiKey = localStorage.getItem('openai_key');
+
+  // Show preview image
+  const reader = new FileReader();
+  reader.onload = async (e) => {
+    const base64 = e.target.result;
+    preview.innerHTML = `
+      <div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap">
+        <img src="${base64}" style="max-height:200px;max-width:300px;border-radius:10px;border:2px solid #90caf9;object-fit:contain">
+        <div id="aiStatus" style="flex:1;min-width:200px;padding:16px;background:#fff;border-radius:10px;border:1px solid #e3eaf5">
+          <div style="font-size:13px;color:#607d8b">⏳ Đang phân tích hóa đơn...</div>
+        </div>
+      </div>`;
+
+    if (!apiKey) {
+      document.getElementById('aiStatus').innerHTML = `
+        <div style="color:#e65100;font-size:13px">
+          ⚠ Chưa có OpenAI API key.<br>
+          Vào <strong>⚙️ Cài đặt</strong> để nhập key.
+        </div>`;
+      return;
+    }
+
+    try {
+      document.getElementById('aiStatus').innerHTML = '<div style="font-size:13px;color:#1565c0">🤖 AI đang đọc hóa đơn...</div>';
+      const result = await callGPT4Vision(base64, apiKey);
+      applyInvoiceToForm(result);
+    } catch (err) {
+      document.getElementById('aiStatus').innerHTML = `<div style="color:#c62828;font-size:13px">❌ Lỗi: ${err.message}</div>`;
+    }
+  };
+  reader.readAsDataURL(file);
+  input.value = '';
+}
+
+async function callGPT4Vision(base64DataUrl, apiKey) {
+  const prompt = `Bạn là AI đọc hóa đơn đặt hàng. Phân tích ảnh hóa đơn và trả về JSON với format sau (chỉ trả JSON, không giải thích):
+{
+  "supplier_name": "tên nhà cung cấp",
+  "order_date": "YYYY-MM-DD hoặc null",
+  "delivery_date": "YYYY-MM-DD hoặc null",
+  "items": [
+    {
+      "name": "tên sản phẩm đầy đủ",
+      "barcode": "mã vạch nếu có hoặc null",
+      "unit": "đơn vị tính",
+      "qty": số_lượng,
+      "unit_price": đơn_giá_số,
+      "total": thành_tiền_số
+    }
+  ],
+  "grand_total": tổng_tiền_số
+}
+Nếu không thấy thông tin nào thì để null. Qty và price phải là số, không có dấu phẩy hay chữ.`;
+
+  const response = await fetch('https://api.openai.com/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${apiKey}`,
+    },
+    body: JSON.stringify({
+      model: 'gpt-4o',
+      messages: [{
+        role: 'user',
+        content: [
+          { type: 'text', text: prompt },
+          { type: 'image_url', image_url: { url: base64DataUrl, detail: 'high' } }
+        ]
+      }],
+      max_tokens: 2000,
+      temperature: 0,
+    })
+  });
+
+  if (!response.ok) {
+    const err = await response.json();
+    throw new Error(err.error?.message || `HTTP ${response.status}`);
+  }
+
+  const data = await response.json();
+  const raw = data.choices[0].message.content;
+  const jsonStr = raw.replace(/```json\n?/g,'').replace(/```\n?/g,'').trim();
+  return JSON.parse(jsonStr);
+}
+
+function applyInvoiceToForm(parsed) {
+  const status = document.getElementById('aiStatus');
+  if (!parsed || !parsed.items || parsed.items.length === 0) {
+    status.innerHTML = '<div style="color:#e65100;font-size:13px">⚠ Không nhận dạng được sản phẩm trong ảnh. Thử ảnh khác rõ hơn.</div>';
+    return;
+  }
+
+  // Điền delivery date nếu có
+  if (parsed.delivery_date) {
+    const dtEl = document.getElementById('deliveryDate');
+    if (dtEl) dtEl.value = parsed.delivery_date;
+  }
+
+  // Thêm sản phẩm từ ảnh vào AI_CART (tách khỏi catalog chuẩn)
+  const aiItems = parsed.items.map((item, i) => ({
+    id: 'AI_' + Date.now() + '_' + i,
+    barcode: item.barcode || '',
+    name: item.name,
+    unit: item.unit || 'cái',
+    price: item.unit_price || 0,
+    ordered_qty: item.qty || 1,
+    confirmed_qty: 0,
+    item_status: 'pending',
+  }));
+
+  // Merge vào cart
+  aiItems.forEach(ai => {
+    const existing = cart.findIndex(c => c.name === ai.name);
+    if (existing >= 0) cart[existing].ordered_qty += ai.ordered_qty;
+    else cart.push(ai);
+  });
+
+  renderCart();
+  const countEl = document.getElementById('cartCount');
+  if (countEl) countEl.textContent = cart.length;
+
+  // Show summary
+  status.innerHTML = `
+    <div style="color:#2e7d32;font-weight:700;font-size:14px;margin-bottom:10px">✅ Đọc thành công!</div>
+    <div style="font-size:13px;line-height:1.8;color:#333">
+      ${parsed.supplier_name ? `🏭 NCC: <strong>${parsed.supplier_name}</strong><br>` : ''}
+      📦 Sản phẩm: <strong>${aiItems.length} dòng</strong><br>
+      💰 Tổng hóa đơn: <strong>${fmtMoney(parsed.grand_total||0)}</strong><br>
+    </div>
+    <div style="margin-top:10px;font-size:12px;color:#607d8b">
+      ⚠ Kiểm tra lại số lượng và giá trong giỏ hàng trước khi gửi.
     </div>`;
 }
 
