@@ -266,10 +266,12 @@ const NAV_ITEMS = {
     {id:'store_dashboard',icon:'📊',label:'Dashboard'},
     {id:'store_create',icon:'➕',label:'Tạo đơn hàng'},
     {id:'store_orders',icon:'📋',label:'Lịch sử đơn'},
+    {id:'guide',icon:'❓',label:'Hướng dẫn'},
   ],
   supplier_user:[
     {id:'supplier_dashboard',icon:'📊',label:'Dashboard NCC'},
     {id:'supplier_orders',icon:'📦',label:'Đơn cần xác nhận'},
+    {id:'guide',icon:'❓',label:'Hướng dẫn'},
   ],
   admin:[
     {id:'admin_dashboard',icon:'📊',label:'Dashboard tổng'},
@@ -277,23 +279,40 @@ const NAV_ITEMS = {
     {id:'admin_suppliers',icon:'🏭',label:'Quản lý NCC'},
     {id:'admin_products',icon:'📦',label:'Sản phẩm'},
     {id:'admin_logs',icon:'📜',label:'Event Logs'},
+    {id:'',icon:'─',label:'── Cửa hàng ──',disabled:true},
+    {id:'store_dashboard',icon:'🏪',label:'Dashboard CH'},
+    {id:'store_create',icon:'➕',label:'Tạo đơn hàng'},
+    {id:'store_orders',icon:'📋',label:'Lịch sử đơn CH'},
+    {id:'',icon:'─',label:'── Nhà cung cấp ──',disabled:true},
+    {id:'supplier_dashboard',icon:'🏭',label:'Dashboard NCC'},
+    {id:'supplier_orders',icon:'📦',label:'Xác nhận đơn NCC'},
+    {id:'guide',icon:'❓',label:'Hướng dẫn'},
   ],
   buyer_head_office:[
     {id:'admin_dashboard',icon:'📊',label:'Dashboard tổng'},
     {id:'admin_orders',icon:'📋',label:'Tất cả đơn hàng'},
     {id:'admin_suppliers',icon:'🏭',label:'Nhà cung cấp'},
     {id:'admin_logs',icon:'📜',label:'Event Logs'},
+    {id:'',icon:'─',label:'── Cửa hàng ──',disabled:true},
+    {id:'store_dashboard',icon:'🏪',label:'Dashboard CH'},
+    {id:'store_create',icon:'➕',label:'Tạo đơn hàng'},
+    {id:'store_orders',icon:'📋',label:'Lịch sử đơn CH'},
+    {id:'',icon:'─',label:'── Nhà cung cấp ──',disabled:true},
+    {id:'supplier_orders',icon:'📦',label:'Xác nhận đơn NCC'},
+    {id:'guide',icon:'❓',label:'Hướng dẫn'},
   ],
 };
 
 function buildNav() {
   const items = NAV_ITEMS[currentUser.role] || [];
-  document.getElementById('sidebarNav').innerHTML = items.map(i =>
-    `<div class="nav-item" id="nav_${i.id}" onclick="navigateTo('${i.id}')"><span class="icon">${i.icon}</span>${i.label}</div>`
-  ).join('');
+  document.getElementById('sidebarNav').innerHTML = items.map(i => {
+    if (i.disabled) return `<div style="padding:8px 20px;font-size:11px;opacity:.5;letter-spacing:.5px;margin-top:8px">${i.label}</div>`;
+    return `<div class="nav-item" id="nav_${i.id}" onclick="navigateTo('${i.id}')"><span class="icon">${i.icon}</span>${i.label}</div>`;
+  }).join('');
 }
 
 function navigateTo(page) {
+  if (!page) return;
   currentPage = page;
   document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
   const navEl = document.getElementById('nav_'+page);
@@ -303,6 +322,7 @@ function navigateTo(page) {
     supplier_dashboard:'Dashboard NCC',supplier_orders:'Đơn hàng cần xác nhận',
     admin_dashboard:'Dashboard tổng',admin_orders:'Tất cả đơn hàng',
     admin_suppliers:'Quản lý nhà cung cấp',admin_products:'Quản lý sản phẩm',admin_logs:'Event Logs',
+    guide:'Hướng dẫn sử dụng',
   };
   document.getElementById('pageTitle').textContent = titles[page]||page;
   const renders = {
@@ -316,6 +336,7 @@ function navigateTo(page) {
     admin_suppliers: renderAdminSuppliers,
     admin_products: renderAdminProducts,
     admin_logs: renderAdminLogs,
+    guide: renderGuide,
   };
   const fn = renders[page];
   if (fn) {
@@ -342,25 +363,66 @@ function statusBadge(s) {
 function myOrders() {
   if (currentUser.role==='store_user') return orders.filter(o=>o.store_id===currentUser.store_id);
   if (currentUser.role==='supplier_user') return orders.filter(o=>o.supplier_id===currentUser.supplier_id);
+  // admin/buyer: filter by context page
+  if (currentPage.startsWith('store_') && currentUser._viewStoreId)
+    return orders.filter(o=>o.store_id===currentUser._viewStoreId);
+  if (currentPage.startsWith('supplier_') && currentUser._viewSupplierId)
+    return orders.filter(o=>o.supplier_id===currentUser._viewSupplierId);
   return orders;
 }
 function generateOrderCode() {
-  const storeCode = currentUser.store_id==='S01'?'PHB':'VIT';
+  const sid = getActiveStoreId() || currentUser.store_id || 'ADM';
+  const codeMap = {S01:'PHB',S02:'VIT',S03:'AVD'};
+  const storeCode = codeMap[sid] || sid.replace(/[^A-Z0-9]/gi,'').slice(0,3).toUpperCase();
   const date = new Date().toISOString().slice(0,10).replace(/-/g,'');
-  const seq = String(orders.filter(o=>o.store_id===currentUser.store_id).length+1).padStart(3,'0');
+  const seq = String(orders.filter(o=>o.store_id===sid).length+1).padStart(3,'0');
   return `ORD-${storeCode}-${date}-${seq}`;
 }
+
+// ── ADMIN STORE/SUPPLIER CONTEXT PICKER ───────────────────────────────────────
+function renderAdminStorePicker() {
+  if (currentUser.role === 'store_user' || currentUser.role === 'supplier_user') return '';
+  const stores = [...new Set(orders.map(o=>o.store_id))];
+  const storeNames = {};
+  orders.forEach(o=>{ storeNames[o.store_id]=o.store_name; });
+  return `<div class="card" style="padding:12px 20px;background:#e3f2fd;border:2px solid #90caf9;margin-bottom:16px">
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      <span style="font-size:13px;font-weight:600;color:#0D47A1">🏪 Xem theo cửa hàng:</span>
+      <select style="width:auto;flex:1;min-width:160px" onchange="setViewStore(this.value)">
+        <option value="">— Tất cả cửa hàng —</option>
+        ${[...new Set(orders.map(o=>o.store_id))].map(sid=>`<option value="${sid}" ${currentUser._viewStoreId===sid?'selected':''}>${storeNames[sid]||sid}</option>`).join('')}
+      </select>
+    </div>
+  </div>`;
+}
+function renderAdminSupplierPicker() {
+  if (currentUser.role === 'store_user' || currentUser.role === 'supplier_user') return '';
+  const suppNames = {};
+  orders.forEach(o=>{ suppNames[o.supplier_id]=o.supplier_name; });
+  return `<div class="card" style="padding:12px 20px;background:#fce4ec;border:2px solid #f48fb1;margin-bottom:16px">
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      <span style="font-size:13px;font-weight:600;color:#880e4f">🏭 Xem theo NCC:</span>
+      <select style="width:auto;flex:1;min-width:160px" onchange="setViewSupplier(this.value)">
+        <option value="">— Tất cả NCC —</option>
+        ${[...new Set(orders.map(o=>o.supplier_id))].map(sid=>`<option value="${sid}" ${currentUser._viewSupplierId===sid?'selected':''}>${suppNames[sid]||sid}</option>`).join('')}
+      </select>
+    </div>
+  </div>`;
+}
+function setViewStore(sid) { currentUser._viewStoreId = sid; navigateTo(currentPage); }
+function setViewSupplier(sid) { currentUser._viewSupplierId = sid; navigateTo(currentPage); }
 
 // ── STORE DASHBOARD ────────────────────────────────────────────────────────────
 function renderStoreDashboard() {
   const my = myOrders();
+  const picker = renderAdminStorePicker();
   const stats = [
     {icon:'📋',num:my.length,label:'Tổng đơn hàng'},
     {icon:'⏳',num:my.filter(o=>o.status==='pending_supplier').length,label:'Chờ NCC xác nhận'},
     {icon:'✅',num:my.filter(o=>o.status==='confirmed').length,label:'Đã xác nhận'},
     {icon:'🚚',num:my.filter(o=>o.status==='delivered').length,label:'Đã giao'},
   ];
-  return `
+  return `${picker}
     <div class="stat-grid">${stats.map(s=>`<div class="stat-card"><div class="icon">${s.icon}</div><div class="num">${s.num}</div><div class="label">${s.label}</div></div>`).join('')}</div>
     <div class="card">
       <div class="card-title">📋 Đơn hàng gần đây</div>
@@ -380,16 +442,35 @@ function renderStoreDashboard() {
 }
 
 // ── STORE CREATE ORDER ─────────────────────────────────────────────────────────
+function getActiveStoreId() {
+  if (currentUser.role === 'store_user') return currentUser.store_id;
+  return currentUser._viewStoreId || null;
+}
 function renderStoreCreate() {
   const nccOptions = SUPPLIERS.map(s=>`<option value="${s.id}">${s.name}</option>`).join('');
+  const isAdmin = ['admin','buyer_head_office'].includes(currentUser.role);
+  const storeNames = {};
+  orders.forEach(o=>{ storeNames[o.store_id]=o.store_name; });
+  const STORES_LIST = [{id:'S01',name:'Phú Bài'},{id:'S02',name:'Vinh Thanh'},{id:'S03',name:'An Vân Dương'}];
+  const storeSelector = isAdmin ? `
+    <div class="form-group">
+      <label>Cửa hàng <span style="color:red">*</span></label>
+      <select id="selStore" onchange="currentUser._viewStoreId=this.value">
+        <option value="">— Chọn cửa hàng —</option>
+        ${STORES_LIST.map(s=>`<option value="${s.id}" ${currentUser._viewStoreId===s.id?'selected':''}>${s.name}</option>`).join('')}
+      </select>
+    </div>` : `<div class="form-group"><label>Cửa hàng</label><input type="text" value="${currentUser.store_name||currentUser.store_id}" disabled style="background:#f5f5f5"></div>`;
   return `
     <div class="card">
       <div class="card-title">➕ Thông tin đơn hàng</div>
       <div class="form-row">
+        ${storeSelector}
         <div class="form-group">
           <label>Nhà cung cấp</label>
           <select id="selNCC" onchange="loadCatalog()">${nccOptions}</select>
         </div>
+      </div>
+      <div class="form-row">
         <div class="form-group">
           <label>Ngày giao dự kiến</label>
           <input type="date" id="deliveryDate" value="${new Date(Date.now()+86400000).toISOString().slice(0,10)}">
@@ -456,13 +537,17 @@ function renderCart() {
 
 function saveDraft() {
   if (cart.length===0) { alert('Vui lòng chọn ít nhất 1 sản phẩm'); return; }
+  const sid = getActiveStoreId();
+  if (!sid) { alert('Vui lòng chọn cửa hàng trước'); return; }
+  const STORES_LIST = [{id:'S01',name:'Phú Bài'},{id:'S02',name:'Vinh Thanh'},{id:'S03',name:'An Vân Dương'}];
+  const storeName = currentUser.store_name || STORES_LIST.find(s=>s.id===sid)?.name || sid;
   const ncc = document.getElementById('selNCC')?.value;
   const sup = SUPPLIERS.find(s=>s.id===ncc);
   const order = {
     id:'ORD'+Date.now(),
     order_code: generateOrderCode(),
-    store_id: currentUser.store_id,
-    store_name: currentUser.store_name,
+    store_id: sid,
+    store_name: storeName,
     supplier_id: ncc,
     supplier_name: sup?.name||ncc,
     status:'draft',
@@ -480,13 +565,17 @@ function saveDraft() {
 
 function submitOrder() {
   if (cart.length===0) { alert('Vui lòng chọn ít nhất 1 sản phẩm'); return; }
+  const sid = getActiveStoreId();
+  if (!sid) { alert('Vui lòng chọn cửa hàng trước'); return; }
+  const STORES_LIST = [{id:'S01',name:'Phú Bài'},{id:'S02',name:'Vinh Thanh'},{id:'S03',name:'An Vân Dương'}];
+  const storeName = currentUser.store_name || STORES_LIST.find(s=>s.id===sid)?.name || sid;
   const ncc = document.getElementById('selNCC')?.value;
   const sup = SUPPLIERS.find(s=>s.id===ncc);
   const order = {
     id:'ORD'+Date.now(),
     order_code: generateOrderCode(),
-    store_id: currentUser.store_id,
-    store_name: currentUser.store_name,
+    store_id: sid,
+    store_name: storeName,
     supplier_id: ncc,
     supplier_name: sup?.name||ncc,
     status:'pending_supplier',
@@ -506,7 +595,8 @@ function submitOrder() {
 // ── STORE ORDERS ──────────────────────────────────────────────────────────────
 function renderStoreOrders() {
   const my = myOrders();
-  return `
+  const picker = renderAdminStorePicker();
+  return `${picker}
     <div class="card">
       <div class="filter-bar">
         <input type="text" placeholder="🔍 Tìm mã đơn..." oninput="filterOrders(this.value,'orderTbl')" style="max-width:200px">
@@ -595,13 +685,14 @@ function closeOrder(id) {
 // ── SUPPLIER ──────────────────────────────────────────────────────────────────
 function renderSupplierDashboard() {
   const my = myOrders();
+  const picker = renderAdminSupplierPicker();
   const stats = [
     {icon:'⏳',num:my.filter(o=>o.status==='pending_supplier').length,label:'Chờ xác nhận'},
     {icon:'✅',num:my.filter(o=>o.status==='confirmed').length,label:'Đã xác nhận'},
     {icon:'🔄',num:my.filter(o=>o.status==='partial_confirmed').length,label:'Xác nhận 1 phần'},
     {icon:'❌',num:my.filter(o=>o.status==='rejected').length,label:'Đã từ chối'},
   ];
-  return `
+  return `${picker}
     <div class="stat-grid">${stats.map(s=>`<div class="stat-card"><div class="icon">${s.icon}</div><div class="num">${s.num}</div><div class="label">${s.label}</div></div>`).join('')}</div>
     <div class="card">
       <div class="card-title">⏳ Đơn chờ xác nhận</div>
@@ -622,7 +713,8 @@ function renderSupplierDashboard() {
 
 function renderSupplierOrders() {
   const my = myOrders();
-  return `
+  const picker = renderAdminSupplierPicker();
+  return `${picker}
     <div class="card">
       <table>
         <tr><th>Mã đơn</th><th>Cửa hàng</th><th>Ngày đặt</th><th>Ngày giao</th><th>Trạng thái</th><th></th></tr>
@@ -829,6 +921,144 @@ function renderAdminLogs() {
         </div>`).join('')}
       </div>
       ${events.length===0?'<div class="empty"><div class="icon">📜</div><p>Chưa có sự kiện nào</p></div>':''}
+    </div>`;
+}
+
+// ── HƯỚNG DẪN SỬ DỤNG ────────────────────────────────────────────────────────
+function renderGuide() {
+  const role = currentUser.role;
+  const guides = {
+    store_user: [
+      {
+        icon:'➕', title:'Tạo đơn hàng',
+        steps:[
+          'Vào menu <strong>Tạo đơn hàng</strong>',
+          'Chọn <strong>Nhà cung cấp</strong> từ danh sách',
+          'Chọn <strong>Ngày giao dự kiến</strong>',
+          'Nhập số lượng cho từng sản phẩm trong danh mục',
+          'Nhấn <strong>💾 Lưu nháp</strong> để lưu tạm, hoặc <strong>📤 Gửi NCC</strong> để gửi ngay',
+        ]
+      },
+      {
+        icon:'📋', title:'Theo dõi đơn hàng',
+        steps:[
+          'Vào menu <strong>Lịch sử đơn</strong>',
+          'Xem trạng thái từng đơn qua badge màu sắc',
+          'Nhấn <strong>Xem</strong> để xem chi tiết và sản phẩm đã xác nhận',
+          'Đơn <strong>Nháp</strong> hoặc <strong>Chờ NCC</strong> có thể hủy bằng nút <strong>Hủy</strong>',
+        ]
+      },
+      {
+        icon:'🔖', title:'Các trạng thái đơn hàng',
+        steps:[
+          '<span class="badge badge-draft">Nháp</span> — Đã lưu, chưa gửi NCC',
+          '<span class="badge badge-pending">Chờ NCC</span> — Đã gửi, đang chờ NCC phản hồi',
+          '<span class="badge badge-confirmed">Xác nhận</span> — NCC đã xác nhận đủ hàng',
+          '<span class="badge badge-partial">Xác nhận một phần</span> — NCC xác nhận thiếu hàng',
+          '<span class="badge badge-rejected">Từ chối</span> — NCC từ chối toàn bộ, xem lý do trong chi tiết đơn',
+          '<span class="badge badge-delivered">Đã giao</span> — Hàng đã được giao tới cửa hàng',
+        ]
+      },
+    ],
+    supplier_user: [
+      {
+        icon:'📦', title:'Xem và xác nhận đơn hàng',
+        steps:[
+          'Vào menu <strong>Đơn cần xác nhận</strong>',
+          'Các đơn có trạng thái <span class="badge badge-pending">Chờ NCC</span> cần được xử lý',
+          'Nhấn nút <strong>Xác nhận</strong> để mở màn hình phản hồi',
+          'Kiểm tra từng sản phẩm và số lượng',
+        ]
+      },
+      {
+        icon:'✅', title:'Xác nhận đủ hàng',
+        steps:[
+          'Nhấn <strong>✅ Xác nhận đủ</strong> nếu có đủ tất cả sản phẩm theo số lượng đặt',
+          'Đơn sẽ chuyển sang trạng thái <span class="badge badge-confirmed">Xác nhận</span>',
+        ]
+      },
+      {
+        icon:'🔄', title:'Xác nhận một phần',
+        steps:[
+          'Điều chỉnh <strong>SL xác nhận</strong> thấp hơn SL đặt cho sản phẩm thiếu hàng',
+          'Nhập <strong>ghi chú</strong> giải thích nếu cần',
+          'Nhấn <strong>🔄 Xác nhận một phần</strong>',
+          'Đơn sẽ chuyển sang trạng thái <span class="badge badge-partial">Xác nhận một phần</span>',
+        ]
+      },
+      {
+        icon:'❌', title:'Từ chối đơn hàng',
+        steps:[
+          'Nhấn <strong>❌ Từ chối</strong> nếu không thể cung cấp',
+          'Bắt buộc nhập <strong>lý do từ chối</strong>',
+          'Cửa hàng sẽ thấy lý do trong chi tiết đơn',
+        ]
+      },
+    ],
+    admin: [
+      {
+        icon:'📊', title:'Dashboard tổng quan',
+        steps:[
+          'Xem KPI toàn hệ thống: tổng đơn, chờ NCC, xác nhận, từ chối',
+          'Danh sách đơn cần xử lý (đang chờ NCC hoặc xác nhận một phần)',
+          'Nhấn <strong>Xem</strong> để vào chi tiết và thực hiện hành động',
+        ]
+      },
+      {
+        icon:'🚚', title:'Xử lý giao hàng',
+        steps:[
+          'Khi đơn đã <span class="badge badge-confirmed">Xác nhận</span>, mở chi tiết đơn',
+          'Nhấn <strong>🚚 Đánh dấu đã giao</strong> khi hàng đã giao tới cửa hàng',
+          'Sau khi giao, nhấn <strong>✅ Đóng đơn</strong> để kết thúc vòng đời đơn hàng',
+        ]
+      },
+      {
+        icon:'🏭', title:'Quản lý nhà cung cấp & sản phẩm',
+        steps:[
+          'Vào <strong>Quản lý NCC</strong> để xem danh sách và số đơn từng NCC',
+          'Vào <strong>Sản phẩm</strong> để xem toàn bộ catalog theo NCC',
+          'Vào <strong>Event Logs</strong> để audit toàn bộ lịch sử hành động trong hệ thống',
+        ]
+      },
+      {
+        icon:'🔑', title:'Tài khoản demo',
+        steps:[
+          '<strong>admin / admin123</strong> — Quản trị viên, toàn quyền',
+          '<strong>buyer / buyer123</strong> — Trưởng phòng mua, xem toàn hệ thống',
+          '<strong>store1 / store123</strong> — Cửa hàng Phú Bài',
+          '<strong>store2 / store456</strong> — Cửa hàng Vinh Thanh',
+          '<strong>supplier1 / sup123</strong> — NCC Rau Củ ABC (NCC01)',
+          '<strong>supplier2 / sup456</strong> — NCC Thực Phẩm XYZ (NCC02)',
+        ]
+      },
+    ],
+  };
+  guides.buyer_head_office = guides.admin;
+
+  const sections = guides[role] || guides.admin;
+  return `
+    <div style="max-width:800px">
+      <div class="card" style="background:linear-gradient(135deg,#0D47A1,#1976D2);color:#fff;margin-bottom:20px">
+        <div style="font-size:22px;font-weight:800;margin-bottom:8px">📖 Hướng dẫn sử dụng</div>
+        <div style="opacity:.85;font-size:14px">VICOMART ORDER SYSTEM — ${roleLabel(role)}</div>
+      </div>
+      ${sections.map(s=>`
+        <div class="card">
+          <div class="card-title">${s.icon} ${s.title}</div>
+          <ol style="padding-left:20px;line-height:2">
+            ${s.steps.map(step=>`<li style="font-size:13px;color:#333">${step}</li>`).join('')}
+          </ol>
+        </div>
+      `).join('')}
+      <div class="card" style="background:#f8faff;border:2px dashed #c5cae9">
+        <div class="card-title">💡 Mẹo nhanh</div>
+        <ul style="padding-left:20px;line-height:2;font-size:13px;color:#555">
+          <li>Luồng cơ bản: <strong>Tạo đơn → Gửi NCC → NCC xác nhận → Giao hàng → Đóng đơn</strong></li>
+          <li>Dữ liệu demo được lưu trong bộ nhớ tạm — <strong>refresh trang sẽ reset</strong> về dữ liệu gốc</li>
+          <li>Mỗi role chỉ thấy dữ liệu thuộc phạm vi của mình (cửa hàng hoặc NCC)</li>
+          <li>Khi kết nối Supabase, dữ liệu sẽ được lưu thật và bảo mật theo RLS</li>
+        </ul>
+      </div>
     </div>`;
 }
 
