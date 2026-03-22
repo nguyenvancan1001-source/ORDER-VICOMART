@@ -1,0 +1,25 @@
+Đọc file spec.txt trong thư mục này. Đây là đặc tả đầy đủ cho VICOMART ORDER SYSTEM.
+
+Hãy build thành 1 file HTML duy nhất tên index.html, hoàn chỉnh, chạy được ngay trong browser.
+
+YÊU CẦU:
+1. Single-page app, role-based navigation: admin, buyer_head_office, store_user, supplier_user
+2. Login form với hardcode users để test:
+   - admin / admin123 (role: admin)
+   - buyer / buyer123 (role: buyer_head_office)  
+   - store1 / store123 (role: store_user, store_id: S01)
+   - supplier1 / sup123 (role: supplier_user, supplier_id: NCC01)
+3. Supabase client:
+   - URL: https://oeqvwhawayzsfxmhlfch.supabase.co
+   - anon key: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9lcXZ3aGF3YXl6c2Z4bWhsZmNoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwMzE3NzMsImV4cCI6MjA4ODYwNzc3M30.MWbRKHgjISsnw64ZZ1ZPo_tULRpwl16Qms5RVNiLALo
+4. Giao diện: màu xanh đậm (#0D47A1, #1565C0), font Be Vietnam Pro, chuyên nghiệp, responsive, mobile-friendly
+5. Các trang theo role:
+   - store_user: Dashboard cửa hàng, Tạo đơn hàng, Lịch sử đơn, Chi tiết đơn
+   - supplier_user: Dashboard NCC, Danh sách đơn, Xác nhận/Từ chối đơn
+   - admin/buyer: Dashboard tổng, Tất cả đơn, Quản lý NCC, Sản phẩm, Event logs
+6. localStorage để lưu session login và cart tạo đơn
+7. Demo data hardcode nếu Supabase chưa có data (fallback)
+8. Hiển thị OTP/order status badge màu sắc rõ ràng
+9. Có sidebar navigation và header với user info + logout
+
+Tạo file index.html đầy đủ, không cắt bớt, chạy được 100% trong browser.
